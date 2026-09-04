@@ -663,7 +663,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8345070699079395522, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.7
+      value: -3.64
       objectReference: {fileID: 0}
     - target: {fileID: 8345070699079395522, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -671,7 +671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8345070699079395522, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.4
+      value: 0.18
       objectReference: {fileID: 0}
     - target: {fileID: 8345070699079395522, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1643,7 +1643,11 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1acb10fe-a94c-4a31-a34d-80e09aaace44
+    m_ActionName: 'Player/Jump[/Keyboard/space]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1771,20 +1775,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
-=======
---- !u!114 &1142864441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1142864434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43ec105ff3ae462488211186fa44b406, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!1 &1251584528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1916,12 +1906,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251584528}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25340134, y: 0.0000000041728554, z: -0.0000000010930841, w: 0.9673613}
-  m_LocalPosition: {x: -2.88353, y: 3.75, z: -3.3}
+  m_LocalRotation: {x: -0, y: -4.4408916e-16, z: 0.0000000013631933, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1988803697}
   m_LocalEulerAnglesHint: {x: 21.536, y: 1.514, z: 0.366}
 --- !u!114 &1251584533
 MonoBehaviour:
@@ -1955,7 +1945,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
->>>>>>> Stashed changes
 --- !u!1 &1289789536
 GameObject:
   m_ObjectHideFlags: 0
@@ -2955,8 +2944,6 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
-<<<<<<< Updated upstream
-=======
 --- !u!1 &1988803691
 GameObject:
   m_ObjectHideFlags: 0
@@ -3194,10 +3181,10 @@ Transform:
   m_LocalPosition: {x: -2.88353, y: 3.75, z: -3.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1251584532}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> Stashed changes
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3211,8 +3198,4 @@ SceneRoots:
   - {fileID: 109649641}
   - {fileID: 1289789542}
   - {fileID: 1142864440}
-<<<<<<< Updated upstream
-=======
-  - {fileID: 1251584532}
   - {fileID: 1988803697}
->>>>>>> Stashed changes
