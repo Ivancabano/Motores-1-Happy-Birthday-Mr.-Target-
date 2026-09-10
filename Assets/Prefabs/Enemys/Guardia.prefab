@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6263411003724908774}
   - component: {fileID: 171568212621209088}
   - component: {fileID: 6236348580289714994}
+  - component: {fileID: 806771801563992623}
   m_Layer: 0
   m_Name: Guardia
   m_TagString: Untagged
@@ -162,6 +163,19 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &806771801563992623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930594815665247617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71b995f7a3296c488d1f030b91ff4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetHealth
+  maxHealth: 100
 --- !u!1 &1799069117895831690
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,16 +8,20 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private PlayerAim playerAim;
     [SerializeField] private Transform muzzle;
 
+    [Header("Bala")]
+    [SerializeField] private Bullet bulletPrefab;
+
     [Header("Input")]
     [SerializeField] private InputActionReference shootAction;
 
-    [Header("Disparo")]
-    [SerializeField] private float shootDistance = 100f;
-    [SerializeField] private LayerMask shootMask = ~0;
+    [Header("Arma")]
+    [SerializeField] private float fireCooldown = 0.2f;
+
+    private float nextFireTime;
 
     private void OnEnable()
     {
-        if (shootAction != null && shootAction.action != null)
+        if (shootAction?.action != null)
         {
             shootAction.action.Enable();
             shootAction.action.performed += OnShoot;
@@ -26,7 +30,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void OnDisable()
     {
-        if (shootAction != null && shootAction.action != null)
+        if (shootAction?.action != null)
         {
             shootAction.action.performed -= OnShoot;
             shootAction.action.Disable();
@@ -37,51 +41,43 @@ public class PlayerShooting : MonoBehaviour
     {
         if (playerMovement == null ||
             playerAim == null ||
-            muzzle == null)
+            muzzle == null ||
+            bulletPrefab == null)
         {
             return;
         }
 
+        // Solo dispara mientras apuntamos
         if (!playerMovement.IsAiming)
             return;
 
+        // Cadencia del arma
+        if (Time.time < nextFireTime)
+            return;
+
         Shoot();
+
+        nextFireTime = Time.time + fireCooldown;
     }
 
     private void Shoot()
     {
-        Vector3 direction =
+        // Dirección desde la punta del arma
+        // hacia donde está nuestra retícula.
+        Vector3 shootDirection =
             (playerAim.AimPoint - muzzle.position).normalized;
 
-        Ray ray = new Ray(
+        // Creamos la bala físicamente en el Muzzle.
+        Bullet newBullet = Instantiate(
+            bulletPrefab,
             muzzle.position,
-            direction
+            Quaternion.LookRotation(shootDirection)
         );
 
-        if (Physics.Raycast(
-            ray,
-            out RaycastHit hit,
-            shootDistance,
-            shootMask
-        ))
-        {
-            Debug.Log("Impactamos contra: " + hit.collider.name);
-
-            Debug.DrawLine(
-                muzzle.position,
-                hit.point,
-                Color.red,
-                1f
-            );
-        }
-        else
-        {
-            Debug.DrawRay(
-                muzzle.position,
-                direction * shootDistance,
-                Color.yellow,
-                1f
-            );
-        }
+        // Le indicamos hacia dónde viajar.
+        newBullet.Initialize(
+            shootDirection,
+            gameObject
+        );
     }
 }
