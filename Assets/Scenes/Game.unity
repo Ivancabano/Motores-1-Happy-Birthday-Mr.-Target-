@@ -363,7 +363,7 @@ Transform:
   m_GameObject: {fileID: 695713375}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.441, y: 1.914, z: -19.75}
+  m_LocalPosition: {x: -7.441, y: 1.8140001, z: -21.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -775,6 +775,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 76794107626235500, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: CameraSide
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 76794107626235500, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: CameraDistance
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 76794107626235500, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: VerticalArmLength
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 886638910466818479, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
       propertyPath: aimAction
       value: 
@@ -850,6 +862,26 @@ PrefabInstance:
     - target: {fileID: 4923276522404790923, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984802297052383897, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984802297052383897, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.1443996
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984802297052383897, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.9906402
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984802297052383897, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.4928703
+      objectReference: {fileID: 0}
+    - target: {fileID: 8283498350569633510, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: normalDistance
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
