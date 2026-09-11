@@ -1076,6 +1076,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 191393291}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &210843158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: Player/Sprint
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 197edf6aec8342d4f9fae9d565268b62, type: 3}
+  m_ActionId: 90cc896d-24c6-431b-bf51-e87abdab87bf
 --- !u!1 &214953379
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,6 +1600,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 350142855}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &355553378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: Player/Dash
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 197edf6aec8342d4f9fae9d565268b62, type: 3}
+  m_ActionId: b5bfb33b-ed8b-4f61-9cad-1b3c4aa52703
 --- !u!1 &374334892
 GameObject:
   m_ObjectHideFlags: 0
@@ -2491,6 +2519,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 100
+--- !u!114 &739183231 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7174283143085987278, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+  m_PrefabInstance: {fileID: 1213165486}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182660185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 328b331fa9d24b24084b72a22b2c20aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
 --- !u!1 &786539794
 GameObject:
   m_ObjectHideFlags: 0
@@ -2605,6 +2644,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 786539794}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &792111380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: Player/Crouch
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 197edf6aec8342d4f9fae9d565268b62, type: 3}
+  m_ActionId: fd5f7953-1489-42d5-9284-4f0b77b2ac40
 --- !u!114 &792628400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3241,6 +3294,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1043321115}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1086735490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: Player/Aim
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 197edf6aec8342d4f9fae9d565268b62, type: 3}
+  m_ActionId: ae51e76a-cd56-4bfb-a4a1-368eca14ada1
 --- !u!21 &1088678331
 Material:
   serializedVersion: 8
@@ -3794,6 +3861,10 @@ PrefabInstance:
       propertyPath: lookAction
       value: 
       objectReference: {fileID: 2068522623}
+    - target: {fileID: 1692266620817110414, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 739183231}
     - target: {fileID: 2227195108512586266, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
       propertyPath: shootAction
       value: 
@@ -3802,10 +3873,18 @@ PrefabInstance:
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 3980745116072096718, guid: 81570116fe4b25a4f8d241d3fdd7edeb, type: 3}
+    - target: {fileID: 2227195108512586266, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 739183231}
     - target: {fileID: 3345530039439762317, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 3345530039439762317, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 739183231}
     - target: {fileID: 4553744458319506887, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
       propertyPath: m_Name
       value: Player allcomps
@@ -3858,6 +3937,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7174283143085987278, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: aimAction
+      value: 
+      objectReference: {fileID: 1086735490}
+    - target: {fileID: 7174283143085987278, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: dashAction
+      value: 
+      objectReference: {fileID: 355553378}
+    - target: {fileID: 7174283143085987278, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: moveAction
+      value: 
+      objectReference: {fileID: 1600896696}
+    - target: {fileID: 7174283143085987278, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: cameraTarget
+      value: 
+      objectReference: {fileID: 1653040732}
+    - target: {fileID: 7174283143085987278, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: crouchAction
+      value: 
+      objectReference: {fileID: 792111380}
+    - target: {fileID: 7174283143085987278, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: sprintAction
+      value: 
+      objectReference: {fileID: 210843158}
+    - target: {fileID: 7288006002293213577, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 739183231}
+    - target: {fileID: 8283498350569633510, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 739183231}
     - target: {fileID: 8445744688281855325, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -4972,6 +5083,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
   m_Asset: {fileID: -944628639613478452, guid: 197edf6aec8342d4f9fae9d565268b62, type: 3}
   m_ActionId: dd347bb9-a067-4633-a47f-c20584563d36
+--- !u!114 &1600896696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: Player/Move
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 197edf6aec8342d4f9fae9d565268b62, type: 3}
+  m_ActionId: 47d9c71e-277e-49db-b654-91fdcec08cda
 --- !u!1 &1606225599
 GameObject:
   m_ObjectHideFlags: 0
@@ -5312,6 +5437,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1618661670}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1653040732 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6984802297052383897, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+  m_PrefabInstance: {fileID: 1213165486}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1677476828
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(CapsuleCollider))]
+[RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Referencias")]
@@ -22,10 +21,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float crouchSpeed = 2f;
 
     [Header("Movimiento")]
-    [SerializeField] private float acceleration = 25f;
+    [SerializeField] private float acceleration = 20f;
 
     [Header("Rotación")]
     [SerializeField] private float rotationSpeed = 720f;
+
+    [Header("Gravedad")]
+    [SerializeField] private float gravity = -20f;
+    [SerializeField] private float groundedForce = -2f;
 
     [Header("Agacharse")]
     [SerializeField] private float crouchHeight = 1.2f;
@@ -35,30 +38,29 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashDuration = 0.15f;
     [SerializeField] private float dashCooldown = 0.8f;
 
-    private Rigidbody rb;
-    private CapsuleCollider capsule;
+    private CharacterController controller;
 
     private Vector2 moveInput;
     private Vector3 moveDirection;
+    private Vector3 horizontalVelocity;
+
+    private float verticalVelocity;
 
     private bool isAiming;
     private bool isSprinting;
     private bool isCrouching;
     private bool isDashing;
 
+    private Vector3 dashDirection;
     private float dashTimeRemaining;
     private float dashCooldownRemaining;
 
-    private Vector3 dashDirection;
-
-    // Valores originales del collider
     private float standingHeight;
     private Vector3 standingCenter;
     private Vector3 crouchingCenter;
 
-    private readonly Collider[] standCheckResults = new Collider[10];
+    private readonly Collider[] overlapResults = new Collider[10];
 
-    // Propiedades públicas
     public bool IsAiming => isAiming;
     public bool IsSprinting => isSprinting;
     public bool IsCrouching => isCrouching;
@@ -66,16 +68,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-        capsule = GetComponent<CapsuleCollider>();
+        controller = GetComponent<CharacterController>();
 
-        standingHeight = capsule.height;
-        standingCenter = capsule.center;
+        standingHeight = controller.height;
+        standingCenter = controller.center;
 
         crouchingCenter = standingCenter;
 
-        // Hace que la parte inferior del collider
-        // permanezca en el mismo sitio al agacharse.
         crouchingCenter.y =
             standingCenter.y -
             (standingHeight - crouchHeight) * 0.5f;
@@ -127,22 +126,23 @@ public class PlayerMovement : MonoBehaviour
 
         HandleDashInput();
 
+        HandleGravity();
+
+        if (isDashing)
+        {
+            PerformDash();
+        }
+        else
+        {
+            Move();
+        }
+
+        RotatePlayer();
+
         if (dashCooldownRemaining > 0f)
         {
             dashCooldownRemaining -= Time.deltaTime;
         }
-    }
-
-    private void FixedUpdate()
-    {
-        if (isDashing)
-        {
-            PerformDash();
-            return;
-        }
-
-        Move();
-        RotatePlayer();
     }
 
     // --------------------------------------------------
@@ -165,20 +165,20 @@ public class PlayerMovement : MonoBehaviour
             aimAction?.action != null &&
             aimAction.action.IsPressed();
 
-        bool sprintButton =
+        bool sprintPressed =
             sprintAction?.action != null &&
             sprintAction.action.IsPressed();
 
-        // No corremos apuntando ni agachados.
         isSprinting =
-            sprintButton &&
+            sprintPressed &&
             !isAiming &&
             !isCrouching &&
+            !isDashing &&
             moveInput.sqrMagnitude > 0.01f;
     }
 
     // --------------------------------------------------
-    // DIRECCIÓN
+    // DIRECCIÓN RELATIVA A CÁMARA
     // --------------------------------------------------
 
     private void CalculateMoveDirection()
@@ -192,7 +192,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 forward = cameraTarget.forward;
         Vector3 right = cameraTarget.right;
 
-        // Movimiento únicamente sobre X/Z.
+        // No queremos que mirar arriba/abajo
+        // afecte al movimiento.
         forward.y = 0f;
         right.y = 0f;
 
@@ -210,38 +211,30 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // --------------------------------------------------
-    // MOVIMIENTO NORMAL
+    // MOVIMIENTO
     // --------------------------------------------------
 
     private void Move()
     {
-        float currentSpeed = GetCurrentSpeed();
+        float targetSpeed = GetCurrentSpeed();
 
-        Vector3 desiredVelocity =
-            moveDirection * currentSpeed;
+        Vector3 targetVelocity =
+            moveDirection * targetSpeed;
 
-        Vector3 currentVelocity =
-            rb.linearVelocity;
-
-        Vector3 horizontalVelocity =
-            new Vector3(
-                currentVelocity.x,
-                0f,
-                currentVelocity.z
+        // Da aceleración/desaceleración progresiva.
+        horizontalVelocity =
+            Vector3.MoveTowards(
+                horizontalVelocity,
+                targetVelocity,
+                acceleration * Time.deltaTime
             );
 
-        Vector3 velocityChange =
-            desiredVelocity - horizontalVelocity;
+        Vector3 finalMovement =
+            horizontalVelocity +
+            Vector3.up * verticalVelocity;
 
-        velocityChange =
-            Vector3.ClampMagnitude(
-                velocityChange,
-                acceleration * Time.fixedDeltaTime
-            );
-
-        rb.AddForce(
-            velocityChange,
-            ForceMode.VelocityChange
+        controller.Move(
+            finalMovement * Time.deltaTime
         );
     }
 
@@ -260,6 +253,26 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // --------------------------------------------------
+    // GRAVEDAD
+    // --------------------------------------------------
+
+    private void HandleGravity()
+    {
+        if (controller.isGrounded)
+        {
+            if (verticalVelocity < 0f)
+            {
+                verticalVelocity = groundedForce;
+            }
+        }
+        else
+        {
+            verticalVelocity +=
+                gravity * Time.deltaTime;
+        }
+    }
+
+    // --------------------------------------------------
     // ROTACIÓN
     // --------------------------------------------------
 
@@ -272,13 +285,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (isAiming)
         {
-            // Al apuntar siempre mira hacia la cámara.
+            // En Aim miramos siempre hacia la cámara.
             directionToFace = cameraTarget.forward;
             directionToFace.y = 0f;
         }
         else
         {
-            // Normalmente mira hacia donde camina.
+            // Fuera de Aim miramos hacia donde caminamos.
             if (moveDirection.sqrMagnitude < 0.01f)
                 return;
 
@@ -290,10 +303,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void RotateTowards(Vector3 direction)
     {
+        direction.y = 0f;
+
         if (direction.sqrMagnitude < 0.01f)
             return;
 
-        direction.y = 0f;
         direction.Normalize();
 
         Quaternion targetRotation =
@@ -302,14 +316,12 @@ public class PlayerMovement : MonoBehaviour
                 Vector3.up
             );
 
-        Quaternion newRotation =
+        transform.rotation =
             Quaternion.RotateTowards(
-                rb.rotation,
+                transform.rotation,
                 targetRotation,
-                rotationSpeed * Time.fixedDeltaTime
+                rotationSpeed * Time.deltaTime
             );
-
-        rb.MoveRotation(newRotation);
     }
 
     // --------------------------------------------------
@@ -326,7 +338,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (isCrouching)
         {
-            // Solo se levanta si hay espacio arriba.
             if (CanStandUp())
             {
                 SetCrouching(false);
@@ -344,15 +355,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (isCrouching)
         {
-            capsule.height = crouchHeight;
-            capsule.center = crouchingCenter;
+            controller.height = crouchHeight;
+            controller.center = crouchingCenter;
 
             isSprinting = false;
         }
         else
         {
-            capsule.height = standingHeight;
-            capsule.center = standingCenter;
+            controller.height = standingHeight;
+            controller.center = standingCenter;
         }
     }
 
@@ -362,52 +373,50 @@ public class PlayerMovement : MonoBehaviour
             transform.TransformPoint(standingCenter);
 
         float radius =
-            capsule.radius *
+            controller.radius *
             Mathf.Max(
                 transform.lossyScale.x,
                 transform.lossyScale.z
             );
 
-        float worldHeight =
+        float height =
             standingHeight *
             transform.lossyScale.y;
 
-        float halfHeight =
+        float halfSegment =
             Mathf.Max(
-                worldHeight * 0.5f,
-                radius
+                0f,
+                height * 0.5f - radius
             );
-
-        Vector3 top =
-            worldCenter +
-            Vector3.up * (halfHeight - radius);
 
         Vector3 bottom =
             worldCenter -
-            Vector3.up * (halfHeight - radius);
+            Vector3.up * halfSegment;
 
-        int hitCount =
+        Vector3 top =
+            worldCenter +
+            Vector3.up * halfSegment;
+
+        int hits =
             Physics.OverlapCapsuleNonAlloc(
                 bottom,
                 top,
                 radius * 0.95f,
-                standCheckResults,
+                overlapResults,
                 ~0,
                 QueryTriggerInteraction.Ignore
             );
 
-        for (int i = 0; i < hitCount; i++)
+        for (int i = 0; i < hits; i++)
         {
-            Collider hit = standCheckResults[i];
+            Collider hit = overlapResults[i];
 
             if (hit == null)
                 continue;
 
-            // Ignorar nuestro propio collider.
-            if (hit == capsule)
+            if (hit == controller)
                 continue;
 
-            // Ignorar colliders hijos del jugador.
             if (hit.transform.IsChildOf(transform))
                 continue;
 
@@ -440,7 +449,6 @@ public class PlayerMovement : MonoBehaviour
         if (dashCooldownRemaining > 0f)
             return;
 
-        // Por ahora no permitimos dash agachados.
         if (isCrouching)
             return;
 
@@ -449,12 +457,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (moveDirection.sqrMagnitude > 0.01f)
         {
-            dashDirection = moveDirection.normalized;
+            dashDirection =
+                moveDirection.normalized;
         }
         else
         {
-            // Sin WASD, el dash va hacia adelante.
-            dashDirection = cameraTarget.forward;
+            dashDirection =
+                cameraTarget.forward;
+
             dashDirection.y = 0f;
             dashDirection.Normalize();
         }
@@ -463,23 +473,22 @@ public class PlayerMovement : MonoBehaviour
 
         dashTimeRemaining = dashDuration;
         dashCooldownRemaining = dashCooldown;
+
+        horizontalVelocity = Vector3.zero;
     }
 
     private void PerformDash()
     {
-        Vector3 currentVelocity =
-            rb.linearVelocity;
+        Vector3 dashMovement =
+            dashDirection * dashSpeed;
 
-        rb.linearVelocity =
-            new Vector3(
-                dashDirection.x * dashSpeed,
-                currentVelocity.y,
-                dashDirection.z * dashSpeed
-            );
+        dashMovement.y = verticalVelocity;
 
-        RotateTowards(dashDirection);
+        controller.Move(
+            dashMovement * Time.deltaTime
+        );
 
-        dashTimeRemaining -= Time.fixedDeltaTime;
+        dashTimeRemaining -= Time.deltaTime;
 
         if (dashTimeRemaining <= 0f)
         {
