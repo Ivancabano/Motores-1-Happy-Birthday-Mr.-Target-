@@ -66,6 +66,7 @@ public class EnemyController : MonoBehaviour
         agent.isStopped = false;
         currentState = AIState.Chasing;
     }
+
     private bool HasDirectVision()
     {
         if (Target == null) return false;
