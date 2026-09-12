@@ -32,25 +32,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         currentHealth -= damage;
 
-        currentHealth = Mathf.Clamp(
-            currentHealth,
-            0f,
-            maxHealth
-        );
+        currentHealth = Mathf.Clamp(currentHealth,0f,maxHealth);
 
-        Debug.Log(
-            "Player recibió " +
-            damage +
-            " de daño. Vida: " +
-            currentHealth +
-            "/" +
-            maxHealth
-        );
+        Debug.Log("Player recibió " +damage +" de daño. Vida: " +currentHealth + "/" + maxHealth);
 
-        OnHealthChanged?.Invoke(
-            currentHealth,
-            maxHealth
-        );
+        OnHealthChanged?.Invoke(currentHealth,maxHealth);
 
         if (currentHealth <= 0f)
         {
@@ -68,16 +54,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         currentHealth += amount;
 
-        currentHealth = Mathf.Clamp(
-            currentHealth,
-            0f,
-            maxHealth
-        );
+        currentHealth = Mathf.Clamp(currentHealth,0f,maxHealth);
 
-        OnHealthChanged?.Invoke(
-            currentHealth,
-            maxHealth
-        );
+        OnHealthChanged?.Invoke( currentHealth,maxHealth);
     }
 
     private void Die()
@@ -97,9 +76,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         isDead = false;
         currentHealth = maxHealth;
 
-        OnHealthChanged?.Invoke(
-            currentHealth,
-            maxHealth
-        );
+        OnHealthChanged?.Invoke( currentHealth,maxHealth);
     }
 }

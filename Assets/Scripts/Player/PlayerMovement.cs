@@ -75,9 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
         crouchingCenter = standingCenter;
 
-        crouchingCenter.y =
-            standingCenter.y -
-            (standingHeight - crouchHeight) * 0.5f;
+        crouchingCenter.y = standingCenter.y - (standingHeight - crouchHeight) * 0.5f;
     }
 
     private void OnEnable()
@@ -153,28 +151,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if (moveAction?.action != null)
         {
-            moveInput =
-                moveAction.action.ReadValue<Vector2>();
+            moveInput = moveAction.action.ReadValue<Vector2>();
         }
         else
         {
             moveInput = Vector2.zero;
         }
 
-        isAiming =
-            aimAction?.action != null &&
-            aimAction.action.IsPressed();
+        isAiming = aimAction?.action != null && aimAction.action.IsPressed();
 
-        bool sprintPressed =
-            sprintAction?.action != null &&
-            sprintAction.action.IsPressed();
+        bool sprintPressed = sprintAction?.action != null && sprintAction.action.IsPressed();
 
-        isSprinting =
-            sprintPressed &&
-            !isAiming &&
-            !isCrouching &&
-            !isDashing &&
-            moveInput.sqrMagnitude > 0.01f;
+        isSprinting =  sprintPressed && !isAiming && !isCrouching && !isDashing && moveInput.sqrMagnitude > 0.01f;
     }
 
     // --------------------------------------------------
@@ -200,9 +188,7 @@ public class PlayerMovement : MonoBehaviour
         forward.Normalize();
         right.Normalize();
 
-        moveDirection =
-            forward * moveInput.y +
-            right * moveInput.x;
+        moveDirection = forward * moveInput.y + right * moveInput.x;
 
         if (moveDirection.sqrMagnitude > 1f)
         {
@@ -218,24 +204,14 @@ public class PlayerMovement : MonoBehaviour
     {
         float targetSpeed = GetCurrentSpeed();
 
-        Vector3 targetVelocity =
-            moveDirection * targetSpeed;
+        Vector3 targetVelocity = moveDirection * targetSpeed;
 
         // Da aceleración/desaceleración progresiva.
-        horizontalVelocity =
-            Vector3.MoveTowards(
-                horizontalVelocity,
-                targetVelocity,
-                acceleration * Time.deltaTime
-            );
+        horizontalVelocity = Vector3.MoveTowards(  horizontalVelocity, targetVelocity, acceleration * Time.deltaTime);
 
-        Vector3 finalMovement =
-            horizontalVelocity +
-            Vector3.up * verticalVelocity;
+        Vector3 finalMovement = horizontalVelocity + Vector3.up * verticalVelocity;
 
-        controller.Move(
-            finalMovement * Time.deltaTime
-        );
+        controller.Move( finalMovement * Time.deltaTime);
     }
 
     private float GetCurrentSpeed()
@@ -310,18 +286,9 @@ public class PlayerMovement : MonoBehaviour
 
         direction.Normalize();
 
-        Quaternion targetRotation =
-            Quaternion.LookRotation(
-                direction,
-                Vector3.up
-            );
+        Quaternion targetRotation = Quaternion.LookRotation( direction,Vector3.up);
 
-        transform.rotation =
-            Quaternion.RotateTowards(
-                transform.rotation,
-                targetRotation,
-                rotationSpeed * Time.deltaTime
-            );
+        transform.rotation = Quaternion.RotateTowards( transform.rotation, targetRotation,rotationSpeed * Time.deltaTime);
     }
 
     // --------------------------------------------------
@@ -369,43 +336,19 @@ public class PlayerMovement : MonoBehaviour
 
     private bool CanStandUp()
     {
-        Vector3 worldCenter =
-            transform.TransformPoint(standingCenter);
+        Vector3 worldCenter = transform.TransformPoint(standingCenter);
 
-        float radius =
-            controller.radius *
-            Mathf.Max(
-                transform.lossyScale.x,
-                transform.lossyScale.z
-            );
+        float radius = controller.radius * Mathf.Max( transform.lossyScale.x, transform.lossyScale.z);
 
-        float height =
-            standingHeight *
-            transform.lossyScale.y;
+        float height = standingHeight * transform.lossyScale.y;
 
-        float halfSegment =
-            Mathf.Max(
-                0f,
-                height * 0.5f - radius
-            );
+        float halfSegment = Mathf.Max( 0f,height * 0.5f - radius);
 
-        Vector3 bottom =
-            worldCenter -
-            Vector3.up * halfSegment;
+        Vector3 bottom = worldCenter - Vector3.up * halfSegment;
 
-        Vector3 top =
-            worldCenter +
-            Vector3.up * halfSegment;
+        Vector3 top = worldCenter + Vector3.up * halfSegment;
 
-        int hits =
-            Physics.OverlapCapsuleNonAlloc(
-                bottom,
-                top,
-                radius * 0.95f,
-                overlapResults,
-                ~0,
-                QueryTriggerInteraction.Ignore
-            );
+        int hits = Physics.OverlapCapsuleNonAlloc(bottom,top,radius * 0.95f, overlapResults, ~0, QueryTriggerInteraction.Ignore);
 
         for (int i = 0; i < hits; i++)
         {
@@ -457,13 +400,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (moveDirection.sqrMagnitude > 0.01f)
         {
-            dashDirection =
-                moveDirection.normalized;
+            dashDirection = moveDirection.normalized;
         }
         else
         {
-            dashDirection =
-                cameraTarget.forward;
+            dashDirection = cameraTarget.forward;
 
             dashDirection.y = 0f;
             dashDirection.Normalize();
@@ -484,9 +425,7 @@ public class PlayerMovement : MonoBehaviour
 
         dashMovement.y = verticalVelocity;
 
-        controller.Move(
-            dashMovement * Time.deltaTime
-        );
+        controller.Move(dashMovement * Time.deltaTime);
 
         dashTimeRemaining -= Time.deltaTime;
 

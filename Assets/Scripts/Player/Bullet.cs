@@ -23,33 +23,26 @@ public class Bullet : MonoBehaviour
 
         IgnoreOwnerCollisions();
 
-        rb.linearVelocity =
-            direction.normalized * speed;
+        rb.linearVelocity = direction.normalized * speed;
 
         Destroy(gameObject, lifeTime);
     }
 
     private void IgnoreOwnerCollisions()
     {
-        Collider bulletCollider =
-            GetComponent<Collider>();
+        Collider bulletCollider = GetComponent<Collider>();
 
-        Collider[] ownerColliders =
-            owner.GetComponentsInChildren<Collider>();
+        Collider[] ownerColliders = owner.GetComponentsInChildren<Collider>();
 
         foreach (Collider ownerCollider in ownerColliders)
         {
-            Physics.IgnoreCollision(
-                bulletCollider,
-                ownerCollider
-            );
+            Physics.IgnoreCollision(bulletCollider,ownerCollider);
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        IDamageable damageable =
-            collision.collider.GetComponentInParent<IDamageable>();
+        IDamageable damageable = collision.collider.GetComponentInParent<IDamageable>();
 
         if (damageable != null)
         {

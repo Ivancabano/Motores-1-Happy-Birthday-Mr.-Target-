@@ -25,9 +25,7 @@ public class PlayerAimCamera : MonoBehaviour
 
     private void Update()
     {
-        if (playerMovement == null ||
-            cinemachineCamera == null ||
-            thirdPersonFollow == null)
+        if (playerMovement == null || cinemachineCamera == null || thirdPersonFollow == null)
         {
             return;
         }
@@ -39,42 +37,24 @@ public class PlayerAimCamera : MonoBehaviour
     {
         bool isAiming = playerMovement.IsAiming;
 
-        float targetDistance =
-            isAiming ? aimDistance : normalDistance;
+        float targetDistance = isAiming ? aimDistance : normalDistance;
 
-        Vector3 targetShoulderOffset =
-            isAiming ? aimShoulderOffset : normalShoulderOffset;
+        Vector3 targetShoulderOffset = isAiming ? aimShoulderOffset : normalShoulderOffset;
 
-        float targetFOV =
-            isAiming ? aimFOV : normalFOV;
+        float targetFOV = isAiming ? aimFOV : normalFOV;
 
         float t = transitionSpeed * Time.deltaTime;
 
         // Distancia
-        thirdPersonFollow.CameraDistance =
-            Mathf.Lerp(
-                thirdPersonFollow.CameraDistance,
-                targetDistance,
-                t
-            );
+        thirdPersonFollow.CameraDistance = Mathf.Lerp(thirdPersonFollow.CameraDistance,targetDistance,t);
 
         // Hombro
-        thirdPersonFollow.ShoulderOffset =
-            Vector3.Lerp(
-                thirdPersonFollow.ShoulderOffset,
-                targetShoulderOffset,
-                t
-            );
+        thirdPersonFollow.ShoulderOffset =Vector3.Lerp(thirdPersonFollow.ShoulderOffset,targetShoulderOffset,t);
 
         // FOV
         LensSettings lens = cinemachineCamera.Lens;
 
-        lens.FieldOfView =
-            Mathf.Lerp(
-                lens.FieldOfView,
-                targetFOV,
-                t
-            );
+        lens.FieldOfView = Mathf.Lerp(lens.FieldOfView,targetFOV,t);
 
         cinemachineCamera.Lens = lens;
     }

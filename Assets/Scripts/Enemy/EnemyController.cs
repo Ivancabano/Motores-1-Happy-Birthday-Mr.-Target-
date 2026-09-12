@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    private TargetHealth targetHealth;
     private NavMeshAgent agent;
     public AlertManager alertManager;
     public Transform Target;
@@ -31,6 +32,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        targetHealth = GetComponent<TargetHealth>();
         agent = GetComponent<NavMeshAgent>();
         pointA = transform.position;
         pointB = transform.position + transform.forward * hallwayDistance;
@@ -63,8 +65,13 @@ public class EnemyController : MonoBehaviour
     public void ForceChase()
     {
         isWaiting = false;
-        agent.isStopped = false;
-        currentState = AIState.Chasing;
+    agent.isStopped = false;
+    currentState = AIState.Chasing;
+
+    if (targetHealth != null)
+    {
+        targetHealth.SetAlertState(true);
+    }
     }
 
     private bool HasDirectVision()

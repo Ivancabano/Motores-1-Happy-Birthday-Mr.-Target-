@@ -62,24 +62,14 @@ public class ThirdPersonCameraController : MonoBehaviour
         if (lookAction?.action == null)
             return;
 
-        Vector2 mouseInput =
-            lookAction.action.ReadValue<Vector2>();
+        Vector2 mouseInput = lookAction.action.ReadValue<Vector2>();
 
         yaw += mouseInput.x * sensitivity;
         pitch -= mouseInput.y * sensitivity;
 
-        pitch = Mathf.Clamp(
-            pitch,
-            minPitch,
-            maxPitch
-        );
+        pitch = Mathf.Clamp(pitch,minPitch,maxPitch);
 
-        transform.rotation =
-            Quaternion.Euler(
-                pitch,
-                yaw,
-                0f
-            );
+        transform.rotation =Quaternion.Euler(pitch,yaw,0f);
     }
 
     private void FollowPlayer()
@@ -96,14 +86,8 @@ public class ThirdPersonCameraController : MonoBehaviour
         }
 
         currentTargetHeight =
-            Mathf.Lerp(
-                currentTargetHeight,
-                desiredHeight,
-                heightTransitionSpeed * Time.deltaTime
-            );
+            Mathf.Lerp(currentTargetHeight,desiredHeight,heightTransitionSpeed * Time.deltaTime);
 
-        transform.position =
-            player.position +
-            Vector3.up * currentTargetHeight;
+        transform.position =player.position +Vector3.up * currentTargetHeight;
     }
 }

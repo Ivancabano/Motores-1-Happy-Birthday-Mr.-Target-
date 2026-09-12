@@ -24,26 +24,15 @@ public class PlayerAim : MonoBehaviour
 
     private void CalculateAimPoint()
     {
-        Ray ray = new Ray(
-            mainCamera.transform.position,
-            mainCamera.transform.forward
-        );
+        Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
 
-        if (Physics.Raycast(
-            ray,
-            out RaycastHit hit,
-            aimDistance,
-            aimMask
-        ))
+        if (Physics.Raycast(ray, out RaycastHit hit, aimDistance,aimMask))
         {
             aimPoint = hit.point;
         }
         else
         {
-            aimPoint =
-                mainCamera.transform.position +
-                mainCamera.transform.forward *
-                aimDistance;
+            aimPoint = mainCamera.transform.position + mainCamera.transform.forward * aimDistance;
         }
     }
 
@@ -52,14 +41,8 @@ public class PlayerAim : MonoBehaviour
         if (mainCamera == null)
             return;
 
-        Gizmos.DrawLine(
-            mainCamera.transform.position,
-            aimPoint
-        );
+        Gizmos.DrawLine(mainCamera.transform.position,aimPoint);
 
-        Gizmos.DrawSphere(
-            aimPoint,
-            0.1f
-        );
+        Gizmos.DrawSphere(aimPoint,0.1f);
     }
 }

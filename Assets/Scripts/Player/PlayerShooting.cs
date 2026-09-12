@@ -39,10 +39,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void OnShoot(InputAction.CallbackContext context)
     {
-        if (playerMovement == null ||
-            playerAim == null ||
-            muzzle == null ||
-            bulletPrefab == null)
+        if (playerMovement == null ||  playerAim == null || muzzle == null || bulletPrefab == null)
         {
             return;
         }
@@ -64,20 +61,12 @@ public class PlayerShooting : MonoBehaviour
     {
         // Dirección desde la punta del arma
         // hacia donde está nuestra retícula.
-        Vector3 shootDirection =
-            (playerAim.AimPoint - muzzle.position).normalized;
+        Vector3 shootDirection = (playerAim.AimPoint - muzzle.position).normalized;
 
         // Creamos la bala físicamente en el Muzzle.
-        Bullet newBullet = Instantiate(
-            bulletPrefab,
-            muzzle.position,
-            Quaternion.LookRotation(shootDirection)
-        );
+        Bullet newBullet = Instantiate(bulletPrefab, muzzle.position, Quaternion.LookRotation(shootDirection));
 
         // Le indicamos hacia dónde viajar.
-        newBullet.Initialize(
-            shootDirection,
-            gameObject
-        );
+        newBullet.Initialize(shootDirection, gameObject);
     }
 }
