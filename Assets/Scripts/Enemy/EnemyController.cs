@@ -30,6 +30,8 @@ public class EnemyController : MonoBehaviour
     private enum AIState { Patrolling, Chasing }
     private AIState currentState = AIState.Patrolling;
 
+    public bool IsChasing => currentState == AIState.Chasing;
+
     void Start()
     {
         targetHealth = GetComponent<TargetHealth>();
