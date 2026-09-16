@@ -30,7 +30,7 @@ public class EnemyController : MonoBehaviour
     private enum AIState { Patrolling, Chasing }
     private AIState currentState = AIState.Patrolling;
 
-    public bool IsChasing { get; internal set; }
+    public bool IsChasing { get => currentState == AIState.Chasing; internal set => currentState = value ? AIState.Chasing : AIState.Patrolling; }
 
     void Start()
     {
