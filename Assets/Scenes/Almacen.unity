@@ -1159,7 +1159,7 @@ GameObject:
   - component: {fileID: 139560624}
   - component: {fileID: 139560623}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: TimerCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6094,7 +6094,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1053036611}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 911dabac029d5dd46b7b41646be51ee6, type: 3}
+  m_Script: {fileID: 11500000, guid: 0aab0c5efdbc6724dacfc92748d9ea48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
   timerText: {fileID: 656417325}
