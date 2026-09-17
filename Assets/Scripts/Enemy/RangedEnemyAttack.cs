@@ -12,6 +12,7 @@ public class RangedEnemyAttack : MonoBehaviour
     public Transform firePoint;
     public float bulletSpeed = 20f;
     public float rotationSpeed = 4f;
+    public float bulletDamage = 5f;
 
     private EnemyController enemyController;
     private NavMeshAgent agent;
@@ -62,6 +63,13 @@ public class RangedEnemyAttack : MonoBehaviour
         Vector3 shootDirection = (aimPoint - firePoint.position).normalized;
 
         GameObject bulletObj = Instantiate(bulletPrefab, firePoint.position, Quaternion.LookRotation(shootDirection));
+
+        EnemyBullet enemyBullet = bulletObj.GetComponent<EnemyBullet>();
+
+        if (enemyBullet != null)
+        {
+            enemyBullet.SetDamage(bulletDamage);
+        }
 
         Rigidbody bulletRb = bulletObj.GetComponent<Rigidbody>();
         if (bulletRb != null)

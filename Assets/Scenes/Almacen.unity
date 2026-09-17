@@ -4912,6 +4912,7 @@ MonoBehaviour:
   firePoint: {fileID: 1870958550}
   bulletSpeed: 20
   rotationSpeed: 4
+  bulletDamage: 5
 --- !u!1001 &858701500
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5251,6 +5252,7 @@ MonoBehaviour:
   firePoint: {fileID: 196020845}
   bulletSpeed: 20
   rotationSpeed: 4
+  bulletDamage: 5
 --- !u!1 &923078319
 GameObject:
   m_ObjectHideFlags: 0
@@ -7898,7 +7900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 806771801563992623, guid: 06e6e9bcc3b74c947b409efda0253710, type: 3}
       propertyPath: alertHealth
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 806771801563992623, guid: 06e6e9bcc3b74c947b409efda0253710, type: 3}
       propertyPath: normalHealth
@@ -8011,6 +8013,7 @@ MonoBehaviour:
   firePoint: {fileID: 473015259}
   bulletSpeed: 20
   rotationSpeed: 4
+  bulletDamage: 25
 --- !u!114 &1298871513 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 806771801563992623, guid: 06e6e9bcc3b74c947b409efda0253710, type: 3}
@@ -8373,6 +8376,7 @@ MonoBehaviour:
   firePoint: {fileID: 193982331}
   bulletSpeed: 20
   rotationSpeed: 4
+  bulletDamage: 5
 --- !u!1 &1421247462
 GameObject:
   m_ObjectHideFlags: 0
