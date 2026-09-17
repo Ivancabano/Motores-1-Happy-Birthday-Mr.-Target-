@@ -13,12 +13,16 @@ public class GameManager : MonoBehaviour
         GameOver
     }
 
-    [Header("Referencias")]
+    [Header("Referencias Player")]
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerShooting playerShooting;
 
+    [Header("Objetivo de Victoria")]
+    [SerializeField] private TargetHealth victoryTarget;
+
     public GameState CurrentState { get; private set; } = GameState.Playing;
+
     public event Action OnVictory;
     public event Action OnGameOver;
 
@@ -35,17 +39,31 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        // Escuchamos la muerte del Player
         if (playerHealth != null)
         {
             playerHealth.OnDeath += HandlePlayerDeath;
+        }
+
+        // Escuchamos la muerte del enemigo objetivo
+        if (victoryTarget != null)
+        {
+            victoryTarget.OnDeath += HandleVictoryTargetDeath;
         }
     }
 
     private void OnDisable()
     {
+        // Dejamos de escuchar la muerte del Player
         if (playerHealth != null)
         {
             playerHealth.OnDeath -= HandlePlayerDeath;
+        }
+
+        // Dejamos de escuchar la muerte del enemigo objetivo
+        if (victoryTarget != null)
+        {
+            victoryTarget.OnDeath -= HandleVictoryTargetDeath;
         }
     }
 
@@ -53,6 +71,12 @@ public class GameManager : MonoBehaviour
     {
         TriggerGameOver();
     }
+
+    private void HandleVictoryTargetDeath()
+    {
+        TriggerVictory();
+    }
+
     public void TriggerVictory()
     {
         if (CurrentState != GameState.Playing)
@@ -61,6 +85,8 @@ public class GameManager : MonoBehaviour
         CurrentState = GameState.Victory;
 
         LockPlayerControls();
+
+        Debug.Log("¡VICTORIA!");
 
         OnVictory?.Invoke();
     }
@@ -73,6 +99,8 @@ public class GameManager : MonoBehaviour
         CurrentState = GameState.GameOver;
 
         LockPlayerControls();
+
+        Debug.Log("GAME OVER");
 
         OnGameOver?.Invoke();
     }
@@ -91,13 +119,16 @@ public class GameManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
         Time.timeScale = 0f;
     }
+
     public void RestartLevel()
     {
         Time.timeScale = 1f;
 
         Scene currentScene = SceneManager.GetActiveScene();
+
         SceneManager.LoadScene(currentScene.name);
     }
 }

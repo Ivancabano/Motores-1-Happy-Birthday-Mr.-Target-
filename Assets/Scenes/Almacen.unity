@@ -6105,6 +6105,7 @@ MonoBehaviour:
   playerHealth: {fileID: 739183230}
   playerMovement: {fileID: 739183231}
   playerShooting: {fileID: 739183239}
+  victoryTarget: {fileID: 1298871513}
 --- !u!4 &1053036613
 Transform:
   m_ObjectHideFlags: 0
@@ -8010,6 +8011,17 @@ MonoBehaviour:
   firePoint: {fileID: 473015259}
   bulletSpeed: 20
   rotationSpeed: 4
+--- !u!114 &1298871513 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 806771801563992623, guid: 06e6e9bcc3b74c947b409efda0253710, type: 3}
+  m_PrefabInstance: {fileID: 1298871509}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298871511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71b995f7a3296c488d1f030b91ff4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetHealth
 --- !u!1 &1358157020
 GameObject:
   m_ObjectHideFlags: 0
