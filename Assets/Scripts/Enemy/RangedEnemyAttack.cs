@@ -6,14 +6,14 @@ using UnityEngine.AI;
 public class RangedEnemyAttack : MonoBehaviour
 {
     [Header("Ranged Attack")]
-    public float shootingRange = 10f;
-    public float fireRate = 1f;
-    public GameObject bulletPrefab;
-    public Transform firePoint;
-    public float bulletSpeed = 20f;
-    public float rotationSpeed = 4f;
-    public float bulletDamage = 5f;
-
+    [SerializeField] private float shootingRange = 10f;
+    [SerializeField] private float fireRate = 1f;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private Transform target;
+    [SerializeField] private float bulletSpeed = 20f;
+    [SerializeField] private float rotationSpeed = 4f;
+    [SerializeField] private float bulletDamage = 5f;
     private EnemyController enemyController;
     private NavMeshAgent agent;
     private float nextFireTime = 0f;
@@ -27,10 +27,8 @@ public class RangedEnemyAttack : MonoBehaviour
     
     void LateUpdate()
     {
-        if (enemyController == null || enemyController.Target == null) return;
+        if (enemyController == null || target == null) return;
         if (!enemyController.IsChasing) return;
-
-        Transform target = enemyController.Target;
         float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
         if (distanceToTarget <= shootingRange)

@@ -8,24 +8,26 @@ public class EnemyController : MonoBehaviour
 {
     private TargetHealth targetHealth;
     private NavMeshAgent agent;
-    public AlertManager alertManager;
-    public Transform Target;
+    [SerializeField] private AlertManager alertManager;
+    [SerializeField] private Transform Target;
+
     [Header("Patrol Configuration")]
-    public float hallwayDistance = 8f;
+    [SerializeField] private float hallwayDistance = 8f;
     private Vector3 pointA;
     private Vector3 pointB;
     private bool headingToPointB = true;
     [Header("Scannig and Rotation")]
-    public float scanWaitTime = 3f;
-    public float scanAngle = 45f;
-    public float rotationSpeed = 2f;
+    [SerializeField] private float scanWaitTime = 3f;
+    [SerializeField] private float scanAngle = 45f;
+    [SerializeField] private float rotationSpeed = 2f;
     private float scanTimer = 0f;
     private Quaternion rotationOnArrival;
     private bool isWaiting = false;
+
     [Header("Vision")]
-    public float visionDistance = 12f;
+    [SerializeField] private float visionDistance = 12f;
     [UnityEngine.Range(0f, 360f)] public float visionAngle = 70f;
-    public LayerMask obstacleLayer;
+    [SerializeField] private LayerMask obstacleLayer;
     private float visionTolerance = 1.2f;
     private enum AIState { Patrolling, Chasing }
     private AIState currentState = AIState.Patrolling;
