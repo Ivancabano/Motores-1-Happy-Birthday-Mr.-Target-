@@ -35,7 +35,7 @@ public class EnemyContactDamage : MonoBehaviour
             return;
         }
 
-        IDamageable damageable = other.GetComponent<IDamageable>();
+        IDamageable damageable = other.GetComponentInParent<IDamageable>();
         if (damageable == null)
         {
             Debug.LogWarning($"[EnemyContactDamage] {other.name} tiene tag '{playerTag}' pero no tiene ningún componente IDamageable.");
