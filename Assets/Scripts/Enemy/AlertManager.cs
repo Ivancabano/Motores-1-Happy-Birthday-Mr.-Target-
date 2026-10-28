@@ -20,6 +20,7 @@ public class AlertManager : MonoBehaviour
       if (!isAlertActive)
         {
           isAlertActive = true;
+          DynamicMusicManager.Instance?.StartAlert();
           foreach (string currentTag in enemyTags)
             {
                 GameObject[] enemiesWithThisTag = GameObject.FindGameObjectsWithTag(currentTag);

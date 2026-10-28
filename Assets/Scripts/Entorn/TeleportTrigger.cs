@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class TeleportTrigger : MonoBehaviour
@@ -23,5 +24,8 @@ public class TeleportTrigger : MonoBehaviour
         other.transform.rotation = destination.rotation;
 
         controller.enabled = true;
+
+    // Activamos la música del jefe
+        DynamicMusicManager.Instance?.StartBossMusic();
     }
 }
