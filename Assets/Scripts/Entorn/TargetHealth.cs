@@ -4,6 +4,8 @@ using UnityEngine;
 public class TargetHealth : MonoBehaviour, IDamageable
 {
     [Header("Vida")]
+    [Header("Sistema de rangos")]
+    [SerializeField] private bool countsForRank = true;
     [SerializeField] private float normalHealth = 25f;
     [SerializeField] private float alertHealth = 75f;
 
@@ -63,17 +65,22 @@ public class TargetHealth : MonoBehaviour, IDamageable
     }
 
     private void Die()
+{
+    if (isDead)
+        return;
+
+    isDead = true;
+
+    Debug.Log(gameObject.name + " murió.");
+
+    // Contar la baja solamente si corresponde
+    if (countsForRank)
     {
-        if (isDead)
-            return;
-
-        isDead = true;
-
-        Debug.Log(gameObject.name + " murió.");
-
-        // Avisamos antes de destruirlo
-        OnDeath?.Invoke();
-
-        Destroy(gameObject);
+        RankManager.Instance?.RegisterKill();
     }
+
+    OnDeath?.Invoke();
+
+    Destroy(gameObject);
+}
 }

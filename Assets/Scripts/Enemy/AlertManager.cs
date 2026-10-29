@@ -20,6 +20,7 @@ public class AlertManager : MonoBehaviour
       if (!isAlertActive)
         {
           isAlertActive = true;
+          RankManager.Instance?.RegisterDetection();
           DynamicMusicManager.Instance?.StartAlert();
           foreach (string currentTag in enemyTags)
             {

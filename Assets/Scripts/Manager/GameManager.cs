@@ -78,18 +78,21 @@ public class GameManager : MonoBehaviour
     }
 
     public void TriggerVictory()
-    {
-        if (CurrentState != GameState.Playing)
-            return;
+{
+    if (CurrentState != GameState.Playing)
+        return;
 
-        CurrentState = GameState.Victory;
+    CurrentState = GameState.Victory;
 
-        LockPlayerControls();
+    // NUEVO: Calcular el rango final
+    RankManager.Instance?.FinishRun();
 
-        Debug.Log("¡VICTORIA!");
+    LockPlayerControls();
 
-        OnVictory?.Invoke();
-    }
+    Debug.Log("¡VICTORIA!");
+
+    OnVictory?.Invoke();
+}
 
     public void TriggerGameOver()
     {
