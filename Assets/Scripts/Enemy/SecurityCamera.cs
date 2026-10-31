@@ -3,17 +3,18 @@ using UnityEngine;
 
 public class SecurityCamera : MonoBehaviour
 {
-    public AlertManager alertManager;
-    public Transform Target;
+    [SerializeField] private AlertManager alertManager;
+    [SerializeField] private Transform Target;
     private Light cameraLight;
-    public LayerMask obstacleLayer;
-    [HideInInspector] public bool playerDetected = false;
+    [SerializeField] private LayerMask obstacleLayer;
+    [HideInInspector] private bool playerDetected = false;
+   
     [Header("Zonification Mechanics")]
-    public bool rotateCamera = true;
-    public float zonificationAngle = 40f;
-    public float rotationSpeed = 1.5f;
+    [SerializeField] private bool rotateCamera = true;
+    [SerializeField] private float zonificationAngle = 40f;
+    [SerializeField] private float rotationSpeed = 1.5f;
     private Quaternion initialRotation;
-    [HideInInspector] public bool isAlertActive = false;
+    [HideInInspector] private bool isAlertActive = false;
     private float visionRange;
     private float visionAngle;
     private float lightEdgeTolerance = 1.2f;

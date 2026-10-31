@@ -4,17 +4,8 @@ using static EnemyController;
 
 public class AlertManager : MonoBehaviour
 {
-    [HideInInspector] public bool isAlertActive = false;
+    [HideInInspector] private bool isAlertActive = false;
     string[] enemyTags = { "EnemyMelee", "EnemyDistance" };
-
-    void Start()
-    {
-        
-    }
-    void Update()
-    {
-        
-    }
     public void EnemyOnSight()
     {
       if (!isAlertActive)
