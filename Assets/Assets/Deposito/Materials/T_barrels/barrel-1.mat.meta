@@ -1,15 +1,8 @@
 fileFormatVersion: 2
-guid: 39e11f0e94a88ec47b453420d034a30e
-timeCreated: 1475386126
-licenseType: Store
+guid: 2952b61463b529e439ad633914f483df
 NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 73101
-  packageName: Crate and Barrels
-  packageVersion: 1.0
-  assetPath: Assets/Assets_Crate_Barrels/models/Materials/barrel-1.mat
-  uploadId: 140470
