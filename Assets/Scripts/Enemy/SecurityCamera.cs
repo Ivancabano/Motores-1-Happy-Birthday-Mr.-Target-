@@ -5,6 +5,7 @@ public class SecurityCamera : MonoBehaviour
     private Transform targetTransform;
     private IDetectable targetDetectable;
     private Light cameraLight;
+    [SerializeField] private Transform focoTransform;
 
     [SerializeField] private LayerMask obstacleLayer;
     private bool playerDetected = false;
@@ -29,6 +30,14 @@ public class SecurityCamera : MonoBehaviour
     private void SearchReferences()
     {
         cameraLight = GetComponentInChildren<Light>();
+        if (cameraLight == null || cameraLight.type != LightType.Spot)
+        {
+            enabled = false;
+            return;
+        }
+
+        focoTransform = cameraLight.transform;
+        initialRotation = focoTransform.rotation;
 
         alertManager = Object.FindFirstObjectByType<AlertManager>();
 
@@ -55,7 +64,7 @@ public class SecurityCamera : MonoBehaviour
     }
     void Update()
     {
-        if (rotateCamera && !playerDetected)
+        if (rotateCamera && !playerDetected && focoTransform != null)
         {
             float angleModifier = Mathf.Sin(Time.time * rotationSpeed) * zonificationAngle;
             transform.rotation = initialRotation * Quaternion.Euler(0, angleModifier, 0);
