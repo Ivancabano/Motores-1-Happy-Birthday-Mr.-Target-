@@ -1,26 +1,45 @@
-using Unity.VisualScripting;
 using UnityEngine;
-
 public class SecurityCamera : MonoBehaviour
 {
-    [SerializeField] private AlertManager alertManager;
-    [SerializeField] private Transform Target;
+    private AlertManager alertManager;
+    private Transform targetTransform;
+    private IDetectable targetDetectable;
     private Light cameraLight;
+
     [SerializeField] private LayerMask obstacleLayer;
-    [HideInInspector] private bool playerDetected = false;
-   
+    private bool playerDetected = false;
+
     [Header("Zonification Mechanics")]
     [SerializeField] private bool rotateCamera = true;
     [SerializeField] private float zonificationAngle = 40f;
     [SerializeField] private float rotationSpeed = 1.5f;
     private Quaternion initialRotation;
-    [HideInInspector] private bool isAlertActive = false;
+
     private float visionRange;
     private float visionAngle;
     private float lightEdgeTolerance = 1.2f;
+
+    public bool IsPlayerDetected => playerDetected;
+    public Light CameraLight => cameraLight;
+
     void Start()
     {
+        SearchReferences();
+    }
+    private void SearchReferences()
+    {
         cameraLight = GetComponentInChildren<Light>();
+
+        alertManager = Object.FindFirstObjectByType<AlertManager>();
+
+        if (targetTransform == null)
+        {
+            PlayerDetectorTarget playerTarget = Object.FindFirstObjectByType<PlayerDetectorTarget>();
+            if (playerTarget != null)
+            {
+                targetTransform = playerTarget.transform;
+            }
+        }
 
         if (cameraLight == null || cameraLight.type != LightType.Spot)
         {
@@ -28,8 +47,12 @@ public class SecurityCamera : MonoBehaviour
             return;
         }
         initialRotation = transform.rotation;
-    }
 
+        if (targetTransform != null)
+        {
+            targetDetectable = targetTransform.GetComponent<IDetectable>();
+        }
+    }
     void Update()
     {
         if (rotateCamera && !playerDetected)
@@ -46,7 +69,7 @@ public class SecurityCamera : MonoBehaviour
             if (!playerDetected)
             {
                 playerDetected = true;
-                alertManager.EnemyOnSight();
+                if (alertManager != null) alertManager.EnemyOnSight();
             }
         }
         else
@@ -60,10 +83,12 @@ public class SecurityCamera : MonoBehaviour
 
     bool CanSeePlayer()
     {
-        if (Target == null || cameraLight == null) return false;
+        if (targetTransform == null || cameraLight == null) return false;
 
         Vector3 originPosition = cameraLight.transform.position;
-        Vector3 playerCenterPosition = Target.position + Vector3.up * 1f;
+        Vector3 playerCenterPosition = targetDetectable != null ?
+            targetDetectable.GetCenterPosition() :
+            targetTransform.position + Vector3.up * 1f;
 
         Vector3 directionToPlayer = (playerCenterPosition - originPosition).normalized;
         float currentDistance = Vector3.Distance(originPosition, playerCenterPosition);
@@ -79,7 +104,7 @@ public class SecurityCamera : MonoBehaviour
 
                 if (Physics.Raycast(originPosition, directionToPlayer, out hit, visionRange + 2f))
                 {
-                    if (hit.transform.CompareTag("Player"))
+                    if (hit.transform.TryGetComponent<IDetectable>(out _))
                     {
                         Debug.DrawLine(originPosition, hit.point, Color.red);
                         return true;
@@ -93,14 +118,5 @@ public class SecurityCamera : MonoBehaviour
             }
         }
         return false;
-    }
-    private void OnDrawGizmos()
-    {
-        if (cameraLight == null) cameraLight = GetComponentInChildren<Light>();
-        if (cameraLight == null || cameraLight.type != LightType.Spot) return;
-
-        Gizmos.color = playerDetected ? Color.red : Color.cyan;
-        Vector3 origin = cameraLight.transform.position;
-        Gizmos.DrawRay(origin, cameraLight.transform.forward * cameraLight.range);
     }
 }

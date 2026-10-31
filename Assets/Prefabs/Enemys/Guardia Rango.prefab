@@ -12,11 +12,13 @@ GameObject:
   - component: {fileID: 7210464168644286443}
   - component: {fileID: 8543445040132437009}
   - component: {fileID: 6263411003724908774}
-  - component: {fileID: 171568212621209088}
   - component: {fileID: 6236348580289714994}
   - component: {fileID: 806771801563992623}
+  - component: {fileID: 9174195565627514494}
+  - component: {fileID: 812924479688642937}
+  - component: {fileID: 8310841161697068505}
   m_Layer: 0
-  m_Name: Guardia
+  m_Name: Guardia Rango
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,6 +38,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7166884609964696067}
+  - {fileID: 6159780082476252213}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7210464168644286443
@@ -118,29 +121,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &171568212621209088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 930594815665247617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff2832df4516bb46875e8b4f9711394, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  alertManager: {fileID: 0}
-  Target: {fileID: 0}
-  hallwayDistance: 8
-  scanWaitTime: 3
-  scanAngle: 45
-  rotationSpeed: 2
-  visionDistance: 12
-  visionAngle: 70
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!195 &6236348580289714994
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -175,8 +155,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b71b995f7a3296c488d1f030b91ff4e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetHealth
+  countsForRank: 1
   normalHealth: 25
   alertHealth: 75
+--- !u!114 &9174195565627514494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930594815665247617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc2393049f2ca24eac16d82ad78cfac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyGizmos
+--- !u!114 &812924479688642937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930594815665247617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403073ce60ef18349afe7a21b58421a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyRanged
+  visionDistance: 12
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &8310841161697068505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930594815665247617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a43692b30a4454e4ea888f84877a3508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedEnemyAttack
+  shootingRange: 10
+  fireRate: 1
+  bulletPrefab: {fileID: 6186674080664291376, guid: 91cd3e9740c800b4e9a4dbf6b21fc04b, type: 3}
+  firePoint: {fileID: 6159780082476252213}
+  target: {fileID: 0}
+  bulletSpeed: 20
+  rotationSpeed: 4
+  bulletDamage: 5
 --- !u!1 &1799069117895831690
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,3 +318,34 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7483788452223402645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6159780082476252213}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6159780082476252213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483788452223402645}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.316, y: 0.366, z: 1.601}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6177198583712778388}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

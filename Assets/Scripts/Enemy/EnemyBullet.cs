@@ -1,12 +1,15 @@
 using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
+ 
 {
-    public float lifeTime = 3f;
-    public float damage = 5f;
+    [SerializeField] private float lifeTime = 3f;
+    [SerializeField] private float damage = 5f;
+    private Rigidbody rb;
 
     void Start()
     {
+        rb= GetComponent<Rigidbody>();
         Destroy(gameObject, lifeTime);
     }
 
@@ -15,23 +18,16 @@ public class EnemyBullet : MonoBehaviour
         damage = newDamage;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private  void OnCollisionEnter(Collision collision) 
     {
-        if (other.CompareTag("Player"))
         {
-            IDamageable damageable = other.GetComponent<IDamageable>();
-            if (damageable != null)
+            IDamageable damageable = collision.gameObject.GetComponent <IDamageable> ();
             {
                 damageable.TakeDamage(damage);
             }
 
             Destroy(gameObject);
             return;
-        }
-
-        if (!other.CompareTag("EnemyMelee") && !other.CompareTag("EnemyDistance"))
-        {
-            Destroy(gameObject);
         }
     }
 }

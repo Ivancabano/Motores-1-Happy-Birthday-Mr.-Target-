@@ -1,16 +1,13 @@
 using UnityEngine;
 
-public class Interfaces : MonoBehaviour
+public interface IAlertable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    void ForceChase();
+    bool IsChasing { get; }
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public interface IDetectable
+{
+    Transform GetTransform();
+    Vector3 GetCenterPosition();
 }

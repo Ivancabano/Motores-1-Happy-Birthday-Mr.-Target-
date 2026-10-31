@@ -10,21 +10,33 @@ public class RangedEnemyAttack : MonoBehaviour
     [SerializeField] private float fireRate = 1f;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private Transform target;
+    private Transform target;
     [SerializeField] private float bulletSpeed = 20f;
     [SerializeField] private float rotationSpeed = 4f;
     [SerializeField] private float bulletDamage = 5f;
-    private EnemyController enemyController;
+    private EnemyBase enemyController;
     private NavMeshAgent agent;
     private float nextFireTime = 0f;
 
     void Start()
     {
-        enemyController = GetComponent<EnemyController>();
+        SearchReferences();
+    }
+    private void SearchReferences()
+    {
+        if (target == null)
+        {
+            PlayerDetectorTarget playerTarget = Object.FindFirstObjectByType<PlayerDetectorTarget>();
+            if (playerTarget != null)
+            {
+                target = playerTarget.transform;
+            }
+        }
+        enemyController = GetComponent<EnemyBase>();
         agent = GetComponent<NavMeshAgent>();
     }
 
-    
+
     void LateUpdate()
     {
         if (enemyController == null || target == null) return;

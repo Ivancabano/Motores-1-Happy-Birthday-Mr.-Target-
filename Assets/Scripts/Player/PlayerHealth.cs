@@ -13,7 +13,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public float MaxHealth => maxHealth;
     public bool IsDead => isDead;
 
-    // Nos servirán después para la barra de vida y muerte.
     public event Action<float, float> OnHealthChanged;
     public event Action OnDeath;
 
@@ -34,7 +33,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         currentHealth = Mathf.Clamp(currentHealth,0f,maxHealth);
 
-        Debug.Log("Player recibió " +damage +" de daño. Vida: " +currentHealth + "/" + maxHealth);
+        Debug.Log("Player recibió " + damage +" de daño. Vida: " +currentHealth + "/" + maxHealth);
 
         OnHealthChanged?.Invoke(currentHealth,maxHealth);
 

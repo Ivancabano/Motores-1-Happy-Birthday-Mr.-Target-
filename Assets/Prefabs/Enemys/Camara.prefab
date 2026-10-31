@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 4197372116345180246}
   - component: {fileID: 3438490658830726961}
   - component: {fileID: 8150693401473293027}
+  - component: {fileID: 2633884415302237232}
   m_Layer: 0
   m_Name: Camara
   m_TagString: Untagged
@@ -239,16 +240,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e5ccfa9050fb341ad390fa556b147b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SecurityCamera
-  alertManager: {fileID: 0}
-  Target: {fileID: 0}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
-  playerDetected: 0
-  rotateCamera: 0
+  rotateCamera: 1
   zonificationAngle: 40
   rotationSpeed: 1.5
-  isAlertActive: 0
+--- !u!114 &2633884415302237232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5676242688252592505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daba388ee953e1047801ad298e160897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraGizmos
 --- !u!1 &8286702646387923528
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,27 +1,30 @@
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using static EnemyController;
 
 public class AlertManager : MonoBehaviour
 {
-    [HideInInspector] private bool isAlertActive = false;
-    string[] enemyTags = { "EnemyMelee", "EnemyDistance" };
+    private bool isAlertActive = false;
+    private static readonly HashSet<IAlertable> alertableEnemies = new HashSet<IAlertable>();
+
+    public static void Register(IAlertable alertable)
+    {
+        if (alertable != null) alertableEnemies.Add(alertable);
+    }
+
+    public static void Unregister(IAlertable alertable)
+    {
+        if (alertable != null) alertableEnemies.Remove(alertable);
+    }
+
     public void EnemyOnSight()
     {
-      if (!isAlertActive)
+        if (!isAlertActive)
         {
-          isAlertActive = true;
-          RankManager.Instance?.RegisterDetection();
-          DynamicMusicManager.Instance?.StartAlert();
-          foreach (string currentTag in enemyTags)
-            {
-                GameObject[] enemiesWithThisTag = GameObject.FindGameObjectsWithTag(currentTag);
-                foreach(GameObject enemy in enemiesWithThisTag)
+            isAlertActive = true;
 
-                if (enemy.TryGetComponent<EnemyController>(out EnemyController EnemyController))
-                {
-                    EnemyController.ForceChase();
-                }
+            foreach (var alertable in alertableEnemies)
+            {
+                alertable?.ForceChase();
             }
         }
     }

@@ -1,16 +1,14 @@
 using UnityEngine;
 
-public class PlayerDetector : MonoBehaviour
+public class PlayerDetectorTarget : MonoBehaviour, IDetectable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Transform GetTransform()
     {
-        
+        return transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    public Vector3 GetCenterPosition()
     {
-        
+        return transform.position + Vector3.up * 1f;
     }
 }
