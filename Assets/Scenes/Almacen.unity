@@ -2651,6 +2651,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 739183222}
     m_Modifications:
+    - target: {fileID: -8856052047105407217, guid: 7dfe253529342a74ba561c5179a14a99, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 18627a14b6196e243b81087ec7135bf0, type: 2}
     - target: {fileID: -8679921383154817045, guid: 7dfe253529342a74ba561c5179a14a99, type: 3}
       propertyPath: m_LocalScale.x
       value: 235.91592
@@ -2714,8 +2718,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7dfe253529342a74ba561c5179a14a99, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2044999598}
   m_SourcePrefab: {fileID: 100100000, guid: 7dfe253529342a74ba561c5179a14a99, type: 3}
+--- !u!1 &193933886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7dfe253529342a74ba561c5179a14a99, type: 3}
+  m_PrefabInstance: {fileID: 193933885}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &193982330
 GameObject:
   m_ObjectHideFlags: 0
@@ -11035,6 +11047,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1280304420200609510, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 18627a14b6196e243b81087ec7135bf0, type: 2}
     - target: {fileID: 1434937842086607780, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -11237,6 +11253,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 739183244}
   m_SourcePrefab: {fileID: 100100000, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+--- !u!143 &1213165487 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 361574154933114809, guid: 4a7ed85511c12d74a9c1cd70a9634986, type: 3}
+  m_PrefabInstance: {fileID: 1213165486}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1226542358
 GameObject:
   m_ObjectHideFlags: 0
@@ -17835,6 +17856,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7dfe253529342a74ba561c5179a14a99, type: 3}
   m_PrefabInstance: {fileID: 193933885}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2044999598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193933886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 826a3ab9b5201fc45afbdfd94e8b02b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimationController
+  playerHealth: {fileID: 0}
+  playerMovement: {fileID: 739183231}
+  characterController: {fileID: 1213165487}
+  animationSmooth: 0.1
 --- !u!1 &2050128829
 GameObject:
   m_ObjectHideFlags: 0

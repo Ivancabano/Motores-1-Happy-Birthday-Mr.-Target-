@@ -201,18 +201,31 @@ public class PlayerMovement : MonoBehaviour
     // --------------------------------------------------
 
     private void Move()
+{
+    float targetSpeed = GetCurrentSpeed();
+
+    Vector3 targetVelocity = moveDirection * targetSpeed;
+
+    // Si está agachado y apuntando, no puede desplazarse.
+    if (isCrouching && isAiming)
     {
-        float targetSpeed = GetCurrentSpeed();
-
-        Vector3 targetVelocity = moveDirection * targetSpeed;
-
-        // Da aceleración/desaceleración progresiva.
-        horizontalVelocity = Vector3.MoveTowards(  horizontalVelocity, targetVelocity, acceleration * Time.deltaTime);
-
-        Vector3 finalMovement = horizontalVelocity + Vector3.up * verticalVelocity;
-
-        controller.Move( finalMovement * Time.deltaTime);
+        horizontalVelocity = Vector3.zero;
     }
+    else
+    {
+        horizontalVelocity = Vector3.MoveTowards(
+            horizontalVelocity,
+            targetVelocity,
+            acceleration * Time.deltaTime
+        );
+    }
+
+    // Mantenemos la gravedad funcionando.
+    Vector3 finalMovement =
+        horizontalVelocity + Vector3.up * verticalVelocity;
+
+    controller.Move(finalMovement * Time.deltaTime);
+}
 
     private float GetCurrentSpeed()
     {
