@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2bae96a44016dac419a832cf7586625a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 5397
+  packageName: Metal Door
+  packageVersion: 1.1
+  assetPath: Assets/Doors/Materials/door.mat
+  uploadId: 28320
