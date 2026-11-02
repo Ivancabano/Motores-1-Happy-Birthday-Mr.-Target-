@@ -7,7 +7,8 @@ public class EnemyMelee : EnemyBase
     [SerializeField] private float scanWaitTime = 3f;
     [SerializeField] private float scanAngle = 45f;
     [SerializeField] private float rotationSpeed = 2f;
-
+    [SerializeField] private float attackDistance = 1.8f;
+    [Header("Combate Melee")]
     private Vector3 pointA;
     private Vector3 pointB;
     private bool headingToPointB = true;
@@ -66,7 +67,39 @@ public class EnemyMelee : EnemyBase
             headingToPointB = !headingToPointB;
         }
     }
+protected override void ExecuteChase()
+{
+    if (targetTransform == null || agent == null || !agent.isOnNavMesh)
+        return;
 
+    // Calculamos la distancia horizontal al jugador.
+    Vector3 direction =
+        targetTransform.position - transform.position;
+
+    direction.y = 0f;
+
+    float distance = direction.magnitude;
+
+    // Si esta suficientemente cerca, se detiene.
+    if (distance <= attackDistance)
+    {
+        agent.isStopped = true;
+        agent.ResetPath();
+
+        
+        if (direction.sqrMagnitude > 0.001f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+            transform.rotation = Quaternion.Slerp( transform.rotation,targetRotation,8f * Time.deltaTime);
+        }
+
+        return;
+    }
+
+    agent.isStopped = false;
+    agent.SetDestination(targetTransform.position);
+}
     public override void ForceChase()
     {
         isWaiting = false;

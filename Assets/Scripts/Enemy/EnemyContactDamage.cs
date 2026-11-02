@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System;
 [RequireComponent(typeof(Collider))]
 public class EnemyContactDamage : MonoBehaviour
 {
@@ -7,7 +7,7 @@ public class EnemyContactDamage : MonoBehaviour
     [SerializeField] private float damageAmount = 10f;
     [SerializeField] private float damageCooldown = 1f; // segundos entre golpes
     [SerializeField] private string playerTag = "Player";
-
+    public event Action OnAttack;
     private float lastDamageTime = -999f;
 
     private void OnTriggerEnter(Collider other)
@@ -17,9 +17,9 @@ public class EnemyContactDamage : MonoBehaviour
     }
 
     private void OnTriggerStay(Collider other)
-    {
-        TryDamage(other.gameObject);
-    }
+{
+    TryDamage(other.gameObject);
+}
 
     private void TryDamage(GameObject other)
     {
@@ -44,6 +44,7 @@ public class EnemyContactDamage : MonoBehaviour
 
         damageable.TakeDamage(damageAmount);
         lastDamageTime = Time.time;
+        OnAttack?.Invoke();
 
         Debug.Log($"[EnemyContactDamage] {gameObject.name} le hizo {damageAmount} de daño a {other.name}.");
     }
