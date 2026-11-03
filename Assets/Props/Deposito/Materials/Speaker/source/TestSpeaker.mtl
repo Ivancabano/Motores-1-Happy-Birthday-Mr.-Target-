@@ -1,0 +1,101 @@
+# Blender 5.2.0 LTS MTL File: 'TestSpeaker.blend'
+# www.blender.org
+
+newmtl black
+Ns 250.000000
+Ka 0.500000 0.500000 0.500000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd C:/black_baseColor.png
+map_Bump -bm 1.000000 C:/black_normal.png
+
+newmtl cinchhl
+Ns 490.000000
+Ka 0.500000 0.500000 0.500000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd C:/cinchhl_baseColor.png
+map_Bump -bm 1.000000 C:/cinchhl_normal.png
+
+newmtl darkwood
+Ns 159.999985
+Ka 0.500000 0.500000 0.500000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd C:/darkwood_baseColor.png
+map_Bump -bm 1.000000 C:/darkwood_normal.png
+
+newmtl guma
+Ns 250.000000
+Ka 0.500000 0.500000 0.500000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd C:/guma_baseColor.png
+map_Bump -bm 1.000000 C:/guma_normal.png
+
+newmtl lampka
+Ns 250.000000
+Ka 0.500000 0.500000 0.500000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd C:/cinchhl_baseColor.png
+map_Bump -bm 1.000000 C:/guma_normal.png
+
+newmtl lightgray
+Ns 938.476562
+Ka 1.000000 1.000000 1.000000
+Ks 0.001563 0.001563 0.001563
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:/cinchhl_baseColor.png
+map_Bump -bm 1.000000 C:/guma_normal.png
+
+newmtl material
+Ns 490.000000
+Ka 0.500000 0.500000 0.500000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd C:/material_baseColor.png
+map_Bump -bm 1.000000 C:/guma_normal.png
+
+newmtl membrane
+Ns 360.000000
+Ka 0.500000 0.500000 0.500000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd C:/membrane_baseColor.png
+map_Bump -bm 1.000000 C:/cinchhl_normal.png
+
+newmtl subamp
+Ns 250.000000
+Ka 0.500000 0.500000 0.500000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd C:/subamp_baseColor.png
+map_Bump -bm 1.000000 C:/guma_normal.png
