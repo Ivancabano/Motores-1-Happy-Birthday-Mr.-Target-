@@ -17,15 +17,18 @@ public class AlertManager : MonoBehaviour
     }
 
     public void EnemyOnSight()
-    {
-        if (!isAlertActive)
-        {
-            isAlertActive = true;
+{
+    
+    RankManager.Instance?.RegisterDetection();
 
-            foreach (var alertable in alertableEnemies)
-            {
-                alertable?.ForceChase();
-            }
+    if (!isAlertActive)
+    {
+        isAlertActive = true;
+
+        foreach (var alertable in alertableEnemies)
+        {
+            alertable?.ForceChase();
         }
     }
+}
 }
