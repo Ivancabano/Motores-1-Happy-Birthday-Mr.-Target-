@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -5,7 +6,8 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
 {
     protected NavMeshAgent agent;
     protected TargetHealth targetHealth;
-    protected AlertManager alertManager;protected Transform targetTransform;
+    protected AlertManager alertManager;
+    protected Transform targetTransform;
     protected IDetectable targetDetectable;
 
     [Header("Vision Configuration")]
@@ -17,10 +19,21 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
     protected enum AIState { Patrolling, Chasing }
     protected AIState currentState = AIState.Patrolling;
 
+    public event Action<bool> OnChasingChanged;
+
     public bool IsChasing
     {
         get => currentState == AIState.Chasing;
-        internal set => currentState = value ? AIState.Chasing : AIState.Patrolling;
+        internal set
+        {
+            AIState nuevoEstado = value ? AIState.Chasing : AIState.Patrolling;
+            if (currentState != nuevoEstado)
+            {
+                currentState = nuevoEstado;
+                // Disparamos el evento notificando el nuevo estado booleano
+                OnChasingChanged?.Invoke(IsChasing);
+            }
+        }
     }
 
     public float VisionDistance => visionDistance;
@@ -33,13 +46,13 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
     }
     protected void SearchReferences()
     {
+        agent = GetComponent<NavMeshAgent>();
+
+        alertManager = UnityEngine.Object.FindFirstObjectByType<AlertManager>();
+        
         if (targetTransform == null)
         {
-            agent = GetComponent<NavMeshAgent>();
-
-            alertManager = Object.FindFirstObjectByType<AlertManager>();
-
-            PlayerDetectorTarget playerTarget = Object.FindFirstObjectByType<PlayerDetectorTarget>();
+            PlayerDetectorTarget playerTarget = UnityEngine.Object.FindFirstObjectByType<PlayerDetectorTarget>();
             if (playerTarget != null)
             {
                 targetTransform = playerTarget.transform;
@@ -70,6 +83,7 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
                 if (HasDirectVision())
                 {
                     if (alertManager != null) alertManager.EnemyOnSight();
+                    IsChasing = true;
                     break;
                 }
                 HandlePatrol();
@@ -97,7 +111,7 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
         {
             agent.isStopped = false;
         }
-        currentState = AIState.Chasing;
+        IsChasing = true;
     }
 
     protected bool HasDirectVision()
