@@ -1,51 +1,50 @@
-using UnityEngine;
+
 using System;
-[RequireComponent(typeof(Collider))]
+using UnityEngine;
+
 public class EnemyContactDamage : MonoBehaviour
 {
-    [Header("Daño")]
+    [Header("Daño Melee")]
     [SerializeField] private float damageAmount = 10f;
-    [SerializeField] private float damageCooldown = 1f; // segundos entre golpes
-    [SerializeField] private string playerTag = "Player";
-    public event Action OnAttack;
+    [SerializeField] private float damageCooldown = 1.5f;
+
     private float lastDamageTime = -999f;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log($"[EnemyContactDamage] Trigger detectado con: {other.gameObject.name} (tag: {other.gameObject.tag})");
-        TryDamage(other.gameObject);
-    }
+    // Evento que activa la animacion Punch
+    public event Action OnAttack;
 
-    private void OnTriggerStay(Collider other)
-{
-    TryDamage(other.gameObject);
-}
-
-    private void TryDamage(GameObject other)
+    public void TryAttack(Transform target)
     {
-        if (!other.CompareTag(playerTag))
-        {
-            Debug.Log($"[EnemyContactDamage] {other.name} no tiene el tag '{playerTag}', se ignora.");
+        if (target == null)
             return;
-        }
 
+        // Comprobamos el cooldown
         if (Time.time - lastDamageTime < damageCooldown)
-        {
-            Debug.Log("[EnemyContactDamage] En cooldown, todavía no se puede volver a golpear.");
             return;
-        }
 
-        IDamageable damageable = other.GetComponentInParent<IDamageable>();
+        // Buscamos el sistema de vida del jugador
+        IDamageable damageable =
+            target.GetComponentInParent<IDamageable>();
+
         if (damageable == null)
         {
-            Debug.LogWarning($"[EnemyContactDamage] {other.name} tiene tag '{playerTag}' pero no tiene ningún componente IDamageable.");
+            Debug.LogWarning(
+                "[EnemyContactDamage] No se encontro IDamageable."
+            );
             return;
         }
 
-        damageable.TakeDamage(damageAmount);
+        // Guardamos el momento del ataque
         lastDamageTime = Time.time;
+
+        // Activamos la animacion
         OnAttack?.Invoke();
 
-        Debug.Log($"[EnemyContactDamage] {gameObject.name} le hizo {damageAmount} de daño a {other.name}.");
+        // Aplicamos daño
+        damageable.TakeDamage(damageAmount);
+
+        Debug.Log(
+            "[EnemyContactDamage] Golpe melee realizado."
+        );
     }
 }

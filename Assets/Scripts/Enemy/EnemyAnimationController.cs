@@ -1,5 +1,6 @@
 
 
+
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,13 +16,16 @@ public class EnemyAnimationController : MonoBehaviour
     [SerializeField] private float animationSmooth = 0.1f;
 
     private Animator animator;
-    private bool isDead;
+    private bool isDead = false;
 
-    private static readonly int Speed = Animator.StringToHash("Speed");
+    private static readonly int Speed =
+        Animator.StringToHash("Speed");
 
-    private static readonly int Attack = Animator.StringToHash("Attack");
+    private static readonly int Attack =
+        Animator.StringToHash("Attack");
 
-    private static readonly int Die = Animator.StringToHash("Die");
+    private static readonly int Die =
+        Animator.StringToHash("Die");
 
     private void Awake()
     {
@@ -36,6 +40,9 @@ public class EnemyAnimationController : MonoBehaviour
 
         if (contactDamage == null)
             contactDamage = GetComponentInParent<EnemyContactDamage>();
+
+        if (contactDamage == null)
+            contactDamage = GetComponentInChildren<EnemyContactDamage>();
     }
 
     private void OnEnable()
@@ -61,17 +68,14 @@ public class EnemyAnimationController : MonoBehaviour
         if (isDead || agent == null || !agent.isOnNavMesh)
             return;
 
+        // Velocidad real del enemigo
         Vector3 velocity = agent.velocity;
         velocity.y = 0f;
 
         float speed = velocity.magnitude;
 
-        animator.SetFloat(
-            Speed,
-            speed,
-            animationSmooth,
-            Time.deltaTime
-        );
+        // Actualizamos Idle / Run / Walk
+        animator.SetFloat(Speed, speed,animationSmooth,Time.deltaTime);
     }
 
     private void HandleAttack()
@@ -79,6 +83,7 @@ public class EnemyAnimationController : MonoBehaviour
         if (isDead)
             return;
 
+        // Reproducimos la piña
         animator.SetTrigger(Attack);
     }
 
@@ -88,7 +93,10 @@ public class EnemyAnimationController : MonoBehaviour
             return;
 
         isDead = true;
+
+        animator.ResetTrigger(Attack);
         animator.SetTrigger(Die);
     }
 }
+
 
