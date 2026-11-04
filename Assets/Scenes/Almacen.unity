@@ -21529,7 +21529,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_Name
-      value: Guardia Rango Final Variant (2)
+      value: Guardia Rango
       objectReference: {fileID: 0}
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_IsActive
@@ -26857,7 +26857,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_Name
-      value: Guardia Rango Final Variant (5)
+      value: Guardia Rango
       objectReference: {fileID: 0}
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_IsActive
@@ -29530,7 +29530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &392899822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40717,7 +40717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_Name
-      value: Guardia Melee Final Variant
+      value: Guardia Melee
       objectReference: {fileID: 0}
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_IsActive
@@ -48272,15 +48272,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 623773805241207418, guid: 5f0c630f2a1471041a3457684346d0a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 59.12
+      value: -51
       objectReference: {fileID: 0}
     - target: {fileID: 623773805241207418, guid: 5f0c630f2a1471041a3457684346d0a0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.81
+      value: 1.29
       objectReference: {fileID: 0}
     - target: {fileID: 623773805241207418, guid: 5f0c630f2a1471041a3457684346d0a0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.02
+      value: -28.8
       objectReference: {fileID: 0}
     - target: {fileID: 1420917663988947293, guid: 5f0c630f2a1471041a3457684346d0a0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -50565,7 +50565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_Name
-      value: Guardia Rango Final Variant (1)
+      value: Guardia Rango
       objectReference: {fileID: 0}
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_Layer
@@ -66580,7 +66580,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_Name
-      value: Guardia Melee Final Variant (4)
+      value: Guardia Melee
       objectReference: {fileID: 0}
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_IsActive
@@ -66601,7 +66601,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_Name
-      value: Guardia Rango Final Variant (3)
+      value: Guardia Rango
       objectReference: {fileID: 0}
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_IsActive
@@ -66957,7 +66957,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_Name
-      value: Guardia Rango Final Variant (9)
+      value: Guardia Rango
       objectReference: {fileID: 0}
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_IsActive
@@ -68690,7 +68690,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_Name
-      value: Guardia Melee Final Variant (7)
+      value: Guardia Melee
       objectReference: {fileID: 0}
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_IsActive
@@ -69985,7 +69985,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_Name
-      value: Guardia Rango Final Variant (7)
+      value: Guardia Rango
       objectReference: {fileID: 0}
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_IsActive
@@ -70772,7 +70772,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_Name
-      value: Guardia Rango Final Variant
+      value: Guardia Rango
       objectReference: {fileID: 0}
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_IsActive
@@ -73045,7 +73045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_Name
-      value: Guardia Melee Final Variant (1)
+      value: Guardia Melee
       objectReference: {fileID: 0}
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_IsActive
@@ -73373,7 +73373,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_Name
-      value: Guardia Rango Final Variant (8)
+      value: Guardia Rango
       objectReference: {fileID: 0}
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_IsActive
@@ -73813,7 +73813,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_Name
-      value: Guardia Melee Final Variant (3)
+      value: Guardia Melee
       objectReference: {fileID: 0}
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_IsActive
@@ -74620,7 +74620,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_Name
-      value: Guardia Rango Final Variant (4)
+      value: Guardia Rango
       objectReference: {fileID: 0}
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_IsActive
@@ -87072,7 +87072,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_Name
-      value: Guardia Rango Final Variant (6)
+      value: Guardia Rango
       objectReference: {fileID: 0}
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_IsActive
@@ -94535,7 +94535,7 @@ Transform:
   m_GameObject: {fileID: 1647714896}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -174.28964, y: -1.66, z: 42.12}
+  m_LocalPosition: {x: -15.61, y: -1.66, z: -33.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -96642,7 +96642,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1766464858}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6293df820ecb6374b90c848c750e32a7, type: 3}
   m_Name: 
@@ -96650,7 +96650,7 @@ MonoBehaviour:
   visionDistance: 12
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   shootingRange: 8
   rotationSpeed: 5
 --- !u!136 &1766464860
@@ -96742,8 +96742,8 @@ Transform:
   m_GameObject: {fileID: 1766464858}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -158.3, y: 0.98, z: -5.74}
-  m_LocalScale: {x: 0.46389475, y: 1.0093333, z: 1.5035028}
+  m_LocalPosition: {x: -8.064, y: -0.03999996, z: -64.04}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1583712339}
@@ -96794,7 +96794,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1766464858}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d395667c51e63649bf91708ffc946fa, type: 3}
   m_Name: 
@@ -96809,7 +96809,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1766464858}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4340321b5dd081478b3b94b471a43c9, type: 3}
   m_Name: 
@@ -96944,7 +96944,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_Name
-      value: Guardia Melee Final Variant (5)
+      value: Guardia Melee
       objectReference: {fileID: 0}
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_IsActive
@@ -108245,27 +108245,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: cf758c1fbed218145b5782b2452cb671, type: 3}
       propertyPath: m_LocalScale.x
-      value: 629.79803
+      value: 292.16003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf758c1fbed218145b5782b2452cb671, type: 3}
       propertyPath: m_LocalScale.y
-      value: 321.8207
+      value: 324.8243
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf758c1fbed218145b5782b2452cb671, type: 3}
       propertyPath: m_LocalScale.z
-      value: 216.04507
+      value: 324.82437
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf758c1fbed218145b5782b2452cb671, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 323.81
+      value: -0.022242546
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf758c1fbed218145b5782b2452cb671, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.516
+      value: -1.5194825
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf758c1fbed218145b5782b2452cb671, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -41.794
+      value: -0.027389526
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf758c1fbed218145b5782b2452cb671, type: 3}
       propertyPath: m_LocalRotation.w
@@ -109830,7 +109830,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_Name
-      value: Guardia Melee Final Variant (6)
+      value: Guardia Melee
       objectReference: {fileID: 0}
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_IsActive
@@ -112157,7 +112157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_Name
-      value: Guardia Melee Final Variant (1)
+      value: Guardia Melee
       objectReference: {fileID: 0}
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_IsActive
@@ -112778,7 +112778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_Name
-      value: Guardia Melee Final Variant (8)
+      value: Guardia Melee
       objectReference: {fileID: 0}
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_IsActive

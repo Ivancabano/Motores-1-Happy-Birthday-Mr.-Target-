@@ -1,6 +1,6 @@
-
-
+using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BossEnemy : EnemyBase
 {
@@ -36,6 +36,7 @@ public class BossEnemy : EnemyBase
         {
             agent.isStopped = true;
             agent.ResetPath();
+            Debug.Log("PELEA");
         }
     }
 
