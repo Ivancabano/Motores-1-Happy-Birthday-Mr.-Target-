@@ -20,14 +20,12 @@ public class EnemyBullet : MonoBehaviour
 
     private  void OnCollisionEnter(Collision collision) 
     {
+        IDamageable damageable = collision.gameObject.GetComponent <IDamageable> ();
         {
-            IDamageable damageable = collision.gameObject.GetComponent <IDamageable> ();
-            {
-                damageable.TakeDamage(damage);
-            }
-
-            Destroy(gameObject);
-            return;
+            damageable.TakeDamage(damage);
         }
+
+         Destroy(gameObject);
+         return;
     }
 }
