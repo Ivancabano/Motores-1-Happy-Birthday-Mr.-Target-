@@ -3,35 +3,36 @@ using UnityEngine.AI;
 
 public class EnemyBossBase : MonoBehaviour
 {
-    protected EnemyBase enemyBaseReference;
     protected NavMeshAgent agent;
-    protected TargetHealth targetHealth;
     protected Transform targetTransform;
-    protected bool isActivated = false;
+
+    // Lo dejamos activado por defecto para que puedas darle a Play y probarlo de inmediato
+    [SerializeField] protected bool isCombatStarted = true;
+
+    [Header("Boss Health Configuration")]
     [SerializeField] protected int bossHealthNotActivated = 10;
     [SerializeField] protected int bossHealthActivated = 15;
     [SerializeField] protected int bossHealth;
 
+    [Header("Movement Settings")]
+    [SerializeField] protected float movementSpeed = 3.5f;
+    [SerializeField] protected float stoppingDistance = 2.0f; // Distancia para no pegarse demasiado al jugador
+
     void Start()
     {
-        // 1. Primero buscamos las referencias ANTES de inicializar la vida
         SearchReferences();
 
-        // 2. Luego inicializamos la vida con la referencia ya encontrada
-        InicializarVida();
+        // Asignamos una vida por defecto para la prueba rápida
+        bossHealth = bossHealthActivated;
 
-        Debug.Log("Referencias listas");
+        if (agent != null)
+        {
+            agent.speed = movementSpeed;
+            agent.stoppingDistance = stoppingDistance;
+            agent.isStopped = !isCombatStarted; // Si isCombatStarted es true, arranca a moverse de una
+        }
 
-        if (enemyBaseReference != null)
-        {
-            Debug.Log("me notifique al aviso");
-            enemyBaseReference.OnChasingChanged += HandleChasingChanged;
-            Debug.Log($"[VERIFICACIÓN] El Boss ({gameObject.name}) se suscribió al EnemyBase que está en el objeto: {enemyBaseReference.gameObject.name}");
-        }
-        else
-        {
-            Debug.LogError("[VERIFICACIÓN] ¡El Boss NO encontró ningún EnemyBase al cual suscribirse!");
-        }
+        Debug.Log("[Boss] Listo y configurado para pruebas de movimiento.");
     }
 
     protected void SearchReferences()
@@ -41,50 +42,36 @@ public class EnemyBossBase : MonoBehaviour
         if (targetTransform == null)
         {
             PlayerDetectorTarget playerTarget = Object.FindFirstObjectByType<PlayerDetectorTarget>();
-
             if (playerTarget != null)
             {
                 targetTransform = playerTarget.transform;
             }
-        }
-
-        // CORREGIDO: Buscamos en la escena al guardia/enemigo base, no en este mismo objeto
-        if (enemyBaseReference == null)
-        {
-            enemyBaseReference = Object.FindFirstObjectByType<EnemyBase>();
-        }
-    }
-
-    void OnDisable()
-    {
-        if (enemyBaseReference != null)
-        {
-            enemyBaseReference.OnChasingChanged -= HandleChasingChanged;
-        }
-    }
-
-    private void InicializarVida()
-    {
-        if (enemyBaseReference != null)
-        {
-            isActivated = enemyBaseReference.IsChasing;
-            bossHealth = isActivated ? bossHealthActivated : bossHealthNotActivated;
-        }
-    }
-
-    private void HandleChasingChanged(bool estaPersiguiendo)
-    {
-        Debug.Log("Notificado");
-        if (!isActivated && estaPersiguiendo)
-        {
-            isActivated = true;
-            bossHealth = bossHealthActivated;
-            Debug.Log($"¡El Boss se ha activado! Vida escalada a: {bossHealth}");
+            else
+            {
+                Debug.LogError("[Boss] ¡No se encontró el PlayerDetectorTarget en la escena!");
+            }
         }
     }
 
     void Update()
     {
+        // Si el combate está activo, ejecuta la persecución
+        if (isCombatStarted)
+        {
+            MoverHaciaJugador();
+        }
+    }
 
+    protected virtual void MoverHaciaJugador()
+    {
+        if (agent == null || targetTransform == null) return;
+
+        if (agent.isStopped)
+        {
+            agent.isStopped = false;
+        }
+
+        // El NavMeshAgent calcula automáticamente la ruta esquivando los 6 pilares
+        agent.SetDestination(targetTransform.position);
     }
 }
