@@ -26,6 +26,6 @@ public class TeleportTrigger : MonoBehaviour
         controller.enabled = true;
 
     // Activamos la música del jefe
-        DynamicMusicManager.Instance?.StartBossMusic();
+        //DynamicMusicManager.Instance?.StartBossMusic();
     }
 }
