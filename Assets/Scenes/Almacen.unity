@@ -21181,13 +21181,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardia Rango Final Variant (2)
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
     - target: {fileID: 5494214171285846844, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.004822
@@ -26455,13 +26452,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardia Rango Final Variant (5)
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
     - target: {fileID: 5494214171285846844, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.004822
@@ -40203,13 +40197,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardia Melee Final Variant
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -49839,13 +49830,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
     - target: {fileID: 2361114942160319461, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -50377,7 +50365,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9078288515601373664, guid: bca71dfbf6779844cbb4ad5101da5666, type: 3}
   m_PrefabInstance: {fileID: 188924605}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
 --- !u!1 &679006965
 GameObject:
   m_ObjectHideFlags: 0
@@ -55214,8 +55201,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
 --- !u!4 &679625771 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 753146106382395022, guid: a3925ac56edb7e44eafa742a78ff4987, type: 3}
@@ -65766,13 +65751,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardia Melee Final Variant (4)
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -65790,13 +65772,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardia Rango Final Variant (3)
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
     - target: {fileID: 5494214171285846844, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.004822
@@ -66149,13 +66128,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardia Rango Final Variant (9)
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
     - target: {fileID: 5494214171285846844, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.004822
@@ -67885,13 +67861,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardia Melee Final Variant (7)
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -69183,13 +69156,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardia Rango Final Variant (7)
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
     - target: {fileID: 5494214171285846844, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.004822
@@ -69973,13 +69943,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardia Rango Final Variant
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
     - target: {fileID: 5494214171285846844, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.004822
@@ -72135,13 +72102,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardia Melee Final Variant (1)
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -72466,13 +72430,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardia Rango Final Variant (8)
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
     - target: {fileID: 5494214171285846844, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.004822
@@ -72909,13 +72870,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardia Melee Final Variant (3)
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -73719,13 +73677,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardia Rango Final Variant (4)
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
     - target: {fileID: 5494214171285846844, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.004822
@@ -86117,13 +86072,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardia Rango Final Variant (6)
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 1543798721770939945, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
     - target: {fileID: 5494214171285846844, guid: 192cbf6a0a492174f952f8ce8204eaca, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.004822
@@ -95897,13 +95849,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardia Melee Final Variant (5)
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -108591,13 +108540,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardia Melee Final Variant (6)
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -110864,13 +110810,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardia Melee Final Variant (1)
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -111488,13 +111431,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardia Melee Final Variant (8)
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 5124710620660427379, guid: a4235dbfabc11b54983a4fe88e4e3ab6, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of 8cdb538 (Fede - Agregado Puerta Boss y assets al mapa)
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
