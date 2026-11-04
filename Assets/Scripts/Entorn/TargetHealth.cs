@@ -2,13 +2,14 @@ using System;
 using UnityEngine;
 
 public class TargetHealth : MonoBehaviour, IDamageable
-{
+{   [Header("Muerte")]
     [Header("Vida")]
     [Header("Sistema de rangos")]
     [SerializeField] private bool countsForRank = true;
     [SerializeField] private float normalHealth = 25f;
     [SerializeField] private float alertHealth = 75f;
-
+    
+     [SerializeField] private float deathDestroyDelay = 3f;
     private float maxHealth;
     private float currentHealth;
 
@@ -22,7 +23,7 @@ public class TargetHealth : MonoBehaviour, IDamageable
 
     private void Awake()
     {
-        // Empieza fuera de alerta
+        
         maxHealth = normalHealth;
         currentHealth = normalHealth;
     }
@@ -81,6 +82,6 @@ public class TargetHealth : MonoBehaviour, IDamageable
 
     OnDeath?.Invoke();
 
-    Destroy(gameObject);
+   Destroy(gameObject, deathDestroyDelay);
 }
 }

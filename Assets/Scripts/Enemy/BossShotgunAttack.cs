@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using System;
 
 public class BossShotgunAttack : MonoBehaviour
 {
@@ -16,7 +17,9 @@ public class BossShotgunAttack : MonoBehaviour
     [SerializeField] private float spreadAngle = 12f;
     [SerializeField] private float bulletSpeed = 25f;
 
+
     private Transform target;
+    public event Action OnShoot;
     private float nextFireTime;
 
     private void Start()
@@ -52,17 +55,17 @@ public class BossShotgunAttack : MonoBehaviour
 
     private void Shoot()
     {
-        // Apuntamos aproximadamente al torso.
+        OnShoot?.Invoke();
         Vector3 aimPoint = target.position + Vector3.up * 1f;
 
         Vector3 direction = (aimPoint - firePoint.position).normalized;
-
+        
         Quaternion centerRotation = Quaternion.LookRotation(direction);
 
         
         for (int i = 0; i < pelletCount; i++)
         {
-            Vector2 spread = Random.insideUnitCircle * Mathf.Tan(spreadAngle * Mathf.Deg2Rad);
+            Vector2 spread = UnityEngine.Random.insideUnitCircle * Mathf.Tan(spreadAngle * Mathf.Deg2Rad);
 
             Vector3 localDirection = new Vector3(spread.x, spread.y, 1f);
 
