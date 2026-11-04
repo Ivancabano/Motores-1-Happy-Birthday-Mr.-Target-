@@ -76,6 +76,20 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-2591868729095752251
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: fb7fba1cf99407142a0f2034333a703e
+  m_EffectName: Attenuation
+  m_MixLevel: bf46f108342f17749947299507d82abe
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-1308043594905033687
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -151,6 +165,7 @@ AudioMixerController:
     - ed437cd9f611fd440becdf136bdfc2ae
     - cc59eeb6d1cd2d24aa7569ca7cc6ce2f
     - 471004ae2d06192419b947b77311228f
+    - 35b7f9cc07b352d4ea324d33a4f88e48
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -168,6 +183,7 @@ AudioMixerGroupController:
   - {fileID: 1922614523347764222}
   - {fileID: 7683118272019335868}
   - {fileID: -1269885287776692157}
+  - {fileID: 4899108113706103644}
   m_Volume: 0b426ae8f0215504fb3a777d0c3abb28
   m_Pitch: e889b3a621980604eba01d1e2b23c168
   m_Send: 00000000000000000000000000000000
@@ -241,6 +257,25 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!243 &4899108113706103644
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Fuentes3D
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 35b7f9cc07b352d4ea324d33a4f88e48
+  m_Children: []
+  m_Volume: 5436850f70d72bb42ab665f19c6ed985
+  m_Pitch: 7e41c94aab629f94a9698cb74738d4b9
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -2591868729095752251}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &6112056405601632246
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
