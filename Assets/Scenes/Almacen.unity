@@ -108194,6 +108194,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jefe@Gunplay
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: cf758c1fbed218145b5782b2452cb671, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6c653ff54a26d224091d17e53ea1b396, type: 2}
     - target: {fileID: 7817294007411483783, guid: cf758c1fbed218145b5782b2452cb671, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -114803,10 +114807,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 527441127251451043, guid: e8dd79316e07ca34f836b0d11a6babd3, type: 3}
       propertyPath: m_Name
       value: Luz Edificio
