@@ -11888,7 +11888,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -11908,9 +11908,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d395667c51e63649bf91708ffc946fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBossBase
+  isCombatStarted: 1
   bossHealthNotActivated: 10
   bossHealthActivated: 15
   bossHealth: 0
+  movementSpeed: 3.5
+  stoppingDistance: 2
 --- !u!114 &1766464868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12524,6 +12527,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e634806dedfe068478361b26dda8cffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossAnimationController
+  boss: {fileID: 0}
+  agent: {fileID: 0}
+  shotgun: {fileID: 0}
+  targetHealth: {fileID: 0}
+  animationSmooth: 0.1
 --- !u!4 &1923743655 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4413997691747873288, guid: d6575c3dce4754f4eaf5d3146bed60df, type: 3}
