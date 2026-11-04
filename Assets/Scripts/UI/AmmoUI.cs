@@ -27,7 +27,6 @@ public class AmmoUI : MonoBehaviour
         infiniteAmmo = false;
         ammoText.text = $"{magazine} / {reserve}";
     }
-
     [ContextMenu("Probar: 12 / 36")]
     private void ProbarFinito() => SetAmmo(12, 36);
 
