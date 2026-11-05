@@ -6,6 +6,10 @@ public class SecurityCamera : MonoBehaviour
     private IDetectable targetDetectable;
     private Light cameraLight;
     [SerializeField] private Transform focoTransform;
+    
+    [Header("Audio de Alerta (Opcional)")]
+    [SerializeField] private AudioSource cameraAudioSource;
+    [SerializeField] private AudioClip alertSound;
 
     [SerializeField] private LayerMask obstacleLayer;
     private bool playerDetected = false;
@@ -15,6 +19,7 @@ public class SecurityCamera : MonoBehaviour
     [SerializeField] private float zonificationAngle = 40f;
     [SerializeField] private float rotationSpeed = 1.5f;
     private Quaternion initialRotation;
+    [Header("Audio de Alerta (Opcional)")]
 
     private float visionRange;
     private float visionAngle;
@@ -30,6 +35,10 @@ public class SecurityCamera : MonoBehaviour
     private void SearchReferences()
     {
         cameraLight = GetComponentInChildren<Light>();
+        if (cameraAudioSource == null)
+        {
+            cameraAudioSource = GetComponentInChildren<AudioSource>();
+        }
         if (cameraLight == null || cameraLight.type != LightType.Spot)
         {
             enabled = false;
@@ -79,6 +88,10 @@ public class SecurityCamera : MonoBehaviour
             {
                 playerDetected = true;
                 if (alertManager != null) alertManager.EnemyOnSight();
+                if (cameraAudioSource != null && alertSound != null)
+                {
+                    cameraAudioSource.PlayOneShot(alertSound);
+                }
             }
         }
         else
