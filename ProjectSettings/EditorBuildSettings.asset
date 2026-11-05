@@ -21,8 +21,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Antesala.unity
     guid: ccb10358b843cce40bad30836262f282
   - enabled: 1
+    path: Assets/Scenes/Derrota.unity
+    guid: 6829ce797eec1d840a16dd759eaa166c
+  - enabled: 1
     path: Assets/Scenes/Sala de Jefe.unity
     guid: c23fe3faf396b944fab3b49387a75d8b
+  - enabled: 1
+    path: Assets/Scenes/Victoria.unity
+    guid: cba6edb242d08264784259317a831d3a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
