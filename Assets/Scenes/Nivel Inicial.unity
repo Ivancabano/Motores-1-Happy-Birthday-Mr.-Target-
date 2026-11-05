@@ -6504,6 +6504,81 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4413997691747873288, guid: d6575c3dce4754f4eaf5d3146bed60df, type: 3}
   m_PrefabInstance: {fileID: 1971641296}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &62648239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 62648241}
+  - component: {fileID: 62648240}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &62648240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62648239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fd85e002b882f4291d8cb011e9098c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DynamicMusicManager
+  mixer: {fileID: 24100000, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+  parametroCutoff: MusicCutoff
+  snapshotSilencio: {fileID: 5423765672693285845, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+  ambienteNivel:
+    clip: {fileID: 8300000, guid: 38e21a6561d716043b9b69cf0e1ab897, type: 3}
+    grupo: {fileID: 1922614523347764222, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+    snapshot: {fileID: 24500006, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+  ambienteDialogo:
+    clip: {fileID: 0}
+    grupo: {fileID: 0}
+    snapshot: {fileID: 0}
+  alerta:
+    clip: {fileID: 8300000, guid: c44c78f6d5375c54da4ef05697df31fd, type: 3}
+    grupo: {fileID: 9208695983486081358, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+    snapshot: {fileID: 7256866537472272442, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+  boss:
+    clip: {fileID: 0}
+    grupo: {fileID: 0}
+    snapshot: {fileID: 0}
+  victoria:
+    clip: {fileID: 0}
+    grupo: {fileID: 0}
+    snapshot: {fileID: 0}
+  escenaNivel: Almacen
+  escenaDialogo: Dialogo
+  escenaJefe: Jefe
+  escenaVictoria: Victoria
+  escenaDerrota: Derrota
+  distanciaMaxDeteccion: 15
+  cutoffMin: 800
+  cutoffMax: 22000
+--- !u!4 &62648241
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62648239}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 46.14763, y: -1.5011, z: 0.04487}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &66871829 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7509544153159121616, guid: 8b55d982622381f4c83053c394fd0d33, type: 3}
@@ -97788,12 +97863,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fd85e002b882f4291d8cb011e9098c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DynamicMusicManager
-  explorationMusic: {fileID: 0}
-  alertMusic: {fileID: 0}
-  bossMusic: {fileID: 0}
-  victoryMusic: {fileID: 0}
-  fadeDuration: 1.5
-  volume: 0.7
+  mixer: {fileID: 0}
+  parametroCutoff: MusicCutoff
+  snapshotSilencio: {fileID: 0}
+  ambienteNivel:
+    clip: {fileID: 0}
+    grupo: {fileID: 0}
+    snapshot: {fileID: 0}
+  ambienteDialogo:
+    clip: {fileID: 0}
+    grupo: {fileID: 0}
+    snapshot: {fileID: 0}
+  alerta:
+    clip: {fileID: 0}
+    grupo: {fileID: 0}
+    snapshot: {fileID: 0}
+  boss:
+    clip: {fileID: 0}
+    grupo: {fileID: 0}
+    snapshot: {fileID: 0}
+  victoria:
+    clip: {fileID: 0}
+    grupo: {fileID: 0}
+    snapshot: {fileID: 0}
+  escenaNivel: Almacen
+  escenaDialogo: Dialogo
+  escenaJefe: Jefe
+  escenaVictoria: Victoria
+  escenaDerrota: Derrota
+  distanciaMaxDeteccion: 15
+  cutoffMin: 800
+  cutoffMax: 22000
 --- !u!4 &1772635700 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6000825674703919069, guid: 7482d401da1f2ad44bee7c1c14e8c96e, type: 3}
@@ -116952,3 +117052,4 @@ SceneRoots:
   - {fileID: 1458240955}
   - {fileID: 1454871230}
   - {fileID: 1387410890}
+  - {fileID: 62648241}
