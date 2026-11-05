@@ -52,6 +52,10 @@ public class BossShotgunAttack : MonoBehaviour
         }
 
         // 3. Validamos que el FirePoint esté asignado en el Inspector
+        if (firePoint != null)
+        {
+            Debug.Log("disparo de aca");
+        }
         if (firePoint == null)
         {
             Debug.LogError($"[BossShotgunAttack] ¡Falta asignar el FirePoint en el Inspector para {gameObject.name}!");
