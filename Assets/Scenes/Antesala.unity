@@ -170,7 +170,7 @@ MonoBehaviour:
   segundoAudio: {fileID: 8300000, guid: d85986a22bdf54d40b5fd3dfdbce2366, type: 3}
   continueButton: {fileID: 594011956}
   playButton: {fileID: 263007672}
-  gameSceneName: Nivel1
+  gameSceneName: Sala de Jefe
 --- !u!1 &252935331
 GameObject:
   m_ObjectHideFlags: 0
