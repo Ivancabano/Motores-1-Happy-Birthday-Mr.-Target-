@@ -10,6 +10,7 @@ public class SecurityCamera : MonoBehaviour
     [Header("Audio de Alerta (Opcional)")]
     [SerializeField] private AudioSource cameraAudioSource;
     [SerializeField] private AudioClip alertSound;
+    private bool alertSoundPlayed = false;
 
     [SerializeField] private LayerMask obstacleLayer;
     private bool playerDetected = false;
@@ -93,6 +94,7 @@ public class SecurityCamera : MonoBehaviour
                 if (cameraAudioSource != null && alertSound != null)
                 {
                     cameraAudioSource.PlayOneShot(alertSound);
+                    alertSoundPlayed = true;
                 }
             }
         }
