@@ -75269,10 +75269,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1366313451}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1304d3587a8a5ce43ab100bb5456ec1f, type: 3}
+  m_Script: {fileID: 11500000, guid: ee77f7a34ccdc394c93241da6939c575, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TeleportTrigger
-  destination: {fileID: 1647714897}
+  m_EditorClassIdentifier: Assembly-CSharp::ZonaTeleport
+  escenaDestino: Antesala
+  tagJugador: Player
 --- !u!4 &1367654074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9078288515601373664, guid: bca71dfbf6779844cbb4ad5101da5666, type: 3}

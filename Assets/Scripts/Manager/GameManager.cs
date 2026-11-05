@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
     Debug.Log("¡VICTORIA!");
 
     OnVictory?.Invoke();
+    Juego.SceneManager.Ganar();
 }
 
     public void TriggerGameOver()

@@ -16,7 +16,7 @@ public class IntroduccionController : MonoBehaviour
     [SerializeField] private GameObject playButton;
 
     [Header("Escena del juego")]
-    [SerializeField] private string gameSceneName = "Nivel1";
+    [SerializeField] private string gameSceneName = "Nivel Inicial";
 
     private bool puedeContinuar = false;
 
