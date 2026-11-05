@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,6 +16,14 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
     [Range(0f, 360f)] protected float visionAngle = 70f;
     [SerializeField] protected LayerMask obstacleLayer;
     protected float visionTolerance = 1.2f;
+
+    [Header("Audio de Pasos (Base para todos los enemigos)")]
+    [SerializeField] protected AudioSource footstepAudioSource;
+    [SerializeField] protected List<AudioClip> footstepClips = new List<AudioClip>();
+    [SerializeField] protected float patrolStepInterval = 0.6f;
+    [SerializeField] protected float chaseStepInterval = 0.35f;
+    private float stepTimer;
+    private int lastClipIndex = -1;
 
     protected enum AIState { Patrolling, Chasing }
     protected AIState currentState = AIState.Patrolling;
@@ -48,6 +57,11 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
     protected void SearchReferences()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        if (footstepAudioSource == null)
+        {
+            footstepAudioSource = GetComponentInChildren<AudioSource>();
+        }
 
         alertManager = UnityEngine.Object.FindFirstObjectByType<AlertManager>();
         
@@ -95,6 +109,7 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
                 ExecuteChase();
                 break;
         }
+        HandleFootsteps();
     }
 
     protected abstract void HandlePatrol();
@@ -115,7 +130,48 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
         }
         IsChasing = true;
     }
+    private void HandleFootsteps()
+    {
+        if (agent == null || !agent.isOnNavMesh) return;
 
+        if (agent.velocity.sqrMagnitude < 0.05f || agent.isStopped)
+        {
+            stepTimer = 0f;
+            return;
+        }
+
+        float currentInterval = (currentState == AIState.Chasing) ? chaseStepInterval : patrolStepInterval;
+
+        stepTimer += Time.deltaTime;
+
+        if (stepTimer >= currentInterval)
+        {
+            PlayRandomFootstep();
+            stepTimer = 0f;
+        }
+    }
+
+    private void PlayRandomFootstep()
+    {
+        if (footstepAudioSource == null || footstepClips == null || footstepClips.Count == 0)
+            return;
+
+        int randomIndex = UnityEngine.Random.Range(0, footstepClips.Count);
+
+        if (footstepClips.Count > 1 && randomIndex == lastClipIndex)
+        {
+            randomIndex = (randomIndex + 1) % footstepClips.Count;
+        }
+
+        lastClipIndex = randomIndex;
+        AudioClip clipToPlay = footstepClips[randomIndex];
+
+        if (clipToPlay != null)
+        {
+            footstepAudioSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
+            footstepAudioSource.PlayOneShot(clipToPlay);
+        }
+    }
     protected bool HasDirectVision()
     {
         if (targetTransform == null) return false;
