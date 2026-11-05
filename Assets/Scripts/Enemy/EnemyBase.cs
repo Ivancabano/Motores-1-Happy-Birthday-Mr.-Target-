@@ -27,7 +27,8 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
     [Header("Audio de Muerte")]
     [SerializeField] protected AudioSource deathAudioSource;
     [SerializeField] protected AudioClip deathBodyFallClip;
-
+    [SerializeField] protected AudioSource impactAudioSource;
+    [SerializeField] protected AudioClip meleeHitClip;
     protected enum AIState { Patrolling, Chasing }
     protected AIState currentState = AIState.Patrolling;
 
@@ -209,6 +210,14 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
         {
             deathAudioSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
             deathAudioSource.PlayOneShot(deathBodyFallClip);
+        }
+    }
+    public virtual void PlayMeleeHitSound()
+    {
+        if (impactAudioSource != null && meleeHitClip != null)
+        {
+            impactAudioSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
+            impactAudioSource.PlayOneShot(meleeHitClip);
         }
     }
 }

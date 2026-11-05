@@ -91,6 +91,7 @@ public class SecurityCamera : MonoBehaviour
             {
                 playerDetected = true;
                 if (alertManager != null) alertManager.EnemyOnSight();
+               
                 if (alertSoundPlayed == false)
                 {
                     cameraAudioSource.PlayOneShot(alertSound);

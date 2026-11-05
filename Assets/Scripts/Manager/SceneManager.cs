@@ -5,70 +5,94 @@ using LoadSceneMode = UnityEngine.SceneManagement.LoadSceneMode;
 
 namespace Juego
 {
-public class SceneManager : MonoBehaviour
-{
-    public const string MENU = "Menu";
-    public const string INTRODUCCION = "Introduccion";
-    public const string VICTORIA = "Victoria";
-    public const string DERROTA = "Derrota";
-    public const string NIVEL_INICIAL = "Nivel Inicial";
-    public const string SALA_JEFE = "Sala de Jefe";
-    public const string ANTESALA = "Antesala";
-
-    private static string ultimoNivel = NIVEL_INICIAL;
-
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    private static void Inicializar()
+    public class SceneManager : MonoBehaviour
     {
-        UnitySceneManager.sceneLoaded += AlCargarEscena;
-    }
+        public const string MENU = "Menu";
+        public const string INTRODUCCION = "Introduccion";
+        public const string VICTORIA = "Victoria";
+        public const string DERROTA = "Derrota";
+        public const string NIVEL_INICIAL = "Nivel Inicial";
+        public const string SALA_JEFE = "Sala de Jefe";
+        public const string ANTESALA = "Antesala";
 
-    private static void AlCargarEscena(Scene escena, LoadSceneMode modo)
-    {
-        Time.timeScale = 1f;
+        private static string ultimoNivel = NIVEL_INICIAL;
 
-        if (escena.name == NIVEL_INICIAL || escena.name == SALA_JEFE)
-            ultimoNivel = escena.name;
-
-        bool esPantallaUI = escena.name == MENU || escena.name == VICTORIA || escena.name == DERROTA;
-        if (esPantallaUI)
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void Inicializar()
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            UnitySceneManager.sceneLoaded += AlCargarEscena;
         }
-    }
 
-    public void Jugar()
-    {
-        UnitySceneManager.LoadScene(INTRODUCCION);
-    }
+        private static void AlCargarEscena(Scene escena, LoadSceneMode modo)
+        {
+            Time.timeScale = 1f;
 
-    public void Salir()
-    {
-        Debug.Log("Saliendo del juego...");
+            if (escena.name == NIVEL_INICIAL || escena.name == SALA_JEFE)
+                ultimoNivel = escena.name;
+
+            // Auto-activa la música del jefe al entrar a su sala
+            if (escena.name == SALA_JEFE)
+            {
+                if (DynamicMusicManager.Instance != null)
+                {
+                    DynamicMusicManager.Instance.StartBossMusic();
+                }
+            }
+
+            bool esPantallaUI = escena.name == MENU || escena.name == VICTORIA || escena.name == DERROTA;
+            if (esPantallaUI)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+        }
+
+        public void Jugar()
+        {
+            UnitySceneManager.LoadScene(INTRODUCCION);
+        }
+
+        public void Salir()
+        {
+            Debug.Log("Saliendo del juego...");
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
 #endif
-    }
+        }
 
-    public void IrAlMenu()
-    {
-        UnitySceneManager.LoadScene(MENU);
-    }
+        public void IrAlMenu()
+        {
+            UnitySceneManager.LoadScene(MENU);
+        }
 
-    public void Reintentar()
-    {
-        UnitySceneManager.LoadScene(ultimoNivel);
-    }
+        public void Reintentar()
+        {
+            UnitySceneManager.LoadScene(ultimoNivel);
+        }
 
-    public static void CargarEscena(string nombre)
-    {
-        UnitySceneManager.LoadScene(nombre);
-    }
+        public static void CargarEscena(string nombre)
+        {
+            UnitySceneManager.LoadScene(nombre);
+        }
 
-    public static void Ganar()  { UnitySceneManager.LoadScene(VICTORIA); }
-    public static void Perder() { UnitySceneManager.LoadScene(DERROTA); }
-}
+        public static void Ganar()
+        {
+            if (DynamicMusicManager.Instance != null)
+            {
+                DynamicMusicManager.Instance.PlayVictoryMusic();
+            }
+            UnitySceneManager.LoadScene(VICTORIA);
+        }
+
+        public static void Perder()
+        {
+            if (DynamicMusicManager.Instance != null)
+            {
+                DynamicMusicManager.Instance.StopMusicOnDeath();
+            }
+            UnitySceneManager.LoadScene(DERROTA);
+        }
+    }
 }

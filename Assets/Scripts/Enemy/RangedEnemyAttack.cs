@@ -79,7 +79,7 @@ public class RangedEnemyAttack : MonoBehaviour
     {
         if (bulletPrefab == null || firePoint == null) return;
 
-        if (shootAudioSource != null && shootClip != null)
+        if (shootClip != null)
         {
             shootAudioSource.pitch = Random.Range(0.95f, 1.05f);
             shootAudioSource.PlayOneShot(shootClip);

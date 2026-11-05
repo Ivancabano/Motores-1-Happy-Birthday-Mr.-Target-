@@ -12,7 +12,8 @@ public class EnemyAnimationController : MonoBehaviour
 
     [Header("Configuracion")]
     [SerializeField] private float animationSmooth = 0.1f;
-    [SerializeField] private float bodyFallSoundDelay = 0.6f; // Segundos que tarda el cuerpo en tocar el suelo desde que muere
+    [SerializeField] private float bodyFallSoundDelay = 0.6f;
+    [SerializeField] private float meleeHitSoundDelay = 0.2f;
 
     private Animator animator;
     private bool isDead = false;
@@ -87,6 +88,18 @@ public class EnemyAnimationController : MonoBehaviour
 
         // Reproducimos la piña
         animator.SetTrigger(Attack);
+        if (enemyBase != null)
+        {
+            Invoke(nameof(PlayMeleeAudio), meleeHitSoundDelay);
+        }
+    }
+
+    private void PlayMeleeAudio()
+    {
+        if (enemyBase != null && !isDead)
+        {
+            enemyBase.PlayMeleeHitSound();
+        }
     }
 
     private void HandleDeath()
