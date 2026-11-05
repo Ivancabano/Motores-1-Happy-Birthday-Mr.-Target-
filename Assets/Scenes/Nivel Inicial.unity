@@ -48162,6 +48162,39 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &588797315 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1557752508810098680, guid: 5f0c630f2a1471041a3457684346d0a0, type: 3}
+  m_PrefabInstance: {fileID: 588797312}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc8b29d75fdaed444af7b55772e71de7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerShooting
+--- !u!114 &588797316 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7558875260075817004, guid: 5f0c630f2a1471041a3457684346d0a0, type: 3}
+  m_PrefabInstance: {fileID: 588797312}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 328b331fa9d24b24084b72a22b2c20aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+--- !u!114 &588797317 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2019238711684085816, guid: 5f0c630f2a1471041a3457684346d0a0, type: 3}
+  m_PrefabInstance: {fileID: 588797312}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d0bc7d5b78bcee49b43067a63fda5b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
 --- !u!4 &594027127 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7147300958851719234, guid: fb59a5025067d1c4c917bf063b4aaa41, type: 3}
@@ -67708,9 +67741,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d64783e1f922447ae84a8fdf7d609a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  playerHealth: {fileID: 0}
-  playerMovement: {fileID: 0}
-  playerShooting: {fileID: 0}
+  playerHealth: {fileID: 588797317}
+  playerMovement: {fileID: 588797316}
+  playerShooting: {fileID: 588797315}
   victoryTarget: {fileID: 0}
 --- !u!4 &1053036613
 Transform:
