@@ -76,7 +76,8 @@ public class BossAnimationController : MonoBehaviour
             speed = agent.velocity.magnitude / Mathf.Max(agent.speed, 0.01f);
         }
 
-        animator.SetFloat(Speed, Mathf.Clamp01(speed), animationSmooth, Time.deltaTime);
+        float currentSmooth = (speed == 0f) ? animationSmooth * 0.5f : animationSmooth;
+        animator.SetFloat(Speed, Mathf.Clamp01(speed), currentSmooth, Time.deltaTime);
     }
 
     private void HandleShoot()

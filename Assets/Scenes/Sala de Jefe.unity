@@ -9130,7 +9130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74da4c53a4f16e44c98240fcc1a47eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossRoomTrigger
-  bossEnemy: {fileID: 1766464859}
+  bossEnemy: {fileID: 0}
 --- !u!65 &1326256892
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11732,9 +11732,7 @@ GameObject:
   - component: {fileID: 1766464862}
   - component: {fileID: 1766464861}
   - component: {fileID: 1766464860}
-  - component: {fileID: 1766464859}
   - component: {fileID: 1766464866}
-  - component: {fileID: 1766464865}
   - component: {fileID: 1766464867}
   - component: {fileID: 1766464868}
   m_Layer: 9
@@ -11744,24 +11742,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1766464859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1766464858}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6293df820ecb6374b90c848c750e32a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BossEnemy
-  visionDistance: 12
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  shootingRange: 8
-  rotationSpeed: 5
 --- !u!136 &1766464860
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11858,22 +11838,6 @@ Transform:
   - {fileID: 1583712339}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1766464865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1766464858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b71b995f7a3296c488d1f030b91ff4e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TargetHealth
-  countsForRank: 1
-  normalHealth: 25
-  alertHealth: 75
-  deathDestroyDelay: 3
 --- !u!195 &1766464866
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -11914,6 +11878,7 @@ MonoBehaviour:
   bossHealth: 0
   movementSpeed: 3.5
   stoppingDistance: 10
+  rotationSpeed: 15
 --- !u!114 &1766464868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12489,6 +12454,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 6c653ff54a26d224091d17e53ea1b396, type: 2}
+    - target: {fileID: 5866666021909216657, guid: cf758c1fbed218145b5782b2452cb671, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7817294007411483783, guid: cf758c1fbed218145b5782b2452cb671, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
