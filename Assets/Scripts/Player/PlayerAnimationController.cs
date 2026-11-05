@@ -95,6 +95,19 @@ public class PlayerAnimationController : MonoBehaviour
 
         Debug.Log("Reproduciendo animacion de muerte.");
     }
+    public void OnDeathAnimationFinished()
+{
+    DeathSequence sequence = GetComponentInParent<DeathSequence>();
+
+    if (sequence == null)
+    {
+        Debug.LogError("No se encontro DeathSequence en el personaje.",this);
+        return;
+    }
+
+    sequence.FinishDeath();
+}
+
 }
 
 

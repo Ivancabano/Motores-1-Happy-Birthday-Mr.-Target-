@@ -101,4 +101,17 @@ public class BossAnimationController : MonoBehaviour
 
         Debug.Log("Animación de muerte del jefe activada.");
     }
+    public void OnDeathAnimationFinished()
+{
+    DeathSequence sequence = GetComponentInParent<DeathSequence>();
+
+    if (sequence == null)
+    {
+        Debug.LogError("No se encontro DeathSequence en el personaje.", this );
+        return;
+    }
+
+    sequence.FinishDeath();
+}
+
 }

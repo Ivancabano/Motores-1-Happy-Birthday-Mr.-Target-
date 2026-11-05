@@ -862,6 +862,7 @@ MonoBehaviour:
   enemyBase: {fileID: 6628987065201573509}
   animationSmooth: 0.1
   bodyFallSoundDelay: 2.1
+  meleeHitSoundDelay: 0.2
 --- !u!4 &1087336399321166227 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0607ba8b5c49a7346a119832ff442c1e, type: 3}
@@ -870,6 +871,11 @@ Transform:
 --- !u!4 &3102726318064591824 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2563496969622287784, guid: 0607ba8b5c49a7346a119832ff442c1e, type: 3}
+  m_PrefabInstance: {fileID: 620449793497273976}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6482600045913713641 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 0607ba8b5c49a7346a119832ff442c1e, type: 3}
   m_PrefabInstance: {fileID: 620449793497273976}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2386831651945705133
@@ -1105,6 +1111,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 930594815665247617, guid: ea76c60a34cfab147bbcb17d87668df6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3219793433866238176}
+    - targetCorrespondingSourceObject: {fileID: 930594815665247617, guid: ea76c60a34cfab147bbcb17d87668df6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 890601314087427590}
   m_SourcePrefab: {fileID: 100100000, guid: ea76c60a34cfab147bbcb17d87668df6, type: 3}
 --- !u!4 &364549122298947432 stripped
 Transform:
@@ -1162,3 +1171,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyContactDamage
   damageAmount: 10
   damageCooldown: 1
+--- !u!114 &890601314087427590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6655424220718971517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c33d79cbc61a83845b25844f4f1cc762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeathSequence
+  animator: {fileID: 6482600045913713641}
+  destroyOnFinish: 1
+  additionalBehaviours: []

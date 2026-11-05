@@ -499,14 +499,17 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2187346000475030519, guid: 11b749481278fd344953b8ce7ff82443, type: 3}
       insertIndex: 3
       addedObject: {fileID: 8994078155411590387}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5118607019659271906, guid: 11b749481278fd344953b8ce7ff82443, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1623978555878090277}
   m_SourcePrefab: {fileID: 100100000, guid: 11b749481278fd344953b8ce7ff82443, type: 3}
 --- !u!114 &1858245367465472213 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4198980256330063679, guid: 11b749481278fd344953b8ce7ff82443, type: 3}
   m_PrefabInstance: {fileID: 2561446594296016874}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 7243169109095575816}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 644aca2e5c2ba93479f657922130e580, type: 3}
@@ -517,3 +520,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2187346000475030519, guid: 11b749481278fd344953b8ce7ff82443, type: 3}
   m_PrefabInstance: {fileID: 2561446594296016874}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &5253761690735280885 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7738603041778101535, guid: 11b749481278fd344953b8ce7ff82443, type: 3}
+  m_PrefabInstance: {fileID: 2561446594296016874}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7243169109095575816 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5118607019659271906, guid: 11b749481278fd344953b8ce7ff82443, type: 3}
+  m_PrefabInstance: {fileID: 2561446594296016874}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1623978555878090277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7243169109095575816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c33d79cbc61a83845b25844f4f1cc762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeathSequence
+  animator: {fileID: 5253761690735280885}
+  destroyOnFinish: 1
+  additionalBehaviours: []

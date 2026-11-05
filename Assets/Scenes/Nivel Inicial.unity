@@ -48093,6 +48093,10 @@ PrefabInstance:
       propertyPath: 'footstepClips.Array.data[2]'
       value: 
       objectReference: {fileID: 8300000, guid: 0262a62fe4d35684a9934b3fb9becf21, type: 3}
+    - target: {fileID: 9067038483471174204, guid: 5f0c630f2a1471041a3457684346d0a0, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 588797317}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -97639,7 +97643,6 @@ MonoBehaviour:
   countsForRank: 1
   normalHealth: 25
   alertHealth: 75
-  deathDestroyDelay: 3
 --- !u!195 &1766464866
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -125,6 +125,19 @@ public class EnemyAnimationController : MonoBehaviour
             enemyBase.PlayBodyFallSound();
         }
     }
+    public void OnDeathAnimationFinished()
+{
+    DeathSequence sequence = GetComponentInParent<DeathSequence>();
+
+    if (sequence == null)
+    {
+        Debug.LogError("No se encontro DeathSequence en el personaje.",this);
+        return;
+    }
+
+    sequence.FinishDeath();
+}
+
 }
 
 

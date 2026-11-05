@@ -9,10 +9,10 @@ public class TargetHealth : MonoBehaviour, IDamageable
     [SerializeField] private float normalHealth = 25f;
     [SerializeField] private float alertHealth = 75f;
     
-     [SerializeField] private float deathDestroyDelay = 3f;
+     
     private float maxHealth;
     private float currentHealth;
-
+     public bool IsDead => isDead;
     private bool isDead = false;
 
     public float CurrentHealth => currentHealth;
@@ -72,16 +72,14 @@ public class TargetHealth : MonoBehaviour, IDamageable
 
     isDead = true;
 
-    Debug.Log(gameObject.name + " murió.");
+    Debug.Log(gameObject.name + " murio.");
 
-    // Contar la baja solamente si corresponde
     if (countsForRank)
-    {
         RankManager.Instance?.RegisterKill();
-    }
 
     OnDeath?.Invoke();
 
-   Destroy(gameObject, deathDestroyDelay);
+    
 }
+
 }

@@ -15,6 +15,11 @@ public class EnemyContactDamage : MonoBehaviour
 
     public void TryAttack(Transform target)
     {
+        if (!isActiveAndEnabled)
+    return;
+      TargetHealth health = GetComponentInParent<TargetHealth>();
+      if (health != null && health.IsDead)
+         return;
         if (target == null)
             return;
 
