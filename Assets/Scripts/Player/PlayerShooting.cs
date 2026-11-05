@@ -7,6 +7,10 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerAim playerAim;
     [SerializeField] private Transform muzzle;
+    
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource; 
+    [SerializeField] private AudioClip shootSound;    
 
     [Header("Bala")]
     [SerializeField] private Bullet bulletPrefab;
@@ -18,6 +22,14 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private float fireCooldown = 0.2f;
 
     private float nextFireTime;
+    private void Awake()
+    {
+        
+        if (audioSource == null)
+        {
+            audioSource = GetComponentInChildren<AudioSource>();
+        }
+    }
 
     private void OnEnable()
     {
@@ -68,5 +80,10 @@ public class PlayerShooting : MonoBehaviour
 
         // Le indicamos hacia dónde viajar.
         newBullet.Initialize(shootDirection, gameObject);
+       
+        if (audioSource != null && shootSound != null)
+        {
+            audioSource.PlayOneShot(shootSound);
+        }
     }
 }

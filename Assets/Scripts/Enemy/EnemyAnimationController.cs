@@ -1,6 +1,3 @@
-
-
-
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,9 +8,11 @@ public class EnemyAnimationController : MonoBehaviour
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private EnemyContactDamage contactDamage;
     [SerializeField] private TargetHealth targetHealth;
+    [SerializeField] private EnemyBase enemyBase;
 
     [Header("Configuracion")]
     [SerializeField] private float animationSmooth = 0.1f;
+    [SerializeField] private float bodyFallSoundDelay = 0.6f; // Segundos que tarda el cuerpo en tocar el suelo desde que muere
 
     private Animator animator;
     private bool isDead = false;
@@ -43,6 +42,9 @@ public class EnemyAnimationController : MonoBehaviour
 
         if (contactDamage == null)
             contactDamage = GetComponentInChildren<EnemyContactDamage>();
+
+        if (enemyBase == null)
+            enemyBase = GetComponentInParent<EnemyBase>();
     }
 
     private void OnEnable()
@@ -96,7 +98,21 @@ public class EnemyAnimationController : MonoBehaviour
 
         animator.ResetTrigger(Attack);
         animator.SetTrigger(Die);
+
+        if (enemyBase != null)
+        {
+            Invoke(nameof(PlayFallAudio), bodyFallSoundDelay);
+        }
+    }
+
+    private void PlayFallAudio()
+    {
+        if (enemyBase != null)
+        {
+            enemyBase.PlayBodyFallSound();
+        }
     }
 }
+
 
 

@@ -24,6 +24,9 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
     [SerializeField] protected float chaseStepInterval = 0.35f;
     private float stepTimer;
     private int lastClipIndex = -1;
+    [Header("Audio de Muerte")]
+    [SerializeField] protected AudioSource deathAudioSource;
+    [SerializeField] protected AudioClip deathBodyFallClip;
 
     protected enum AIState { Patrolling, Chasing }
     protected AIState currentState = AIState.Patrolling;
@@ -52,7 +55,7 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
 
     protected virtual void Start()
     {
-       SearchReferences();
+        SearchReferences();
     }
     protected void SearchReferences()
     {
@@ -64,7 +67,7 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
         }
 
         alertManager = UnityEngine.Object.FindFirstObjectByType<AlertManager>();
-        
+
         if (targetTransform == null)
         {
             PlayerDetectorTarget playerTarget = UnityEngine.Object.FindFirstObjectByType<PlayerDetectorTarget>();
@@ -79,7 +82,7 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
             targetDetectable = targetTransform.GetComponent<IDetectable>();
         }
     }
-    
+
     protected virtual void OnEnable()
     {
         AlertManager.Register(this);
@@ -199,5 +202,13 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
             }
         }
         return false;
+    }
+    public virtual void PlayBodyFallSound()
+    {
+        if (deathAudioSource != null && deathBodyFallClip != null)
+        {
+            deathAudioSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
+            deathAudioSource.PlayOneShot(deathBodyFallClip);
+        }
     }
 }

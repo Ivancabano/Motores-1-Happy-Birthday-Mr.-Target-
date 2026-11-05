@@ -5,6 +5,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 {
     [Header("Vida")]
     [SerializeField] private float maxHealth = 100f;
+   
+    [Header("Audio (Daño y Muerte)")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip damageClip;
 
     private float currentHealth;
     private bool isDead;
@@ -18,6 +22,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void Awake()
     {
+        if (audioSource == null)
+        {
+            audioSource = GetComponentInChildren<AudioSource>();
+        }
         currentHealth = maxHealth;
     }
 
@@ -34,6 +42,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         currentHealth = Mathf.Clamp(currentHealth,0f,maxHealth);
 
         Debug.Log("Player recibió " + damage +" de daño. Vida: " +currentHealth + "/" + maxHealth);
+
+        if (audioSource != null && damageClip != null)
+        {
+            audioSource.PlayOneShot(damageClip);
+        }
 
         OnHealthChanged?.Invoke(currentHealth,maxHealth);
 

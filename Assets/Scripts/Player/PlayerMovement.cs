@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -38,6 +39,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashDuration = 0.15f;
     [SerializeField] private float dashCooldown = 0.8f;
 
+    [Header("Audio de Pasos (Lista)")]
+    [SerializeField] private AudioSource footstepAudioSource;
+    [SerializeField] private List<AudioClip> footstepClips = new List<AudioClip>(); 
+    [SerializeField] private float walkStepInterval = 0.5f;
+    [SerializeField] private float sprintStepInterval = 0.35f;
+    [SerializeField] private float crouchStepInterval = 0.7f;
+    private float stepTimer;
+    private int lastClipIndex = -1;
+
     private CharacterController controller;
 
     private Vector2 moveInput;
@@ -76,6 +86,11 @@ public class PlayerMovement : MonoBehaviour
         crouchingCenter = standingCenter;
 
         crouchingCenter.y = standingCenter.y - (standingHeight - crouchHeight) * 0.5f;
+
+        if (footstepAudioSource == null)
+        {
+            footstepAudioSource = GetComponent<AudioSource>();
+        }
     }
 
     private void OnEnable()
@@ -121,6 +136,8 @@ public class PlayerMovement : MonoBehaviour
         CalculateMoveDirection();
 
         HandleCrouch();
+
+        HandleFootsteps();
 
         HandleDashInput();
 
@@ -239,6 +256,48 @@ public class PlayerMovement : MonoBehaviour
             return sprintSpeed;
 
         return walkSpeed;
+    }
+    private void HandleFootsteps()
+    {
+        if (!controller.isGrounded || moveInput.sqrMagnitude < 0.01f)
+        {
+            stepTimer = 0f;
+            return;
+        }
+
+        float currentInterval = walkStepInterval;
+        if (isSprinting) currentInterval = sprintStepInterval;
+        else if (isCrouching) currentInterval = crouchStepInterval;
+
+        stepTimer += Time.deltaTime;
+
+        if (stepTimer >= currentInterval)
+        {
+            PlayRandomFootstep();
+            stepTimer = 0f;
+        }
+    }
+
+    private void PlayRandomFootstep()
+    {
+        if (footstepAudioSource == null || footstepClips == null || footstepClips.Count == 0)
+            return;
+
+        int randomIndex = Random.Range(0, footstepClips.Count);
+
+        if (footstepClips.Count > 1 && randomIndex == lastClipIndex)
+        {
+            randomIndex = (randomIndex + 1) % footstepClips.Count;
+        }
+
+        lastClipIndex = randomIndex;
+        AudioClip clipToPlay = footstepClips[randomIndex];
+
+        if (clipToPlay != null)
+        {
+            footstepAudioSource.pitch = Random.Range(0.9f, 1.1f);
+            footstepAudioSource.PlayOneShot(clipToPlay);
+        }
     }
 
     // --------------------------------------------------
