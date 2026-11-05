@@ -102,8 +102,7 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
             case AIState.Patrolling:
                 if (HasDirectVision())
                 {
-                    if (alertManager != null && targetTransform != null)
-                        alertManager.EnemyOnSight(Vector3.Distance(transform.position, targetTransform.position));
+                    if (alertManager != null) alertManager.EnemyOnSight();
                     IsChasing = true;
                     break;
                 }
