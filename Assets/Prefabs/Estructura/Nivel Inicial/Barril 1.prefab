@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 152ddb9e58b436343a781597a367c52f, type: 3}
       propertyPath: m_Name
-      value: barrel-2
+      value: Barril 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 152ddb9e58b436343a781597a367c52f, type: 3}
       propertyPath: m_LocalScale.x
@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 152ddb9e58b436343a781597a367c52f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3641a7e43acc1af4aa95784369bc36d4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
