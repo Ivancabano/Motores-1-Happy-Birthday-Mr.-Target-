@@ -96,18 +96,15 @@ public class GameManager : MonoBehaviour
 }
 
     public void TriggerGameOver()
-    {
-        if (CurrentState != GameState.Playing)
-            return;
-
-        CurrentState = GameState.GameOver;
-
-        LockPlayerControls();
-
-        Debug.Log("GAME OVER");
-
-        OnGameOver?.Invoke();
-    }
+{
+    if (CurrentState != GameState.Playing)
+        return;
+    CurrentState = GameState.GameOver;
+    LockPlayerControls();
+    Debug.Log("GAME OVER");
+    OnGameOver?.Invoke();
+    Juego.SceneManager.Perder();
+}
 
     private void LockPlayerControls()
     {

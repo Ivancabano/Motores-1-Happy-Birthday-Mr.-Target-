@@ -3273,7 +3273,7 @@ PrefabInstance:
     - target: {fileID: 2673761974999617135, guid: 5f0c630f2a1471041a3457684346d0a0, type: 3}
       propertyPath: mainCamera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 741703855}
     - target: {fileID: 3766293469408100389, guid: 5f0c630f2a1471041a3457684346d0a0, type: 3}
       propertyPath: m_Name
       value: Sicario
@@ -4741,6 +4741,39 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44922e7a2be590349b594696729a436a, type: 3}
+--- !u!114 &954166268 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7558875260075817004, guid: 5f0c630f2a1471041a3457684346d0a0, type: 3}
+  m_PrefabInstance: {fileID: 588797312}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 328b331fa9d24b24084b72a22b2c20aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+--- !u!114 &954166271 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2019238711684085816, guid: 5f0c630f2a1471041a3457684346d0a0, type: 3}
+  m_PrefabInstance: {fileID: 588797312}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d0bc7d5b78bcee49b43067a63fda5b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+--- !u!114 &954166273 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1557752508810098680, guid: 5f0c630f2a1471041a3457684346d0a0, type: 3}
+  m_PrefabInstance: {fileID: 588797312}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc8b29d75fdaed444af7b55772e71de7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerShooting
 --- !u!1 &955764655
 GameObject:
   m_ObjectHideFlags: 0
@@ -5327,10 +5360,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d64783e1f922447ae84a8fdf7d609a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  playerHealth: {fileID: 0}
-  playerMovement: {fileID: 0}
-  playerShooting: {fileID: 0}
-  victoryTarget: {fileID: 0}
+  playerHealth: {fileID: 954166271}
+  playerMovement: {fileID: 954166268}
+  playerShooting: {fileID: 954166273}
+  victoryTarget: {fileID: 1766464869}
 --- !u!4 &1053036613
 Transform:
   m_ObjectHideFlags: 0
@@ -9200,6 +9233,7 @@ GameObject:
   - component: {fileID: 1766464866}
   - component: {fileID: 1766464867}
   - component: {fileID: 1766464868}
+  - component: {fileID: 1766464869}
   m_Layer: 9
   m_Name: Jefe
   m_TagString: Untagged
@@ -9365,6 +9399,22 @@ MonoBehaviour:
   pelletDamage: 4
   spreadAngle: 12
   bulletSpeed: 15
+--- !u!114 &1766464869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766464858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71b995f7a3296c488d1f030b91ff4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetHealth
+  countsForRank: 1
+  normalHealth: 25
+  alertHealth: 75
+  deathDestroyDelay: 3
 --- !u!1 &1772283002
 GameObject:
   m_ObjectHideFlags: 0
@@ -16197,7 +16247,7 @@ SceneRoots:
   - {fileID: 1053036613}
   - {fileID: 1647714897}
   - {fileID: 473096704}
-  - {fileID: 588797312}
-  - {fileID: 1766464863}
   - {fileID: 2019561920}
   - {fileID: 1387410890}
+  - {fileID: 588797312}
+  - {fileID: 1766464863}
