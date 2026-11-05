@@ -340,7 +340,7 @@ PrefabInstance:
       objectReference: {fileID: 1858245367465472213}
     - target: {fileID: 7029025078043820436, guid: 11b749481278fd344953b8ce7ff82443, type: 3}
       propertyPath: bodyFallSoundDelay
-      value: 1
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 8460516589508183670, guid: 11b749481278fd344953b8ce7ff82443, type: 3}
       propertyPath: m_Volume

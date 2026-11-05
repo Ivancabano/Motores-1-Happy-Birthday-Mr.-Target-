@@ -861,7 +861,7 @@ MonoBehaviour:
   targetHealth: {fileID: 6594616417582464467}
   enemyBase: {fileID: 6628987065201573509}
   animationSmooth: 0.1
-  bodyFallSoundDelay: 6
+  bodyFallSoundDelay: 2.1
 --- !u!4 &1087336399321166227 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0607ba8b5c49a7346a119832ff442c1e, type: 3}

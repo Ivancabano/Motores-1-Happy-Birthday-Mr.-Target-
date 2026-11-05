@@ -14,6 +14,10 @@ public class RangedEnemyAttack : MonoBehaviour
     [SerializeField] private float bulletSpeed = 20f;
     [SerializeField] private float rotationSpeed = 4f;
     [SerializeField] private float bulletDamage = 5f;
+
+    [Header("Audio de Disparo")]
+    private AudioSource shootAudioSource;
+    [SerializeField] private AudioClip shootClip;
     private EnemyBase enemyController;
     private NavMeshAgent agent;
     private float nextFireTime = 0f;
@@ -33,7 +37,13 @@ public class RangedEnemyAttack : MonoBehaviour
             }
         }
         enemyController = GetComponent<EnemyBase>();
+
         agent = GetComponent<NavMeshAgent>();
+
+        if (shootAudioSource == null)
+        {
+            shootAudioSource = GetComponentInChildren<AudioSource>();
+        }
     }
 
 
@@ -68,6 +78,12 @@ public class RangedEnemyAttack : MonoBehaviour
     private void Shoot(Transform target)
     {
         if (bulletPrefab == null || firePoint == null) return;
+
+        if (shootAudioSource != null && shootClip != null)
+        {
+            shootAudioSource.pitch = Random.Range(0.95f, 1.05f);
+            shootAudioSource.PlayOneShot(shootClip);
+        }
 
         Vector3 aimPoint = target.position + Vector3.up * 1f;
         Vector3 shootDirection = (aimPoint - firePoint.position).normalized;
