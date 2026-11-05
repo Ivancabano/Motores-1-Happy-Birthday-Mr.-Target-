@@ -35,10 +35,12 @@ public class SecurityCamera : MonoBehaviour
     private void SearchReferences()
     {
         cameraLight = GetComponentInChildren<Light>();
+
         if (cameraAudioSource == null)
         {
             cameraAudioSource = GetComponentInChildren<AudioSource>();
         }
+
         if (cameraLight == null || cameraLight.type != LightType.Spot)
         {
             enabled = false;

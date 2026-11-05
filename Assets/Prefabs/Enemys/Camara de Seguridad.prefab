@@ -430,8 +430,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SecurityCamera
   focoTransform: {fileID: 0}
-  cameraAudioSource: {fileID: 0}
-  alertSound: {fileID: 0}
+  cameraAudioSource: {fileID: 3907873705208908341}
+  alertSound: {fileID: 8300000, guid: e97b95a1bce8b5543a6a3cdb258e64ca, type: 3}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
