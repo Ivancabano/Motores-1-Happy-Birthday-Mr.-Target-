@@ -1,26 +1,24 @@
-
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(Animator))]
 public class BossAnimationController : MonoBehaviour
 {
-    [Header("Referencias")]
-    [SerializeField] private BossEnemy boss;
-    [SerializeField] private NavMeshAgent agent;
-    [SerializeField] private BossShotgunAttack shotgun;
-    [SerializeField] private TargetHealth targetHealth;
+    [Header("Referencias (Autogestionadas)")]
+    private EnemyBossBase bossBase;
+    private NavMeshAgent agent;
+    private BossShotgunAttack shotgun;
+    private TargetHealth targetHealth;
 
-    [Header("Animaciones")]
+    [Header("Configuración de Animación")]
     [SerializeField] private float animationSmooth = 0.1f;
 
     private Animator animator;
     private bool isDead = false;
 
+    // Hashes del Animator para optimizar rendimiento
     private static readonly int Speed = Animator.StringToHash("Speed");
-
     private static readonly int Shoot = Animator.StringToHash("Shoot");
-
     private static readonly int Die = Animator.StringToHash("Die");
 
     private void Awake()
@@ -28,8 +26,14 @@ public class BossAnimationController : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.applyRootMotion = false;
 
-        if (boss == null)
-            boss = GetComponentInParent<BossEnemy>();
+        SearchReferences();
+    }
+
+    private void SearchReferences()
+    {
+        // Busca en el mismo GameObject o en los padres (por si el script está en el objeto de la malla 3D)
+        if (bossBase == null)
+            bossBase = GetComponentInParent<EnemyBossBase>();
 
         if (agent == null)
             agent = GetComponentInParent<NavMeshAgent>();
@@ -66,13 +70,13 @@ public class BossAnimationController : MonoBehaviour
 
         float speed = 0f;
 
-        if (boss != null && boss.IsActivated &&
-            agent != null && agent.isOnNavMesh)
+        // Validamos utilizando la propiedad IsCombatActive de EnemyBossBase
+        if (bossBase != null && bossBase.IsCombatActive && agent != null && agent.isOnNavMesh)
         {
             speed = agent.velocity.magnitude / Mathf.Max(agent.speed, 0.01f);
         }
 
-        animator.SetFloat(Speed,Mathf.Clamp01(speed),animationSmooth,Time.deltaTime);
+        animator.SetFloat(Speed, Mathf.Clamp01(speed), animationSmooth, Time.deltaTime);
     }
 
     private void HandleShoot()
@@ -94,6 +98,6 @@ public class BossAnimationController : MonoBehaviour
         animator.ResetTrigger(Shoot);
         animator.SetTrigger(Die);
 
-        Debug.Log("Animacion de muerte del jefe.");
+        Debug.Log("Animación de muerte del jefe activada.");
     }
 }

@@ -7,7 +7,8 @@ public class EnemyBossBase : MonoBehaviour
     protected Transform targetTransform;
 
     // Lo dejamos activado por defecto para que puedas darle a Play y probarlo de inmediato
-    [SerializeField] protected bool isCombatStarted = true;
+    [SerializeField] protected bool isActivated = true;
+    public bool IsCombatActive => isActivated;
 
     [Header("Boss Health Configuration")]
     [SerializeField] protected int bossHealthNotActivated = 10;
@@ -29,7 +30,7 @@ public class EnemyBossBase : MonoBehaviour
         {
             agent.speed = movementSpeed;
             agent.stoppingDistance = stoppingDistance;
-            agent.isStopped = !isCombatStarted; // Si isCombatStarted es true, arranca a moverse de una
+            agent.isStopped = !isActivated; // Si isCombatStarted es true, arranca a moverse de una
         }
 
         Debug.Log("[Boss] Listo y configurado para pruebas de movimiento.");
@@ -56,7 +57,7 @@ public class EnemyBossBase : MonoBehaviour
     void Update()
     {
         // Si el combate está activo, ejecuta la persecución
-        if (isCombatStarted)
+        if (isActivated)
         {
             MoverHaciaJugador();
         }
