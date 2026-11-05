@@ -16,19 +16,23 @@ public class AlertManager : MonoBehaviour
         if (alertable != null) alertableEnemies.Remove(alertable);
     }
 
-    public void EnemyOnSight()
-{
-    
-    RankManager.Instance?.RegisterDetection();
-
-    if (!isAlertActive)
+    // distance = distancia entre quien detecta (guardia/camara) y el jugador
+    public void EnemyOnSight(float distance)
     {
-        isAlertActive = true;
-
-        foreach (var alertable in alertableEnemies)
+        // Snapshot de Alerta (el manager ignora llamadas repetidas)
+        if (DynamicMusicManager.Instance != null)
         {
-            alertable?.ForceChase();
+            DynamicMusicManager.Instance.StartAlert(distance);
+        }
+
+        if (!isAlertActive)
+        {
+            isAlertActive = true;
+
+            foreach (var alertable in alertableEnemies)
+            {
+                alertable?.ForceChase();
+            }
         }
     }
-}
 }

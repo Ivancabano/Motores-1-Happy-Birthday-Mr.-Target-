@@ -15,6 +15,7 @@ public class SceneManager : MonoBehaviour
     public const string SALA_JEFE = "Sala de Jefe";
     public const string ANTESALA = "Antesala";
 
+<<<<<<< Updated upstream
     [SerializeField] private GameObject canvasMenu;
     [SerializeField] private GameObject canvasInstrucciones;
 
@@ -48,6 +49,20 @@ public class SceneManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
+=======
+    private static string ultimoNivel = NIVEL_INICIAL;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void Inicializar()
+    {
+        UnitySceneManager.sceneLoaded += AlCargarEscena;
+    }
+
+    private static void AlCargarEscena(Scene escena, LoadSceneMode modo)
+    {
+        Time.timeScale = 1f;
+
+>>>>>>> Stashed changes
         if (escena.name == NIVEL_INICIAL || escena.name == SALA_JEFE)
             ultimoNivel = escena.name;
 

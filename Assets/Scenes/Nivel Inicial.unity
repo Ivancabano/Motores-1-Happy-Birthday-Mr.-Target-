@@ -97785,12 +97785,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fd85e002b882f4291d8cb011e9098c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DynamicMusicManager
-  explorationMusic: {fileID: 0}
-  alertMusic: {fileID: 0}
-  bossMusic: {fileID: 0}
-  victoryMusic: {fileID: 0}
-  fadeDuration: 1.5
-  volume: 0.7
+  mixer: {fileID: 0}
+  parametroCutoff: MusicCutoff
+  snapshotSilencio: {fileID: 0}
+  ambienteNivel:
+    clip: {fileID: 0}
+    grupo: {fileID: 0}
+    snapshot: {fileID: 0}
+  ambienteDialogo:
+    clip: {fileID: 0}
+    grupo: {fileID: 0}
+    snapshot: {fileID: 0}
+  alerta:
+    clip: {fileID: 0}
+    grupo: {fileID: 0}
+    snapshot: {fileID: 0}
+  boss:
+    clip: {fileID: 0}
+    grupo: {fileID: 0}
+    snapshot: {fileID: 0}
+  victoria:
+    clip: {fileID: 0}
+    grupo: {fileID: 0}
+    snapshot: {fileID: 0}
+  escenaNivel: Almacen
+  escenaDialogo: Dialogo
+  escenaJefe: Jefe
+  escenaVictoria: Victoria
+  escenaDerrota: Derrota
+  distanciaMaxDeteccion: 15
+  cutoffMin: 800
+  cutoffMax: 22000
 --- !u!4 &1772635700 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6000825674703919069, guid: 7482d401da1f2ad44bee7c1c14e8c96e, type: 3}
@@ -111953,6 +111978,81 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999298280}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2007933490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2007933492}
+  - component: {fileID: 2007933493}
+  m_Layer: 0
+  m_Name: Music Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2007933492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007933490}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 44.82, y: 0.37, z: 4.87}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2007933493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007933490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fd85e002b882f4291d8cb011e9098c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DynamicMusicManager
+  mixer: {fileID: 24100000, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+  parametroCutoff: MusicCutoff
+  snapshotSilencio: {fileID: 4005841929794414886, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+  ambienteNivel:
+    clip: {fileID: 8300000, guid: 38e21a6561d716043b9b69cf0e1ab897, type: 3}
+    grupo: {fileID: -4944436841612857574, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+    snapshot: {fileID: -2472470347971795035, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+  ambienteDialogo:
+    clip: {fileID: 0}
+    grupo: {fileID: 0}
+    snapshot: {fileID: 0}
+  alerta:
+    clip: {fileID: 8300000, guid: deee0d9ce7ad71f419b8cdcaf530de84, type: 3}
+    grupo: {fileID: 1922614523347764222, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+    snapshot: {fileID: 1572379562768288488, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+  boss:
+    clip: {fileID: 0}
+    grupo: {fileID: 0}
+    snapshot: {fileID: 0}
+  victoria:
+    clip: {fileID: 0}
+    grupo: {fileID: 0}
+    snapshot: {fileID: 0}
+  escenaNivel: Nivel Inicial
+  escenaDialogo: Dialogo
+  escenaJefe: Jefe
+  escenaVictoria: Victoria
+  escenaDerrota: Derrota
+  distanciaMaxDeteccion: 15
+  cutoffMin: 800
+  cutoffMax: 22000
 --- !u!1001 &2016516480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -116949,3 +117049,4 @@ SceneRoots:
   - {fileID: 1458240955}
   - {fileID: 1454871230}
   - {fileID: 1387410890}
+  - {fileID: 2007933492}
