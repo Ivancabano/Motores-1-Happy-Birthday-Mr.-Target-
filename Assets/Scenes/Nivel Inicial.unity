@@ -6545,7 +6545,7 @@ MonoBehaviour:
     grupo: {fileID: 0}
     snapshot: {fileID: 0}
   alerta:
-    clip: {fileID: 8300000, guid: c44c78f6d5375c54da4ef05697df31fd, type: 3}
+    clip: {fileID: 8300000, guid: deee0d9ce7ad71f419b8cdcaf530de84, type: 3}
     grupo: {fileID: 9208695983486081358, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
     snapshot: {fileID: 7256866537472272442, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
   boss:
@@ -6556,7 +6556,7 @@ MonoBehaviour:
     clip: {fileID: 0}
     grupo: {fileID: 0}
     snapshot: {fileID: 0}
-  escenaNivel: Almacen
+  escenaNivel: NIvel Inicial
   escenaDialogo: Dialogo
   escenaJefe: Jefe
   escenaVictoria: Victoria
