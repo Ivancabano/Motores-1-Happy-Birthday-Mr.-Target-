@@ -49,7 +49,6 @@ public class DynamicMusicManager : MonoBehaviour
     Pista actual;
     float vida = 1f;          // 0 a 1
     float ultimoCutoff = -1f;
-
     void Awake()
     {
         // Evita duplicados al volver a cargar la escena donde está el manager
@@ -67,12 +66,10 @@ public class DynamicMusicManager : MonoBehaviour
         // Awake corre después de que cargó la primera escena, así que la procesamos a mano
         AlCargarEscena(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
-
     void OnDestroy()
     {
         if (Instance == this) SceneManager.sceneLoaded -= AlCargarEscena;
     }
-
     void CrearFuente(Pista p)
     {
         p.fuente = gameObject.AddComponent<AudioSource>();
@@ -81,8 +78,6 @@ public class DynamicMusicManager : MonoBehaviour
         p.fuente.loop = true;
         p.fuente.playOnAwake = false;
     }
-
-    // ---------- Lógica por escena ----------
     void AlCargarEscena(Scene escena, LoadSceneMode modo)
     {
         vida = 1f; // reinicia la vida al cambiar de escena
@@ -94,40 +89,27 @@ public class DynamicMusicManager : MonoBehaviour
         else if (n == escenaVictoria) Cambiar(victoria, 1f);
         else if (n == escenaDerrota) Silenciar(0.3f);
     }
-
-    // ---------- API pública (la llaman otros scripts) ----------
-
-    /// <summary>Llamar cuando un enemigo o camara descubre al jugador. Solo actúa en el almacén.</summary>
     public void StartAlert(float distancia)
     {
         if (actual != ambienteNivel) return;
-        // Más cerca = la alerta entra más rápido (0.3 s a 2 s)
         float t = Mathf.Lerp(0.3f, 2f, Mathf.Clamp01(distancia / distanciaMaxDeteccion));
         Cambiar(alerta, t);
     }
-
-    /// <summary>Llamar cada vez que cambia la vida. Valor de 0 (muerto) a 1 (vida llena).</summary>
     public void SetVida(float vida01)
     {
         vida = Mathf.Clamp01(vida01);
     }
-
-    // ---------- Internos ----------
     void Cambiar(Pista nueva, float tiempo)
     {
         if (actual == nueva) return;
-
         Pista anterior = actual;
         actual = nueva;
-
         nueva.fuente.Stop();
-        nueva.fuente.Play();              // arranca desde el principio
+        nueva.fuente.Play();            
         nueva.snapshot.TransitionTo(tiempo);
-
         if (anterior != null)
             StartCoroutine(DetenerLuego(anterior.fuente, tiempo + 0.1f));
     }
-
     void Silenciar(float tiempo)
     {
         actual = null;
@@ -135,17 +117,13 @@ public class DynamicMusicManager : MonoBehaviour
         foreach (var p in new[] { ambienteNivel, ambienteDialogo, alerta, boss, victoria })
             StartCoroutine(DetenerLuego(p.fuente, tiempo + 0.1f));
     }
-
     IEnumerator DetenerLuego(AudioSource fuente, float espera)
     {
         yield return new WaitForSecondsRealtime(espera);
-        // Si mientras tanto volvió a ser la pista actual, no la cortamos
         if (actual == null || actual.fuente != fuente) fuente.Stop();
     }
-
     void Update()
     {
-        // Parámetro 2 del Bloque F: cutoff según vida (escala logarítmica, se percibe más natural)
         float cutoff = cutoffMin * Mathf.Pow(cutoffMax / cutoffMin, vida);
         if (Mathf.Abs(cutoff - ultimoCutoff) > 1f)
         {

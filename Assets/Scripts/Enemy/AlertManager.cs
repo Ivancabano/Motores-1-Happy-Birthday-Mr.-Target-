@@ -16,8 +16,10 @@ public class AlertManager : MonoBehaviour
         if (alertable != null) alertableEnemies.Remove(alertable);
     }
 
+    // distance = distancia entre quien detecta (guardia/camara) y el jugador
     public void EnemyOnSight(float distance)
     {
+        // Snapshot de Alerta (el manager ignora llamadas repetidas)
         if (DynamicMusicManager.Instance != null)
         {
             DynamicMusicManager.Instance.StartAlert(distance);

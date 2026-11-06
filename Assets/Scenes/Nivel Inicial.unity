@@ -6538,27 +6538,27 @@ MonoBehaviour:
   snapshotSilencio: {fileID: 5423765672693285845, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
   ambienteNivel:
     clip: {fileID: 8300000, guid: 38e21a6561d716043b9b69cf0e1ab897, type: 3}
-    grupo: {fileID: 1922614523347764222, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+    grupo: {fileID: -4944436841612857574, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
     snapshot: {fileID: 24500006, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
   ambienteDialogo:
-    clip: {fileID: 0}
-    grupo: {fileID: 0}
-    snapshot: {fileID: 0}
+    clip: {fileID: 8300000, guid: 8e74b3b1dea72244db9e9c1374592ec3, type: 3}
+    grupo: {fileID: -4944436841612857574, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+    snapshot: {fileID: 24500006, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
   alerta:
-    clip: {fileID: 8300000, guid: deee0d9ce7ad71f419b8cdcaf530de84, type: 3}
-    grupo: {fileID: 9208695983486081358, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+    clip: {fileID: 8300000, guid: c44c78f6d5375c54da4ef05697df31fd, type: 3}
+    grupo: {fileID: 799229097662224505, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
     snapshot: {fileID: 7256866537472272442, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
   boss:
-    clip: {fileID: 0}
-    grupo: {fileID: 0}
-    snapshot: {fileID: 0}
+    clip: {fileID: 8300000, guid: 2d4cd02d588a83448873f92432cae6ba, type: 3}
+    grupo: {fileID: -103657335841895368, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+    snapshot: {fileID: -1782345404226099101, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
   victoria:
-    clip: {fileID: 0}
-    grupo: {fileID: 0}
-    snapshot: {fileID: 0}
-  escenaNivel: NIvel Inicial
-  escenaDialogo: Dialogo
-  escenaJefe: Jefe
+    clip: {fileID: 8300000, guid: e12e29db04ad1fe4eb9b3532da6be564, type: 3}
+    grupo: {fileID: 1084625183853447803, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+    snapshot: {fileID: -885697818623896741, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+  escenaNivel: Nivel Inicial
+  escenaDialogo: Antesala
+  escenaJefe: Sala de Jefe
   escenaVictoria: Victoria
   escenaDerrota: Derrota
   distanciaMaxDeteccion: 15
@@ -28859,7 +28859,7 @@ AudioSource:
   m_GameObject: {fileID: 367220910}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 1922614523347764222, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: c593457972d8ca849ba60059cffdad85, type: 3}
   m_PlayOnAwake: 0
@@ -41947,7 +41947,7 @@ AudioSource:
   m_GameObject: {fileID: 517053785}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 1922614523347764222, guid: f676d43d9cf107a45b339415905a20d3, type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 3bc9e87da6475d54c88d2d145c4177d4, type: 3}
   m_PlayOnAwake: 0
@@ -117051,5 +117051,5 @@ SceneRoots:
   - {fileID: 646437820}
   - {fileID: 1458240955}
   - {fileID: 1454871230}
-  - {fileID: 1387410890}
   - {fileID: 62648241}
+  - {fileID: 1387410890}
