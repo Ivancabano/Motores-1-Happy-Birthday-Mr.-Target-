@@ -61,9 +61,7 @@ public class DynamicMusicManager : MonoBehaviour
         CrearFuente(alerta);
         CrearFuente(boss);
         CrearFuente(victoria);
-
         SceneManager.sceneLoaded += AlCargarEscena;
-        // Awake corre después de que cargó la primera escena, así que la procesamos a mano
         AlCargarEscena(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
     void OnDestroy()
@@ -81,7 +79,6 @@ public class DynamicMusicManager : MonoBehaviour
     void AlCargarEscena(Scene escena, LoadSceneMode modo)
     {
         vida = 1f; // reinicia la vida al cambiar de escena
-
         string n = escena.name;
         if (n == escenaNivel) Cambiar(ambienteNivel, 1.5f);
         else if (n == escenaDialogo) Cambiar(ambienteDialogo, 1.5f);
@@ -107,15 +104,13 @@ public class DynamicMusicManager : MonoBehaviour
         nueva.fuente.Stop();
         nueva.fuente.Play();            
         nueva.snapshot.TransitionTo(tiempo);
-        if (anterior != null)
-            StartCoroutine(DetenerLuego(anterior.fuente, tiempo + 0.1f));
+        if (anterior != null) StartCoroutine(DetenerLuego(anterior.fuente, tiempo + 0.1f));
     }
     void Silenciar(float tiempo)
     {
         actual = null;
         snapshotSilencio.TransitionTo(tiempo);
-        foreach (var p in new[] { ambienteNivel, ambienteDialogo, alerta, boss, victoria })
-            StartCoroutine(DetenerLuego(p.fuente, tiempo + 0.1f));
+        foreach (var p in new[] { ambienteNivel, ambienteDialogo, alerta, boss, victoria }) StartCoroutine(DetenerLuego(p.fuente, tiempo + 0.1f));
     }
     IEnumerator DetenerLuego(AudioSource fuente, float espera)
     {
