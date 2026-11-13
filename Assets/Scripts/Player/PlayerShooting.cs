@@ -6,11 +6,12 @@ public class PlayerShooting : MonoBehaviour
     [Header("Referencias")]
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerAim playerAim;
+    [SerializeField] private PlayerAmmo playerAmmo;
     [SerializeField] private Transform muzzle;
-    
+
     [Header("Audio")]
-    [SerializeField] private AudioSource audioSource; 
-    [SerializeField] private AudioClip shootSound;    
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip shootSound;
 
     [Header("Bala")]
     [SerializeField] private Bullet bulletPrefab;
@@ -22,13 +23,14 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private float fireCooldown = 0.2f;
 
     private float nextFireTime;
+
     private void Awake()
     {
-        
         if (audioSource == null)
-        {
             audioSource = GetComponentInChildren<AudioSource>();
-        }
+
+        if (playerAmmo == null)
+            playerAmmo = GetComponent<PlayerAmmo>();
     }
 
     private void OnEnable()
@@ -51,17 +53,16 @@ public class PlayerShooting : MonoBehaviour
 
     private void OnShoot(InputAction.CallbackContext context)
     {
-        if (playerMovement == null ||  playerAim == null || muzzle == null || bulletPrefab == null)
-        {
+        if (playerMovement == null || playerAim == null || muzzle == null || bulletPrefab == null)
             return;
-        }
 
-        // Solo dispara mientras apuntamos
         if (!playerMovement.IsAiming)
             return;
 
-        // Cadencia del arma
         if (Time.time < nextFireTime)
+            return;
+
+        if (playerAmmo != null && !playerAmmo.TryConsume())
             return;
 
         Shoot();
@@ -71,19 +72,12 @@ public class PlayerShooting : MonoBehaviour
 
     private void Shoot()
     {
-        // Dirección desde la punta del arma
-        // hacia donde está nuestra retícula.
         Vector3 shootDirection = (playerAim.AimPoint - muzzle.position).normalized;
 
-        // Creamos la bala físicamente en el Muzzle.
         Bullet newBullet = Instantiate(bulletPrefab, muzzle.position, Quaternion.LookRotation(shootDirection));
-
-        // Le indicamos hacia dónde viajar.
         newBullet.Initialize(shootDirection, gameObject);
-       
+
         if (audioSource != null && shootSound != null)
-        {
             audioSource.PlayOneShot(shootSound);
-        }
     }
 }
