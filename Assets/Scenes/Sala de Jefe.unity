@@ -3495,6 +3495,22 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8393700732834451070, guid: 5f0c630f2a1471041a3457684346d0a0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1869194459, guid: 782ca322d30208f40943fc533b79124a, type: 3}
+    - target: {fileID: 8393700732834451070, guid: 5f0c630f2a1471041a3457684346d0a0, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393700732834451070, guid: 5f0c630f2a1471041a3457684346d0a0, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393700732834451070, guid: 5f0c630f2a1471041a3457684346d0a0, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
