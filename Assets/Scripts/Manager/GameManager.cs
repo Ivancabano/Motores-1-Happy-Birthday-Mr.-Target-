@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
         if (playerHealth != null)
         {
             playerHealth.OnDeath += HandlePlayerDeath;
+            GameEvents.OnTimeFinished += TriggerGameOver;
         }
 
         // Escuchamos la muerte del enemigo objetivo
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
         if (playerHealth != null)
         {
             playerHealth.OnDeath -= HandlePlayerDeath;
+            GameEvents.OnTimeFinished -= TriggerGameOver;
         }
 
         // Dejamos de escuchar la muerte del enemigo objetivo

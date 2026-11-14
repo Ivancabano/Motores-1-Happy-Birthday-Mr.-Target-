@@ -1,24 +1,20 @@
-using TMPro;
 using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    [Header("Referencias")]
-    [SerializeField] private TextMeshProUGUI timerText;
-
     [Header("Configuración")]
-    [SerializeField] private float totalTime = 600f;   
-    [SerializeField] private float warningTime = 60f;  
+    [SerializeField] private float totalTime = 600f;
 
     private float remainingTime;
-    private bool timeIsUp = false;
+    private bool timeIsUp;
+    private int lastWholeSecond = -1;
 
     public float RemainingTime => remainingTime;
 
     private void Start()
     {
         remainingTime = totalTime;
-        UpdateTimerText();
+        NotifyIfSecondChanged();
     }
 
     private void Update()
@@ -31,36 +27,19 @@ public class Timer : MonoBehaviour
         {
             remainingTime = 0f;
             timeIsUp = true;
-            UpdateTimerText();
-            TimeOver();
+            GameEvents.RaiseTimeChanged(0f);
+            GameEvents.RaiseTimeFinished();
             return;
         }
 
-        UpdateTimerText();
+        NotifyIfSecondChanged();
     }
 
-    private void UpdateTimerText()
+    private void NotifyIfSecondChanged()
     {
-        if (timerText == null) return;
-
-        int minutes = Mathf.FloorToInt(remainingTime / 60f);
-        int seconds = Mathf.FloorToInt(remainingTime % 60f);
-
-        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-
-        if (remainingTime <= warningTime)
-        {
-            timerText.color = Color.red;
-        }
-    }
-
-    private void TimeOver()
-    {
-        Debug.Log("Se acabó el tiempo");
-
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.TriggerGameOver();
-        }
+        int whole = Mathf.FloorToInt(remainingTime);
+        if (whole == lastWholeSecond) return;
+        lastWholeSecond = whole;
+        GameEvents.RaiseTimeChanged(remainingTime);
     }
 }
