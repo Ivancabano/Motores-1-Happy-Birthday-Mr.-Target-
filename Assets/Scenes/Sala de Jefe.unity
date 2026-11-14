@@ -1099,6 +1099,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1878377968}
     m_Modifications:
+    - target: {fileID: 88852848605176085, guid: 9be01e73b880d67479d16e717053546f, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 954166271}
     - target: {fileID: 964986600840847913, guid: 9be01e73b880d67479d16e717053546f, type: 3}
       propertyPath: m_Name
       value: HealthBar
