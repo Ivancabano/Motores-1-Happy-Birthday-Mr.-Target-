@@ -7,7 +7,7 @@ public class BossAnimationController : MonoBehaviour
     [Header("Referencias (Autogestionadas)")]
     private EnemyBossBase bossBase;
     private NavMeshAgent agent;
-    private BossShotgunAttack shotgun;
+    private BossSniperAttack shotgun;
     private TargetHealth targetHealth;
 
     [Header("Configuración de Animación")]
@@ -39,7 +39,7 @@ public class BossAnimationController : MonoBehaviour
             agent = GetComponentInParent<NavMeshAgent>();
 
         if (shotgun == null)
-            shotgun = GetComponentInParent<BossShotgunAttack>();
+            shotgun = GetComponentInParent<BossSniperAttack>();
 
         if (targetHealth == null)
             targetHealth = GetComponentInParent<TargetHealth>();

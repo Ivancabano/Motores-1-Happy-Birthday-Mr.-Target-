@@ -8,6 +8,10 @@ public class BossEnemy : EnemyBase
     [SerializeField] private float shootingRange = 8f;
     [SerializeField] private float rotationSpeed = 5f;
 
+    [Header("Posicion")]
+    [Tooltip("Si esta activo, el jefe no persigue al jugador: se queda en su lugar (ej. escondido detras de un escritorio).")]
+    [SerializeField] private bool stationary = true;
+
     private bool bossActivated = false;
     private bool isDead = false;
 
@@ -61,6 +65,17 @@ public class BossEnemy : EnemyBase
 
     protected override void ExecuteChase()
     {
+        if (stationary)
+        {
+            // Se queda quieto; la rotacion y el ataque los maneja BossSniperAttack.
+            if (agent != null && agent.isOnNavMesh)
+            {
+                agent.isStopped = true;
+                agent.ResetPath();
+            }
+            return;
+        }
+
         if (targetTransform == null || agent == null ||!agent.isOnNavMesh)
             return;
 

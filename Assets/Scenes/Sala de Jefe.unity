@@ -1714,6 +1714,73 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4413997691747873288, guid: d6575c3dce4754f4eaf5d3146bed60df, type: 3}
   m_PrefabInstance: {fileID: 1389842581}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &272979575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 272979578}
+  - component: {fileID: 272979577}
+  - component: {fileID: 272979576}
+  m_Layer: 0
+  m_Name: BossRoomTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &272979576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272979575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74da4c53a4f16e44c98240fcc1a47eb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossRoomTrigger
+  bossEnemy: {fileID: 0}
+--- !u!65 &272979577
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272979575}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &272979578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272979575}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -15.053, y: 0.647, z: -34.641}
+  m_LocalScale: {x: 4.0848, y: 4.0848, z: 4.0848}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &276936204
 GameObject:
   m_ObjectHideFlags: 0
@@ -2051,7 +2118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a82f640b7ad10594982d2c6279030e76, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0394
+      value: 0.0383
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a82f640b7ad10594982d2c6279030e76, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2059,7 +2126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a82f640b7ad10594982d2c6279030e76, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.3788
+      value: 0.4394
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a82f640b7ad10594982d2c6279030e76, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9448,10 +9515,9 @@ GameObject:
   - component: {fileID: 1766464861}
   - component: {fileID: 1766464860}
   - component: {fileID: 1766464866}
-  - component: {fileID: 1766464867}
-  - component: {fileID: 1766464868}
   - component: {fileID: 1766464869}
   - component: {fileID: 1766464870}
+  - component: {fileID: 1766464871}
   m_Layer: 9
   m_Name: Jefe
   m_TagString: Untagged
@@ -9481,7 +9547,7 @@ CapsuleCollider:
   m_Radius: 0.35
   m_Height: 3.4734826
   m_Direction: 1
-  m_Center: {x: 0, y: -0.13174006, z: 0}
+  m_Center: {x: 0, y: 0.63, z: 0}
 --- !u!23 &1766464861
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9548,7 +9614,7 @@ Transform:
   m_GameObject: {fileID: 1766464858}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.0802, y: -0.101, z: -64.029}
+  m_LocalPosition: {x: -8.244, y: -0.64, z: -68.85}
   m_LocalScale: {x: 0.80980384, y: 0.80980384, z: 0.80980384}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -9578,45 +9644,6 @@ NavMeshAgent:
   m_BaseOffset: 0.99999994
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1766464867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1766464858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d395667c51e63649bf91708ffc946fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyBossBase
-  isActivated: 1
-  bossHealthNotActivated: 10
-  bossHealthActivated: 15
-  bossHealth: 0
-  movementSpeed: 3.5
-  stoppingDistance: 10
-  rotationSpeed: 15
---- !u!114 &1766464868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1766464858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4340321b5dd081478b3b94b471a43c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BossShotgunAttack
-  firePoint: {fileID: 2017452183}
-  bulletPrefab: {fileID: 3511934989248132005, guid: c060537047fae1c448d2cdfc4c16bbbc, type: 3}
-  shootingRange: 20
-  fireRate: 0.8
-  pelletCount: 2
-  pelletDamage: 4
-  spreadAngle: 12
-  bulletSpeed: 15
 --- !u!114 &1766464869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9630,8 +9657,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetHealth
   countsForRank: 1
-  normalHealth: 25
-  alertHealth: 75
+  normalHealth: 150
+  alertHealth: 200
 --- !u!114 &1766464870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9647,6 +9674,38 @@ MonoBehaviour:
   animator: {fileID: 1907012255}
   destroyOnFinish: 0
   additionalBehaviours: []
+--- !u!114 &1766464871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766464858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 357eac3b4ca781d48ae6a36cbc4253aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossSniperAttack
+  firePoint: {fileID: 2017452183}
+  bodyRoot: {fileID: 2017452183}
+  lineOfSightMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  laserMaterial: {fileID: 2100000, guid: 86a45452eed495c498ff29f24afc88fc, type: 2}
+  reloadDuration: 3
+  crouchDuration: 0.4
+  standUpDuration: 0.5
+  aimDuration: 2.5
+  warningDuration: 0.8
+  afterShotDuration: 0.4
+  sniperDamage: 40
+  maxRange: 100
+  aimColor: {r: 1, g: 0, b: 0, a: 1}
+  lineWidth: 0.03
+  slowBlinkInterval: 0.25
+  fastBlinkInterval: 0.05
+  crouchDrop: 1
+  rotationSpeed: 6
 --- !u!1 &1772283002
 GameObject:
   m_ObjectHideFlags: 0
@@ -10183,19 +10242,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf758c1fbed218145b5782b2452cb671, type: 3}
       propertyPath: m_LocalScale.z
-      value: 324.82437
+      value: 324.8244
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf758c1fbed218145b5782b2452cb671, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0007572174
+      value: 0.000757236
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf758c1fbed218145b5782b2452cb671, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.71
+      value: -1.1644795
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf758c1fbed218145b5782b2452cb671, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.39
+      value: 0.39000362
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf758c1fbed218145b5782b2452cb671, type: 3}
       propertyPath: m_LocalRotation.w
@@ -16918,3 +16977,4 @@ SceneRoots:
   - {fileID: 1766464863}
   - {fileID: 24834022}
   - {fileID: 1155906657}
+  - {fileID: 272979578}
