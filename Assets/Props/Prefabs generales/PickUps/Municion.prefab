@@ -2423,7 +2423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c721233c7d514e846b9d77c4fc950f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmmoPickup
-  pickupClip: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: ecab360d5e52b104b84a7aff7e9238bb, type: 3}
   pickupVolume: 1
   rotationSpeed: 90
   ammoAmount: 12

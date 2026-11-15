@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4683669308469848369, guid: bdd48cbc030303a469412cc70fd74ceb, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bdd48cbc030303a469412cc70fd74ceb, type: 3}
       propertyPath: m_Name
       value: Luz Edificio

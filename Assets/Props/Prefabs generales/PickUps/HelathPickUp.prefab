@@ -130,12 +130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ad7b28d4cfe5bb479e230dbb037d4fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthPickup
-  pickupClip: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: 233c12ad57e504b4299b95f8667f07f8, type: 3}
   pickupVolume: 1
-  pickupVfx: {fileID: 0}
   rotationSpeed: 90
-  bobHeight: 0.15
-  bobSpeed: 2
   healAmount: 25
 --- !u!1 &1148356540376286618
 GameObject:
