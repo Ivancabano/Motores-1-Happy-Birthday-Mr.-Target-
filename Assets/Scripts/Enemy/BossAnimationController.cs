@@ -20,6 +20,8 @@ public class BossAnimationController : MonoBehaviour
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int Shoot = Animator.StringToHash("Shoot");
     private static readonly int Die = Animator.StringToHash("Die");
+    private static readonly int Crouched = Animator.StringToHash("Crouched");
+    private static readonly int Aiming = Animator.StringToHash("Aiming");
 
     private void Awake()
     {
@@ -48,7 +50,11 @@ public class BossAnimationController : MonoBehaviour
     private void OnEnable()
     {
         if (shotgun != null)
+        {
             shotgun.OnShoot += HandleShoot;
+            shotgun.OnCrouchedChanged += HandleCrouched;
+            shotgun.OnAimingChanged += HandleAiming;
+        }
 
         if (targetHealth != null)
             targetHealth.OnDeath += HandleDeath;
@@ -57,10 +63,30 @@ public class BossAnimationController : MonoBehaviour
     private void OnDisable()
     {
         if (shotgun != null)
+        {
             shotgun.OnShoot -= HandleShoot;
+            shotgun.OnCrouchedChanged -= HandleCrouched;
+            shotgun.OnAimingChanged -= HandleAiming;
+        }
 
         if (targetHealth != null)
             targetHealth.OnDeath -= HandleDeath;
+    }
+
+    private void HandleCrouched(bool crouched)
+    {
+        if (isDead)
+            return;
+
+        animator.SetBool(Crouched, crouched);
+    }
+
+    private void HandleAiming(bool aiming)
+    {
+        if (isDead)
+            return;
+
+        animator.SetBool(Aiming, aiming);
     }
 
     private void Update()

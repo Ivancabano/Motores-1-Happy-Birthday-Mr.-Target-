@@ -27,6 +27,13 @@ public class EnemyAnimationController : MonoBehaviour
     private static readonly int Die =
         Animator.StringToHash("Die");
 
+    private static readonly int Aiming =
+        Animator.StringToHash("Aiming");
+
+   
+    private RangedEnemyAttack rangedAttack;
+    private bool lastAiming;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -46,6 +53,14 @@ public class EnemyAnimationController : MonoBehaviour
 
         if (enemyBase == null)
             enemyBase = GetComponentInParent<EnemyBase>();
+
+        rangedAttack = GetComponentInParent<RangedEnemyAttack>();
+    }
+
+    private void Start()
+    {
+        if (enemyBase is EnemyRanged)
+            Debug.Log("[EnemyAnimationController] " + transform.root.name + " ataque a distancia encontrado: " + (rangedAttack != null) + ", agente: " + (agent != null), this);
     }
 
     private void OnEnable()
@@ -71,14 +86,27 @@ public class EnemyAnimationController : MonoBehaviour
         if (isDead || agent == null || !agent.isOnNavMesh)
             return;
 
-        // Velocidad real del enemigo
+        
         Vector3 velocity = agent.velocity;
         velocity.y = 0f;
 
         float speed = velocity.magnitude;
 
-        // Actualizamos Idle / Run / Walk
+     
         animator.SetFloat(Speed, speed,animationSmooth,Time.deltaTime);
+
+        
+        if (rangedAttack != null)
+        {
+            bool aiming = rangedAttack.IsAiming;
+            animator.SetBool(Aiming, aiming);
+
+            if (aiming != lastAiming)
+            {
+                lastAiming = aiming;
+                Debug.Log("[EnemyAnimationController] " + transform.root.name + " Aiming = " + aiming, this);
+            }
+        }
     }
 
     private void HandleAttack()

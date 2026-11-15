@@ -22,6 +22,10 @@ public class RangedEnemyAttack : MonoBehaviour
     private NavMeshAgent agent;
     private float nextFireTime = 0f;
 
+    // True mientras el enemigo tiene al jugador en rango y le esta disparando (lo usa el Animator)
+    public bool IsAiming { get; private set; }
+    private bool loggedFirstAim;
+
     void Start()
     {
         SearchReferences();
@@ -49,13 +53,21 @@ public class RangedEnemyAttack : MonoBehaviour
 
     void LateUpdate()
     {
+        IsAiming = false;
+
         if (enemyController == null || target == null) return;
         if (!enemyController.IsChasing) return;
         float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
         if (distanceToTarget <= shootingRange)
         {
-          
+            if (!IsAiming && !loggedFirstAim)
+            {
+                loggedFirstAim = true;
+                Debug.Log("[RangedEnemyAttack] " + name + " entro en modo disparo", this);
+            }
+            IsAiming = true;
+
             agent.isStopped = true;
             agent.ResetPath();
 

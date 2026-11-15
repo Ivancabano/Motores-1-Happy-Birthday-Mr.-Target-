@@ -1,23 +1,30 @@
 using System.Collections;
 using UnityEngine;
 
+// Ciclo del jefe francotirador:
+// agachado y recargando -> se para -> apunta con linea roja (titila al final) -> dispara -> vuelve a agacharse.
+// Reemplaza a BossShotgunAttack para este jefe.
 public class BossSniperAttack : MonoBehaviour
 {
     public event System.Action OnShoot;
 
+    // Avisan al Animator cuando cambia la postura o el apuntado (true = activo)
+    public event System.Action<bool> OnCrouchedChanged;
+    public event System.Action<bool> OnAimingChanged;
+
     [Header("Referencias")]
-    [SerializeField] private Transform firePoint;               
-    [SerializeField] private Transform bodyRoot;                  
-    [SerializeField] private LayerMask lineOfSightMask = ~0;      
-    [SerializeField] private Material laserMaterial;              
+    [SerializeField] private Transform firePoint;                 // Punto desde donde sale la linea y el disparo
+    [SerializeField] private Transform bodyRoot;                  // Modelo que baja al agacharse (opcional)
+    [SerializeField] private LayerMask lineOfSightMask = ~0;      // Capas que bloquean la mira (escritorio, paredes)
+    [SerializeField] private Material laserMaterial;              // Opcional: si esta vacio se crea uno basico
 
     [Header("Ciclo de combate (segundos)")]
-    [SerializeField] private float reloadDuration = 3f;           
-    [SerializeField] private float crouchDuration = 0.4f;         
-    [SerializeField] private float standUpDuration = 0.5f;        
-    [SerializeField] private float aimDuration = 2.5f;            
-    [SerializeField] private float warningDuration = 0.8f;        
-    [SerializeField] private float afterShotDuration = 0.4f;      
+    [SerializeField] private float reloadDuration = 3f;           // Agachado recargando
+    [SerializeField] private float crouchDuration = 0.4f;         // Tiempo que tarda en agacharse
+    [SerializeField] private float standUpDuration = 0.5f;        // Tiempo que tarda en pararse
+    [SerializeField] private float aimDuration = 2.5f;            // Tiempo apuntando antes de disparar
+    [SerializeField] private float warningDuration = 0.8f;        // Ultimo tramo del apuntado donde la linea titila
+    [SerializeField] private float afterShotDuration = 0.4f;      // Pausa de pie despues del disparo
 
     [Header("Danio")]
     [SerializeField] private float sniperDamage = 40f;
@@ -26,12 +33,16 @@ public class BossSniperAttack : MonoBehaviour
     [Header("Linea de mira")]
     [SerializeField] private Color aimColor = Color.red;
     [SerializeField] private float lineWidth = 0.03f;
-    [SerializeField] private float slowBlinkInterval = 0.25f;     
-    [SerializeField] private float fastBlinkInterval = 0.05f;     
+    [SerializeField] private float slowBlinkInterval = 0.25f;     // Titileo al empezar la alerta
+    [SerializeField] private float fastBlinkInterval = 0.05f;     // Titileo rapido justo antes del disparo
 
     [Header("Postura")]
-    [SerializeField] private float crouchDrop = 1f;               
+    [SerializeField] private float crouchDrop = 1f;               // Cuanto baja el cuerpo al agacharse
     [SerializeField] private float rotationSpeed = 6f;
+
+    [Header("Activacion")]
+    [Tooltip("Si el jugador se acerca a esta distancia, el jefe se activa aunque no haya pasado por el trigger. 0 = desactivado.")]
+    [SerializeField] private float autoActivateDistance = 20f;
 
     private bool activated;
     private TargetHealth health;
@@ -42,12 +53,12 @@ public class BossSniperAttack : MonoBehaviour
     private float crouchY;
     private bool faceTarget;
 
-    
+    // Se activa solo cuando el jugador entra a la sala (ver BossRoomTrigger)
     public bool IsActive => activated && health != null && !health.IsDead;
 
     private bool IsReady => IsActive && player != null;
 
-    
+    // Llamado por BossRoomTrigger cuando el jugador entra a la sala
     public void Activate()
     {
         if (activated)
@@ -55,7 +66,7 @@ public class BossSniperAttack : MonoBehaviour
 
         activated = true;
 
-        
+        // Misma regla que BossEnemy: la vida depende de si el jugador fue detectado
         bool wasDetected = RankManager.Instance != null && RankManager.Instance.WasDetected;
 
         if (health != null)
@@ -92,6 +103,13 @@ public class BossSniperAttack : MonoBehaviour
 
     private void Update()
     {
+        // Respaldo: si el trigger de la sala no lo activo, se activa al acercarse el jugador
+        if (!activated && autoActivateDistance > 0f && player != null &&
+            Vector3.Distance(transform.position, player.transform.position) <= autoActivateDistance)
+        {
+            Activate();
+        }
+
         if (!IsReady || !faceTarget)
             return;
 
@@ -116,24 +134,31 @@ public class BossSniperAttack : MonoBehaviour
                 continue;
             }
 
-            
+            // 1. Agachado, recargando
+            Debug.Log("[BossSniperAttack] Fase: agacharse y recargar");
             faceTarget = false;
             laser.enabled = false;
+            OnAimingChanged?.Invoke(false);
+            OnCrouchedChanged?.Invoke(true);
             yield return MoveBody(crouchY, crouchDuration);
             yield return Wait(reloadDuration);
 
             if (!IsReady) continue;
 
-            
+            // 2. Se para
             faceTarget = true;
+            OnCrouchedChanged?.Invoke(false);
             yield return MoveBody(standY, standUpDuration);
 
-            
+            // 3. Apunta
+            Debug.Log("[BossSniperAttack] Fase: apuntar");
+            OnAimingChanged?.Invoke(true);
             yield return Aim();
 
             if (!IsReady) continue;
 
-            
+            // 4. Dispara
+            OnAimingChanged?.Invoke(false);
             Fire();
             yield return Wait(afterShotDuration);
         }
@@ -156,7 +181,7 @@ public class BossSniperAttack : MonoBehaviour
 
             if (timeLeft <= warningDuration)
             {
-                
+                // Cuanto mas cerca del disparo, mas rapido titila
                 float t = 1f - Mathf.Clamp01(timeLeft / warningDuration);
                 float interval = Mathf.Lerp(slowBlinkInterval, fastBlinkInterval, t);
 
@@ -194,7 +219,8 @@ public class BossSniperAttack : MonoBehaviour
             victim.TakeDamage(sniperDamage);
     }
 
-    
+    // Lanza un rayo y devuelve el dano del jugador si no hay nada que lo tape.
+    // endPoint es donde termina la linea: el jugador, o el objeto que la bloquea.
     private IDamageable TraceShot(Vector3 origin, Vector3 direction, out Vector3 endPoint)
     {
         endPoint = origin + direction * maxRange;
@@ -224,7 +250,7 @@ public class BossSniperAttack : MonoBehaviour
 
         endPoint = best.point;
 
-        
+        // Solo cuenta como impacto si lo primero que toca es el jugador
         if (best.collider.GetComponentInParent<PlayerDetectorTarget>() != null)
             return best.collider.GetComponentInParent<IDamageable>();
 
@@ -267,7 +293,7 @@ public class BossSniperAttack : MonoBehaviour
         bodyRoot.localPosition = end;
     }
 
-    
+    // Espera, pero corta si el jefe deja de estar en combate
     private IEnumerator Wait(float seconds)
     {
         float t = 0f;
