@@ -27953,7 +27953,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 498332764181715526, guid: 95dabe2bbc1e6d648ae53cef80a33147, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1206051937220100113, guid: 95dabe2bbc1e6d648ae53cef80a33147, type: 3}
       propertyPath: zonificationAngle
@@ -29946,7 +29946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 498332764181715526, guid: 95dabe2bbc1e6d648ae53cef80a33147, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1206051937220100113, guid: 95dabe2bbc1e6d648ae53cef80a33147, type: 3}
       propertyPath: zonificationAngle
@@ -41355,7 +41355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 498332764181715526, guid: 95dabe2bbc1e6d648ae53cef80a33147, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1579449598437758950, guid: 95dabe2bbc1e6d648ae53cef80a33147, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -51457,7 +51457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 498332764181715526, guid: 95dabe2bbc1e6d648ae53cef80a33147, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1206051937220100113, guid: 95dabe2bbc1e6d648ae53cef80a33147, type: 3}
       propertyPath: zonificationAngle
@@ -60889,7 +60889,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 498332764181715526, guid: 95dabe2bbc1e6d648ae53cef80a33147, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1579449598437758950, guid: 95dabe2bbc1e6d648ae53cef80a33147, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -70617,6 +70617,7 @@ MonoBehaviour:
   playerMovement: {fileID: 588797316}
   playerShooting: {fileID: 588797315}
   victoryTarget: {fileID: 0}
+  victoryDelay: 3.5
 --- !u!4 &1053036613
 Transform:
   m_ObjectHideFlags: 0
@@ -108972,7 +108973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 498332764181715526, guid: 95dabe2bbc1e6d648ae53cef80a33147, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1206051937220100113, guid: 95dabe2bbc1e6d648ae53cef80a33147, type: 3}
       propertyPath: zonificationAngle
@@ -120224,7 +120225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 498332764181715526, guid: 95dabe2bbc1e6d648ae53cef80a33147, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1206051937220100113, guid: 95dabe2bbc1e6d648ae53cef80a33147, type: 3}
       propertyPath: zonificationAngle
@@ -121810,7 +121811,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 498332764181715526, guid: 95dabe2bbc1e6d648ae53cef80a33147, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1206051937220100113, guid: 95dabe2bbc1e6d648ae53cef80a33147, type: 3}
       propertyPath: alertSound
