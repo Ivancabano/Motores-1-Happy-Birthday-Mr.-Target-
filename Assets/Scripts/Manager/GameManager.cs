@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +21,11 @@ public class GameManager : MonoBehaviour
 
     [Header("Objetivo de Victoria")]
     [SerializeField] private TargetHealth victoryTarget;
+
+    [Tooltip("Segundos que se espera tras la muerte del objetivo antes de mostrar la victoria, para que se vea la animacion de muerte.")]
+    [SerializeField] private float victoryDelay = 3.5f;
+
+    private bool victoryPending;
 
     public GameState CurrentState { get; private set; } = GameState.Playing;
 
@@ -76,6 +82,29 @@ public class GameManager : MonoBehaviour
 
     private void HandleVictoryTargetDeath()
     {
+        if (victoryPending || CurrentState != GameState.Playing)
+            return;
+
+        victoryPending = true;
+        StartCoroutine(VictoryAfterDeathAnimation());
+    }
+
+    // Espera a que termine la animacion de muerte del objetivo (o el tiempo maximo) y recien ahi gana
+    private IEnumerator VictoryAfterDeathAnimation()
+    {
+        DeathSequence sequence = victoryTarget != null ? victoryTarget.GetComponent<DeathSequence>() : null;
+        float elapsed = 0f;
+
+        while (elapsed < victoryDelay)
+        {
+            if (sequence != null && sequence.IsFinished)
+                break;
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        victoryPending = false;
         TriggerVictory();
     }
 
@@ -99,7 +128,7 @@ public class GameManager : MonoBehaviour
 
     public void TriggerGameOver()
 {
-    if (CurrentState != GameState.Playing)
+    if (CurrentState != GameState.Playing || victoryPending)
         return;
     CurrentState = GameState.GameOver;
     LockPlayerControls();
