@@ -15,4 +15,13 @@ public static class GameEvents
     public static event Action OnTimeFinished;
     public static void RaiseTimeFinished()
         => OnTimeFinished?.Invoke();
+    
+    // Jefe
+    public static event Action<float, float> OnBossHealthChanged;
+    public static void RaiseBossHealthChanged(float current, float max)
+        => OnBossHealthChanged?.Invoke(current, max);
+
+    public static event Action<bool> OnBossActiveChanged;
+    public static void RaiseBossActiveChanged(bool active)
+        => OnBossActiveChanged?.Invoke(active);
 }

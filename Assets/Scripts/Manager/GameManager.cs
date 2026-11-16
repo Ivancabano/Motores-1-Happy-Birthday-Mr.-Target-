@@ -120,9 +120,9 @@ public class GameManager : MonoBehaviour
 
     LockPlayerControls();
 
-    Debug.Log("¡VICTORIA!");
+        Debug.Log("¡VICTORIA!");
 
-    OnVictory?.Invoke();
+        OnVictory?.Invoke();
     Juego.SceneManager.Ganar();
 }
 

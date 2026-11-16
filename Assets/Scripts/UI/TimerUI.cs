@@ -47,7 +47,6 @@ public class TimerUI : MonoBehaviour
         timerText.text = $"{minutes:00}:{seconds:00}";
 
         timerText.color = time <= warningTime ? warningColor : normalColor;
-        Debug.Log($"[TimerUI] {time:0.0}", this);
     }
 
     private void Update()

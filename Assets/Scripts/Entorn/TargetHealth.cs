@@ -20,6 +20,12 @@ public class TargetHealth : MonoBehaviour, IDamageable
 
     // Avisará cuando este enemigo muera
     public event Action OnDeath;
+    public event Action<float, float> OnHealthChanged;
+
+    private void Start()
+    {
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+    }
 
     private void Awake()
     {
@@ -36,6 +42,8 @@ public class TargetHealth : MonoBehaviour, IDamageable
         currentHealth -= damage;
 
         currentHealth = Mathf.Clamp( currentHealth,0f,maxHealth);
+
+        OnHealthChanged?.Invoke(currentHealth, maxHealth); 
 
         Debug.Log(gameObject.name + " recibió " + damage + " de daño. Vida restante: " +currentHealth +"/" +maxHealth);
 
@@ -60,6 +68,8 @@ public class TargetHealth : MonoBehaviour, IDamageable
             maxHealth = normalHealth;
 
             currentHealth = Mathf.Min(currentHealth,maxHealth);
+
+            OnHealthChanged?.Invoke(currentHealth, maxHealth);
         }
 
         Debug.Log( gameObject.name + " cambió su vida a " + currentHealth +"/" + maxHealth );

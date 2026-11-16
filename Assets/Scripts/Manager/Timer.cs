@@ -4,6 +4,7 @@ public class Timer : MonoBehaviour
 {
     [Header("Configuración")]
     [SerializeField] private float totalTime = 600f;
+    [SerializeField] private bool continueFromPreviousLevel = false;
 
     private float remainingTime;
     private bool timeIsUp;
@@ -13,7 +14,12 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-        remainingTime = totalTime;
+        Debug.Log($"[Timer] continuar={continueFromPreviousLevel} | hayDatos={RunData.HasData} | tiempoGuardado={RunData.RemainingTime:0.0}");
+
+        remainingTime = (continueFromPreviousLevel && RunData.HasData)
+            ? RunData.RemainingTime
+            : totalTime;
+
         NotifyIfSecondChanged();
     }
 
