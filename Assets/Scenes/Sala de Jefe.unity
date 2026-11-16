@@ -5753,6 +5753,7 @@ MonoBehaviour:
   playerShooting: {fileID: 954166273}
   victoryTarget: {fileID: 1766464869}
   victoryDelay: 3.5
+  playerAmmo: {fileID: 1077722088}
 --- !u!4 &1053036613
 Transform:
   m_ObjectHideFlags: 0

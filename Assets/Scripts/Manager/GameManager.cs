@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     [Tooltip("Segundos que se espera tras la muerte del objetivo antes de mostrar la victoria, para que se vea la animacion de muerte.")]
     [SerializeField] private float victoryDelay = 3.5f;
 
+    [SerializeField] private PlayerAmmo playerAmmo;
+
     private bool victoryPending;
 
     public GameState CurrentState { get; private set; } = GameState.Playing;
@@ -115,12 +117,17 @@ public class GameManager : MonoBehaviour
 
     CurrentState = GameState.Victory;
 
-    // NUEVO: Calcular el rango final
+    //NUEVO: Calcular el rango final
     RankManager.Instance?.FinishRun();
 
     LockPlayerControls();
 
         Debug.Log("¡VICTORIA!");
+
+        if (playerAmmo != null)
+            RunData.SaveAmmo(playerAmmo.CurrentMagazine, playerAmmo.CurrentReserve);
+        else
+            Debug.LogWarning("[GameManager] playerAmmo está vacío, no se guardaron las balas");
 
         OnVictory?.Invoke();
     Juego.SceneManager.Ganar();

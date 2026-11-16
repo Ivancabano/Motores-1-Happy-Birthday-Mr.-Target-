@@ -138,4 +138,10 @@ public class PlayerAmmo : MonoBehaviour
         if (audioSource != null && clip != null)
             audioSource.PlayOneShot(clip);
     }
+    public void SetAmmo(int magazine, int reserve)
+    {
+        CurrentMagazine = Mathf.Clamp(magazine, 0, magazineSize);
+        CurrentReserve = Mathf.Clamp(reserve, 0, maxReserve);
+        NotifyAmmoChanged();
+    }
 }

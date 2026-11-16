@@ -8,7 +8,18 @@ public class PlayerStateRestorer : MonoBehaviour
 
     private void Start()
     {
-        if (continueFromPreviousLevel && RunData.HasData)
+        if (!continueFromPreviousLevel) return;
+
+        if (RunData.HasData)
             GetComponent<PlayerHealth>().SetHealth(RunData.Health);
+
+        if (RunData.HasAmmo)
+        {
+            PlayerAmmo ammo = GetComponentInChildren<PlayerAmmo>();
+            if (ammo == null) ammo = FindFirstObjectByType<PlayerAmmo>();
+
+            if (ammo != null)
+                ammo.SetAmmo(RunData.Magazine, RunData.Reserve);
+        }
     }
 }
