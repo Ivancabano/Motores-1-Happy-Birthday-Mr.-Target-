@@ -18,6 +18,8 @@ public class TargetHealth : MonoBehaviour, IDamageable
     public float CurrentHealth => currentHealth;
     public float MaxHealth => maxHealth;
 
+    public bool IsChasing => throw new NotImplementedException();
+
     // Avisará cuando este enemigo muera
     public event Action OnDeath;
     public event Action<float, float> OnHealthChanged;

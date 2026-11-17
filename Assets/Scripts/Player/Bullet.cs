@@ -4,7 +4,7 @@ public class Bullet : MonoBehaviour
 {
     [Header("Bala")]
     [SerializeField] private float speed = 40f;
-    [SerializeField] private float damage = 25f;
+    [SerializeField] private float damage = 10f;
     [SerializeField] private float lifeTime = 5f;
 
     private Rigidbody rb;
@@ -46,7 +46,13 @@ public class Bullet : MonoBehaviour
         {
             damageable.TakeDamage(damage);
         }
-
+        
+        IHeadshot headShot = collision.collider.GetComponentInParent<IHeadshot>();
+        if (headShot != null)
+        {
+            headShot.OnHeadshot();
+        }
         Destroy(gameObject);
     }
+   
 }

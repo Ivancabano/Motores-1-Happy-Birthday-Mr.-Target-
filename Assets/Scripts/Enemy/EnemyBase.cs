@@ -61,6 +61,7 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
     protected void SearchReferences()
     {
         agent = GetComponent<NavMeshAgent>();
+        targetHealth = GetComponent<TargetHealth>();
 
         if (footstepAudioSource == null)
         {
@@ -82,6 +83,7 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
         {
             targetDetectable = targetTransform.GetComponent<IDetectable>();
         }
+
     }
 
     protected virtual void OnEnable()
@@ -134,6 +136,10 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
             agent.isStopped = false;
         }
         IsChasing = true;
+        if(targetHealth != null)
+        {
+            targetHealth.SetAlertState(true);
+        }
     }
     private void HandleFootsteps()
     {
@@ -221,4 +227,6 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
             impactAudioSource.PlayOneShot(meleeHitClip);
         }
     }
+
+
 }
