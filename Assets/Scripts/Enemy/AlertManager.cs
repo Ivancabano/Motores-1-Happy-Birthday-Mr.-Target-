@@ -21,6 +21,8 @@ public class AlertManager : MonoBehaviour
     }
     public void EnemyOnSight(float distance)
     {
+        // --- ESTO IMPRIMIRÁ EN LA CONSOLA EXACTAMENTE QUIÉN LLAMÓ A LA ALARMA ---
+        Debug.LogError("¡ALARMA ACTIVADA DESDE!: " + new System.Diagnostics.StackTrace());
         if (DynamicMusicManager.Instance != null)
         {
             DynamicMusicManager.Instance.StartAlert(distance);

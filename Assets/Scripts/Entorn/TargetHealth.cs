@@ -66,6 +66,18 @@ public class TargetHealth : MonoBehaviour, IDamageable
             }
         }
     }
+    public void TakeHeadshot()
+    {
+        if (isDead) return;
+
+        // Directamente lo matamos o le restamos toda la vida necesaria
+        currentHealth = 0f;
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+
+        Debug.Log(gameObject.name + " recibió un tiro en la CABEZA. Muerte instantánea.");
+        Die();
+        // Fíjate que aquí NO llamamos a alertManager, por lo que nunca sonará la alarma.
+    }
     public void SetAlertState(bool alertActive)
     {
         if (isDead)

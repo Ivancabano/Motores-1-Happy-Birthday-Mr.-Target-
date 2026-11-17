@@ -17,7 +17,7 @@ public class HeadHitbox : MonoBehaviour, IHeadshot
 
         if (targetHealth != null)
         {
-            targetHealth.Die();
+            targetHealth.TakeHeadshot();
         }
     }
 }

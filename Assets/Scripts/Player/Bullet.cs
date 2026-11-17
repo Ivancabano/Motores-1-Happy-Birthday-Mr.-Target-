@@ -40,21 +40,21 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        IDamageable damageable = collision.collider.GetComponentInParent<IDamageable>();
+        // 1. ¿Es la cabeza?
+        if (collision.gameObject.TryGetComponent<IHeadshot>(out IHeadshot headshot))
+        {
+            headshot.OnHeadshot(); // Llama exclusivamente a la cabeza (TakeHeadshot)
+            Destroy(gameObject);   // Destruimos la bala para que no siga
+            return;                // <--- AQUÍ CORTAMOS. NUNCA DEBE LLEGAR A TakeDamage.
+        }
 
-        if (damageable != null)
+        // 2. ¿Es el cuerpo u otro componente con vida normal?
+        if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable))
         {
-            Debug.Log("Impacto en el cuerpo");
-            damageable.TakeDamage(damage);
+            damageable.TakeDamage(damage); // Aquí sí va el TakeDamage normal que activa la alarma
+            Destroy(gameObject);   // Destruimos la bala
+            return;
         }
-        
-        IHeadshot headShot = collision.collider.GetComponentInParent<IHeadshot>();
-        if (headShot != null)
-        {
-            Debug.Log("Impacto en la cabeza");
-            headShot.OnHeadshot();
-        }
-        Destroy(gameObject);
     }
-   
+
 }
