@@ -44,12 +44,14 @@ public class Bullet : MonoBehaviour
 
         if (damageable != null)
         {
+            Debug.Log("Impacto en el cuerpo");
             damageable.TakeDamage(damage);
         }
         
         IHeadshot headShot = collision.collider.GetComponentInParent<IHeadshot>();
         if (headShot != null)
         {
+            Debug.Log("Impacto en la cabeza");
             headShot.OnHeadshot();
         }
         Destroy(gameObject);

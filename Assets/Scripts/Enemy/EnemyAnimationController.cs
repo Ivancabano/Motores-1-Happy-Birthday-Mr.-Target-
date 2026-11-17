@@ -104,7 +104,7 @@ public class EnemyAnimationController : MonoBehaviour
             if (aiming != lastAiming)
             {
                 lastAiming = aiming;
-                Debug.Log("[EnemyAnimationController] " + transform.root.name + " Aiming = " + aiming, this);
+                //Debug.Log("[EnemyAnimationController] " + transform.root.name + " Aiming = " + aiming, this);
             }
         }
     }
@@ -159,7 +159,7 @@ public class EnemyAnimationController : MonoBehaviour
 
     if (sequence == null)
     {
-        Debug.LogError("No se encontro DeathSequence en el personaje.",this);
+        //Debug.LogError("No se encontro DeathSequence en el personaje.",this);
         return;
     }
 

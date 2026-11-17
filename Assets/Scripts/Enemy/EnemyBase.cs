@@ -43,9 +43,9 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
             if (currentState != nuevoEstado)
             {
                 currentState = nuevoEstado;
-                Debug.Log("¡El guardia está intentando invocar el evento OnChasingChanged!");
+                //Debug.Log("¡El guardia está intentando invocar el evento OnChasingChanged!");
                 OnChasingChanged?.Invoke(IsChasing);
-                Debug.Log("Observer notificado");
+                //Debug.Log("Observer notificado");
             }
         }
     }
@@ -89,7 +89,7 @@ public abstract class EnemyBase : MonoBehaviour, IAlertable
     protected virtual void OnEnable()
     {
         AlertManager.Register(this);
-        Debug.Log("Observer on");
+        //Debug.Log("Observer on");
     }
 
     protected virtual void OnDisable()

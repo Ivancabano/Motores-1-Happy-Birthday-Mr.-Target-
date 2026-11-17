@@ -2,7 +2,10 @@ using System;
 using UnityEngine;
 
 public class TargetHealth : MonoBehaviour, IDamageable
-{   [Header("Muerte")]
+{
+    [SerializeField] private AlertManager alertManager;
+    private Transform targetTransform;
+    [Header("Muerte")]
     [Header("Vida")]
     [Header("Sistema de rangos")]
     [SerializeField] private bool countsForRank = true;
@@ -27,6 +30,7 @@ public class TargetHealth : MonoBehaviour, IDamageable
     private void Start()
     {
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
+        alertManager = UnityEngine.Object.FindFirstObjectByType<AlertManager>();
     }
 
     private void Awake()
@@ -43,18 +47,25 @@ public class TargetHealth : MonoBehaviour, IDamageable
 
         currentHealth -= damage;
 
-        currentHealth = Mathf.Clamp( currentHealth,0f,maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
 
-        OnHealthChanged?.Invoke(currentHealth, maxHealth); 
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
 
-        Debug.Log(gameObject.name + " recibió " + damage + " de daño. Vida restante: " +currentHealth +"/" +maxHealth);
+        Debug.Log(gameObject.name + " recibió " + damage + " de daño. Vida restante: " + currentHealth + "/" + maxHealth);
 
         if (currentHealth <= 0f)
         {
             Die();
+            return;
+        }
+        else
+        {
+            if (!isDead && alertManager != null)
+            {
+                alertManager.EnemyOnSight(0f);
+            }
         }
     }
-
     public void SetAlertState(bool alertActive)
     {
         if (isDead)
@@ -77,7 +88,7 @@ public class TargetHealth : MonoBehaviour, IDamageable
         Debug.Log( gameObject.name + " cambió su vida a " + currentHealth +"/" + maxHealth );
     }
 
-    private void Die()
+    public void Die()
 {
     if (isDead)
         return;
