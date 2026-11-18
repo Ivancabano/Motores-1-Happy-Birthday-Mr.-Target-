@@ -17,6 +17,7 @@ public class BossSniperAttack : MonoBehaviour
     [SerializeField] private Transform bodyRoot;                  // Modelo que baja al agacharse (opcional)
     [SerializeField] private LayerMask lineOfSightMask = ~0;      // Capas que bloquean la mira (escritorio, paredes)
     [SerializeField] private Material laserMaterial;              // Opcional: si esta vacio se crea uno basico
+    [SerializeField] private BossGrenadeAttack grenadeAttack;     // Opcional: granada durante la recarga (se busca sola)
 
     [Header("Ciclo de combate (segundos)")]
     [SerializeField] private float reloadDuration = 3f;           // Agachado recargando
@@ -25,6 +26,7 @@ public class BossSniperAttack : MonoBehaviour
     [SerializeField] private float aimDuration = 2.5f;            // Tiempo apuntando antes de disparar
     [SerializeField] private float warningDuration = 0.8f;        // Ultimo tramo del apuntado donde la linea titila
     [SerializeField] private float afterShotDuration = 0.4f;      // Pausa de pie despues del disparo
+    [SerializeField] private float grenadeDelayAfterCrouch = 0.5f; // Espera agachado antes de tirar la granada
 
     [Header("Danio")]
     [SerializeField] private float sniperDamage = 40f;
@@ -78,6 +80,9 @@ public class BossSniperAttack : MonoBehaviour
     private void Awake()
     {
         health = GetComponentInParent<TargetHealth>();
+
+        if (grenadeAttack == null)
+            grenadeAttack = GetComponent<BossGrenadeAttack>();
 
         if (bodyRoot != null)
         {
@@ -134,30 +139,50 @@ public class BossSniperAttack : MonoBehaviour
                 continue;
             }
 
-            // 1. Agachado, recargando
+            // 1. Se agacha a recargar
+            //    (antes de agacharse mira si el jugador esta a la vista, desde el punto de disparo)
             Debug.Log("[BossSniperAttack] Fase: agacharse y recargar");
+            bool playerVisible = CanSeePlayer();
+            Vector3 standingFirePoint = firePoint.position;
+
             faceTarget = false;
             laser.enabled = false;
             OnAimingChanged?.Invoke(false);
             OnCrouchedChanged?.Invoke(true);
             yield return MoveBody(crouchY, crouchDuration);
-            yield return Wait(reloadDuration);
+
+            float reloadStart = Time.time;
+
+            // 2. Agachado: si el jugador esta cubierto, le tira una granada
+            if (grenadeAttack != null && grenadeAttack.ShouldThrow(player.transform.position, playerVisible))
+            {
+                // Deja terminar la animacion de agacharse antes de lanzar
+                yield return Wait(grenadeDelayAfterCrouch);
+
+                Debug.Log("[BossSniperAttack] Fase: tirar granada");
+                faceTarget = true;
+                yield return grenadeAttack.ThrowRoutine(player, standingFirePoint);
+                faceTarget = false;
+            }
+
+            // Termina de recargar (la granada cuenta dentro del tiempo de recarga)
+            yield return Wait(Mathf.Max(0f, reloadDuration - (Time.time - reloadStart)));
 
             if (!IsReady) continue;
 
-            // 2. Se para
+            // 3. Se para
             faceTarget = true;
             OnCrouchedChanged?.Invoke(false);
             yield return MoveBody(standY, standUpDuration);
 
-            // 3. Apunta
+            // 4. Apunta
             Debug.Log("[BossSniperAttack] Fase: apuntar");
             OnAimingChanged?.Invoke(true);
             yield return Aim();
 
             if (!IsReady) continue;
 
-            // 4. Dispara
+            // 5. Dispara
             OnAimingChanged?.Invoke(false);
             Fire();
             yield return Wait(afterShotDuration);
@@ -255,6 +280,17 @@ public class BossSniperAttack : MonoBehaviour
             return best.collider.GetComponentInParent<IDamageable>();
 
         return null;
+    }
+
+    // True si el jefe tiene al jugador a la vista (nada lo tapa)
+    private bool CanSeePlayer()
+    {
+        if (firePoint == null || player == null)
+            return false;
+
+        Vector3 origin = firePoint.position;
+        Vector3 direction = (player.GetCenterPosition() - origin).normalized;
+        return TraceShot(origin, direction, out _) != null;
     }
 
     private void UpdateLaser()

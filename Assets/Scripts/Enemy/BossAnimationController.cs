@@ -22,6 +22,9 @@ public class BossAnimationController : MonoBehaviour
     private static readonly int Die = Animator.StringToHash("Die");
     private static readonly int Crouched = Animator.StringToHash("Crouched");
     private static readonly int Aiming = Animator.StringToHash("Aiming");
+    private static readonly int ThrowGrenade = Animator.StringToHash("ThrowGrenade");
+
+    private BossGrenadeAttack grenadeAttack;
 
     private void Awake()
     {
@@ -45,6 +48,9 @@ public class BossAnimationController : MonoBehaviour
 
         if (targetHealth == null)
             targetHealth = GetComponentInParent<TargetHealth>();
+
+        if (grenadeAttack == null)
+            grenadeAttack = GetComponentInParent<BossGrenadeAttack>();
     }
 
     private void OnEnable()
@@ -55,6 +61,9 @@ public class BossAnimationController : MonoBehaviour
             shotgun.OnCrouchedChanged += HandleCrouched;
             shotgun.OnAimingChanged += HandleAiming;
         }
+
+        if (grenadeAttack != null)
+            grenadeAttack.OnThrowStarted += HandleThrowGrenade;
 
         if (targetHealth != null)
             targetHealth.OnDeath += HandleDeath;
@@ -69,8 +78,19 @@ public class BossAnimationController : MonoBehaviour
             shotgun.OnAimingChanged -= HandleAiming;
         }
 
+        if (grenadeAttack != null)
+            grenadeAttack.OnThrowStarted -= HandleThrowGrenade;
+
         if (targetHealth != null)
             targetHealth.OnDeath -= HandleDeath;
+    }
+
+    private void HandleThrowGrenade()
+    {
+        if (isDead)
+            return;
+
+        animator.SetTrigger(ThrowGrenade);
     }
 
     private void HandleCrouched(bool crouched)

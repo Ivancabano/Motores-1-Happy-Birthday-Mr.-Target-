@@ -78,6 +78,12 @@ public class TargetHealth : MonoBehaviour, IDamageable
         Die();
         // Fíjate que aquí NO llamamos a alertManager, por lo que nunca sonará la alarma.
     }
+    // Permite que un enemigo no cuente para el rango (por ejemplo, los refuerzos del jefe)
+    public void SetCountsForRank(bool value)
+    {
+        countsForRank = value;
+    }
+
     public void SetAlertState(bool alertActive)
     {
         if (isDead)
