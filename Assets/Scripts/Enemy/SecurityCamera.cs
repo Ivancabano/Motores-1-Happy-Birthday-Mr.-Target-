@@ -14,6 +14,7 @@ public class SecurityCamera : MonoBehaviour
 
     [SerializeField] private LayerMask obstacleLayer;
     private bool playerDetected = false;
+    private bool hasTriggeredAlertThisSession = false;
 
     [Header("Zonification Mechanics")]
     [SerializeField] private bool rotateCamera = true;
@@ -84,31 +85,43 @@ public class SecurityCamera : MonoBehaviour
 
         visionRange = cameraLight.range;
         visionAngle = cameraLight.spotAngle;
-
+       
         if (CanSeePlayer())
         {
             if (!playerDetected)
             {
                 playerDetected = true;
+
+                // 1. Avisamos a TODAS las cámaras de la escena para que también se pongan en detectadas
+                SecurityCamera[] todasLasCamaras = Object.FindObjectsByType<SecurityCamera>(FindObjectsSortMode.None);
+                foreach (var camara in todasLasCamaras)
+                {
+                    if (camara != this)
+                    {
+                        camara.CameraActivated();
+                    }
+                }
+
+                // 2. Disparamos la alerta general
                 if (alertManager != null && targetTransform != null)
                     alertManager.EnemyOnSight(Vector3.Distance(transform.position, targetTransform.position));
 
-                if (alertSoundPlayed == false)
+                // 3. Reproducimos el sonido de la cámara
+                if (!alertSoundPlayed && cameraAudioSource != null && alertSound != null)
                 {
                     cameraAudioSource.PlayOneShot(alertSound);
                     alertSoundPlayed = true;
                 }
-            }
-        }
-        else
-        {
-            if (playerDetected)
-            {
-                playerDetected = false;
+
+                return; // Cortamos la ejecución de inmediato para evitar re-triggers
             }
         }
     }
-
+    public void CameraActivated()
+    {
+        playerDetected = true;
+        alertSoundPlayed = true; // Evita que las demás cámaras reproduzcan el sonido de golpe
+    }
     bool CanSeePlayer()
     {
         if (targetTransform == null || cameraLight == null) return false;
