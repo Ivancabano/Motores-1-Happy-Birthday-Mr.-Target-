@@ -5954,7 +5954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeathSequence
   animator: {fileID: 2144651798}
-  destroyOnFinish: 1
+  destroyOnFinish: 0
   additionalBehaviours: []
 --- !u!114 &1077722087
 MonoBehaviour:

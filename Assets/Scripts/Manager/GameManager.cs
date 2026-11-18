@@ -25,9 +25,13 @@ public class GameManager : MonoBehaviour
     [Tooltip("Segundos que se espera tras la muerte del objetivo antes de mostrar la victoria, para que se vea la animacion de muerte.")]
     [SerializeField] private float victoryDelay = 3.5f;
 
+    [Tooltip("Segundos que se espera tras la muerte del jugador antes de mostrar la derrota, para que se vea la animacion de muerte.")]
+    [SerializeField] private float defeatDelay = 3f;
+
     [SerializeField] private PlayerAmmo playerAmmo;
 
     private bool victoryPending;
+    private bool defeatPending;
 
     public GameState CurrentState { get; private set; } = GameState.Playing;
 
@@ -79,12 +83,38 @@ public class GameManager : MonoBehaviour
 
     private void HandlePlayerDeath()
     {
-        TriggerGameOver();
+        if (defeatPending || victoryPending || CurrentState != GameState.Playing)
+            return;
+
+        defeatPending = true;
+
+        // Cortamos el control del jugador ya, pero sin congelar el juego para que se vea la animacion
+        DisablePlayerInput();
+        StartCoroutine(DefeatAfterDeathAnimation());
+    }
+
+    // Espera a que termine la animacion de muerte del jugador (o el tiempo maximo) y recien ahi pierde
+    private IEnumerator DefeatAfterDeathAnimation()
+    {
+        DeathSequence sequence = playerHealth != null ? playerHealth.GetComponent<DeathSequence>() : null;
+        float elapsed = 0f;
+
+        while (elapsed < defeatDelay)
+        {
+            if (sequence != null && sequence.IsFinished)
+                break;
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        defeatPending = false;
+        GameOver();
     }
 
     private void HandleVictoryTargetDeath()
     {
-        if (victoryPending || CurrentState != GameState.Playing)
+        if (victoryPending || defeatPending || CurrentState != GameState.Playing)
             return;
 
         victoryPending = true;
@@ -133,9 +163,18 @@ public class GameManager : MonoBehaviour
     Juego.SceneManager.Ganar();
 }
 
+    // Derrota inmediata (por ejemplo, cuando se termina el tiempo)
     public void TriggerGameOver()
+    {
+        if (victoryPending || defeatPending)
+            return;
+
+        GameOver();
+    }
+
+    private void GameOver()
 {
-    if (CurrentState != GameState.Playing || victoryPending)
+    if (CurrentState != GameState.Playing)
         return;
     CurrentState = GameState.GameOver;
     LockPlayerControls();
@@ -146,6 +185,16 @@ public class GameManager : MonoBehaviour
 
     private void LockPlayerControls()
     {
+        DisablePlayerInput();
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        Time.timeScale = 0f;
+    }
+
+    private void DisablePlayerInput()
+    {
         if (playerMovement != null)
         {
             playerMovement.enabled = false;
@@ -155,11 +204,6 @@ public class GameManager : MonoBehaviour
         {
             playerShooting.enabled = false;
         }
-
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
-        Time.timeScale = 0f;
     }
 
     public void RestartLevel()
