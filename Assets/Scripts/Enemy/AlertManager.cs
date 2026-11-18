@@ -27,7 +27,11 @@ public class AlertManager : MonoBehaviour
         {
             DynamicMusicManager.Instance.StartAlert(distance);
         }
-
+        DoorManager[] todasLasPuertas = FindObjectsOfType<DoorManager>();
+        foreach (DoorManager puerta in todasLasPuertas)
+        {
+            puerta.SetAlertMode(true);
+        }
         if (!isAlertActive)
         {
             isAlertActive = true;
