@@ -61510,6 +61510,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: box covert big
       objectReference: {fileID: 0}
+    - target: {fileID: 7722516699030589334, guid: 8132becc7d2fac444b99eb6444dd9329, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
