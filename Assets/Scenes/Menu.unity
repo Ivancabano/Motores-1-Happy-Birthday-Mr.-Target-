@@ -269,6 +269,10 @@ MonoBehaviour:
 
     Disparar: Click Izquierdo
 
+
+    Recargar:
+    Tecla R
+
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ab91ff1bc8e626149ab77107a208bd94, type: 2}
