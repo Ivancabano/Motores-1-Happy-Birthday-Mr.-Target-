@@ -31,12 +31,15 @@ public class BossHealth : TargetHealth
     {
         if (isDead)
             return;
-
-        if (DeathAudioSource != null && deathClip != null)
+        if (deathClip != null)
         {
-            DeathAudioSource.PlayOneShot(deathClip);
+            // Sigue sonando aunque el jefe se destruya o se desactive después
+            AudioSource.PlayClipAtPoint(deathClip, transform.position, 1f);
         }
-
+        else
+        {
+            Debug.LogWarning(gameObject.name + ": falta asignar deathClip en el Inspector.", this);
+        }
         base.Die();
     }
 }
