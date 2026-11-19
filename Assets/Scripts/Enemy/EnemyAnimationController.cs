@@ -104,7 +104,6 @@ public class EnemyAnimationController : MonoBehaviour
             if (aiming != lastAiming)
             {
                 lastAiming = aiming;
-                //Debug.Log("[EnemyAnimationController] " + transform.root.name + " Aiming = " + aiming, this);
             }
         }
     }

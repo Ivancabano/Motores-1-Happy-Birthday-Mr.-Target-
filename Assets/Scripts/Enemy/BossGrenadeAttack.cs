@@ -2,12 +2,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-// Granada del jefe: mientras recarga, si el jugador esta escondido detras de una cobertura,
-// se para, le tira una granada en arco y vuelve a agacharse. Sirve para sacarlo de la cobertura.
-// La llama BossSniperAttack durante la fase de recarga.
 public class BossGrenadeAttack : MonoBehaviour
 {
-    // Para el Animator (trigger ThrowGrenade)
     public event Action OnThrowStarted;
 
     [Header("Cuando tira")]
@@ -61,11 +57,9 @@ public class BossGrenadeAttack : MonoBehaviour
         health = GetComponentInParent<TargetHealth>();
         ownColliders = GetComponentsInChildren<Collider>(true);
 
-        // Permite tirar ya en la primera recarga
         reloadsSinceThrow = throwEveryReloads - 1;
     }
 
-    // Se llama una vez por recarga. Decide si esta vez tira la granada.
     public bool ShouldThrow(Vector3 playerPosition, bool playerVisible)
     {
         reloadsSinceThrow++;
@@ -89,7 +83,6 @@ public class BossGrenadeAttack : MonoBehaviour
         return true;
     }
 
-    // Animacion + lanzamiento. fallbackOrigin es el punto de disparo del jefe estando parado.
     public IEnumerator ThrowRoutine(PlayerDetectorTarget player, Vector3 fallbackOrigin)
     {
         IsThrowing = true;
@@ -124,7 +117,6 @@ public class BossGrenadeAttack : MonoBehaviour
         float distance = Vector3.Distance(start, target);
         float flightTime = Mathf.Clamp(distance / 10f * flightTimePer10m, minFlightTime, maxFlightTime);
 
-        // Velocidad inicial para caer en el objetivo en flightTime segundos (tiro parabolico)
         Vector3 velocity = (target - start) / flightTime - 0.5f * Physics.gravity * flightTime;
 
         BossGrenade grenade = grenadePrefab != null

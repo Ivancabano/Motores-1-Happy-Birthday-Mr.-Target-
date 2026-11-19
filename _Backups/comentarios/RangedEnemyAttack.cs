@@ -1,0 +1,118 @@
+using UnityEngine;
+using UnityEngine.AI;
+
+
+[RequireComponent(typeof(NavMeshAgent))]
+public class RangedEnemyAttack : MonoBehaviour
+{
+    [Header("Ranged Attack")]
+    [SerializeField] private float shootingRange = 10f;
+    [SerializeField] private float fireRate = 1f;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform firePoint;
+    private Transform target;
+    [SerializeField] private float bulletSpeed = 20f;
+    [SerializeField] private float rotationSpeed = 4f;
+    [SerializeField] private float bulletDamage = 5f;
+
+    [Header("Audio de Disparo")]
+    private AudioSource shootAudioSource;
+    [SerializeField] private AudioClip shootClip;
+    private EnemyBase enemyController;
+    private NavMeshAgent agent;
+    private float nextFireTime = 0f;
+
+    // True mientras el enemigo tiene al jugador en rango y le esta disparando (lo usa el Animator)
+    public bool IsAiming { get; private set; }
+    private bool loggedFirstAim;
+
+    void Start()
+    {
+        SearchReferences();
+    }
+    private void SearchReferences()
+    {
+        if (target == null)
+        {
+            PlayerDetectorTarget playerTarget = Object.FindFirstObjectByType<PlayerDetectorTarget>();
+            if (playerTarget != null)
+            {
+                target = playerTarget.transform;
+            }
+        }
+        enemyController = GetComponent<EnemyBase>();
+
+        agent = GetComponent<NavMeshAgent>();
+
+        if (shootAudioSource == null)
+        {
+            shootAudioSource = GetComponentInChildren<AudioSource>();
+        }
+    }
+
+
+    void LateUpdate()
+    {
+        IsAiming = false;
+
+        if (enemyController == null || target == null) return;
+        if (!enemyController.IsChasing) return;
+        float distanceToTarget = Vector3.Distance(transform.position, target.position);
+
+        if (distanceToTarget <= shootingRange)
+        {
+            if (!IsAiming && !loggedFirstAim)
+            {
+                loggedFirstAim = true;
+                Debug.Log("[RangedEnemyAttack] " + name + " entro en modo disparo", this);
+            }
+            IsAiming = true;
+
+            agent.isStopped = true;
+            agent.ResetPath();
+
+            Vector3 lookDirection = target.position - transform.position;
+            lookDirection.y = 0f;
+            if (lookDirection.sqrMagnitude > 0.01f)
+            {
+                Quaternion desiredRotation = Quaternion.LookRotation(lookDirection);
+                transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * rotationSpeed);
+            }
+
+            if (Time.time >= nextFireTime)
+            {
+                Shoot(target);
+                nextFireTime = Time.time + 1f / fireRate;
+            }
+        }
+    }
+
+    private void Shoot(Transform target)
+    {
+        if (bulletPrefab == null || firePoint == null) return;
+
+        if (shootClip != null)
+        {
+            shootAudioSource.pitch = Random.Range(0.95f, 1.05f);
+            shootAudioSource.PlayOneShot(shootClip);
+        }
+
+        Vector3 aimPoint = target.position + Vector3.up * 1f;
+        Vector3 shootDirection = (aimPoint - firePoint.position).normalized;
+
+        GameObject bulletObj = Instantiate(bulletPrefab, firePoint.position, Quaternion.LookRotation(shootDirection));
+
+        EnemyBullet enemyBullet = bulletObj.GetComponent<EnemyBullet>();
+
+        if (enemyBullet != null)
+        {
+            enemyBullet.SetDamage(bulletDamage);
+        }
+
+        Rigidbody bulletRb = bulletObj.GetComponent<Rigidbody>();
+        if (bulletRb != null)
+        {
+            bulletRb.linearVelocity = shootDirection * bulletSpeed;
+        }
+    }
+}

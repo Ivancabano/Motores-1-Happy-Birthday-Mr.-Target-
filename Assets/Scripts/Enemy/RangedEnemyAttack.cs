@@ -22,7 +22,6 @@ public class RangedEnemyAttack : MonoBehaviour
     private NavMeshAgent agent;
     private float nextFireTime = 0f;
 
-    // True mientras el enemigo tiene al jugador en rango y le esta disparando (lo usa el Animator)
     public bool IsAiming { get; private set; }
     private bool loggedFirstAim;
 

@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Granada que tira el jefe. Mientras esta en el aire y en el piso muestra un circulo rojo
-// con el radio de la explosion, que titila cada vez mas rapido antes de explotar.
-// Al explotar le hace dano al jugador si esta dentro del radio y no hay una pared en el medio.
 [RequireComponent(typeof(Rigidbody))]
 public class BossGrenade : MonoBehaviour
 {
@@ -37,7 +34,6 @@ public class BossGrenade : MonoBehaviour
     private bool blinkOn = true;
     private bool armed;
 
-    // Granada simple (esfera oscura) para cuando no hay prefab asignado
     public static BossGrenade CreateDefault(Vector3 position)
     {
         GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -68,7 +64,6 @@ public class BossGrenade : MonoBehaviour
         rb.angularDamping = 2f;
         rb.linearVelocity = velocity;
 
-        // Que no choque con el propio jefe al salir
         Collider own = GetComponent<Collider>();
         if (own != null && ignoreColliders != null)
         {
@@ -97,7 +92,6 @@ public class BossGrenade : MonoBehaviour
 
     private void CreateRing()
     {
-        // En un objeto aparte: un GameObject no puede tener dos Renderers
         GameObject ringObject = new GameObject("Aviso Granada");
         ring = ringObject.AddComponent<LineRenderer>();
         ring.useWorldSpace = true;
@@ -117,7 +111,6 @@ public class BossGrenade : MonoBehaviour
         if (ring == null)
             return;
 
-        // El circulo se dibuja en el piso, debajo de la granada
         Vector3 center = transform.position;
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 30f, lineOfSightMask, QueryTriggerInteraction.Ignore))
             center = hit.point;
@@ -129,7 +122,6 @@ public class BossGrenade : MonoBehaviour
             ring.SetPosition(i, center + new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle)) * radius);
         }
 
-        // Titila cada vez mas rapido al acercarse la explosion
         float timeLeft = fuseTime - timer;
         if (timeLeft <= blinkStartBeforeExplosion)
         {
@@ -164,7 +156,6 @@ public class BossGrenade : MonoBehaviour
         if (ring != null)
             Destroy(ring.gameObject);
 
-        // Oculta la granada y la frena; se destruye cuando termina el destello
         Renderer renderer = GetComponent<Renderer>();
         if (renderer != null)
             renderer.enabled = false;
@@ -202,7 +193,6 @@ public class BossGrenade : MonoBehaviour
             if (damageable == null || damaged.Contains(damageable))
                 continue;
 
-            // Una pared o cobertura entre la granada y el jugador lo protege
             if (!HasLineOfSight(center + Vector3.up * 0.3f, player))
                 continue;
 
@@ -227,7 +217,6 @@ public class BossGrenade : MonoBehaviour
             if (hit.collider.transform.IsChildOf(transform))
                 continue;
 
-            // Lo que toca antes de llegar al jugador y no es parte de el, lo protege
             if (hit.collider.GetComponentInParent<PlayerDetectorTarget>() != player)
                 return false;
         }

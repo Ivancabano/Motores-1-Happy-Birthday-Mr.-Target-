@@ -20,14 +20,12 @@ public class BossRoomTrigger : MonoBehaviour
 
         activated = true;
 
-        // Jefe basado en BossEnemy (si esta asignado en el Inspector)
         if (bossEnemy != null)
         {
             bossEnemy.ActivateBoss();
             return;
         }
 
-        // Jefe francotirador: se activa solo, sin necesidad de asignar nada
         BossSniperAttack sniper = FindFirstObjectByType<BossSniperAttack>();
         if (sniper != null)
         {

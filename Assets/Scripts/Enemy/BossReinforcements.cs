@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-// Refuerzos del jefe: cuando su vida baja del umbral (50% por defecto), aparecen guardias
-// en los puntos de aparicion (uno por puerta) y van directo a atacar al jugador. Pasa una sola vez.
-// Escucha GameEvents.OnBossHealthChanged, asi que no necesita referencia directa al jefe.
 public class BossReinforcements : MonoBehaviour
 {
     [Header("Refuerzos")]
@@ -47,7 +44,6 @@ public class BossReinforcements : MonoBehaviour
         if (max <= 0f)
             return;
 
-        // El jefe murio: los refuerzos dejan de atacar
         if (current <= 0f)
         {
             StopReinforcements();
@@ -94,7 +90,6 @@ public class BossReinforcements : MonoBehaviour
         Debug.Log("[BossReinforcements] Aparecieron " + spawnedEnemies.Count + " refuerzos.");
     }
 
-    // Espera un frame (para que el guardia termine de inicializarse) y lo manda a atacar
     private IEnumerator Engage(GameObject enemy)
     {
         yield return null;
@@ -112,7 +107,6 @@ public class BossReinforcements : MonoBehaviour
         {
             health.SetCountsForRank(countForRank);
 
-            // ForceChase pone la vida de alerta; si no se quiere, se vuelve a la normal
             if (!useAlertHealth)
                 health.SetAlertState(false);
         }

@@ -67,7 +67,6 @@ public class BossEnemy : EnemyBase
     {
         if (stationary)
         {
-            // Se queda quieto; la rotacion y el ataque los maneja BossSniperAttack.
             if (agent != null && agent.isOnNavMesh)
             {
                 agent.isStopped = true;

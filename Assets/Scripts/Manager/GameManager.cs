@@ -88,12 +88,10 @@ public class GameManager : MonoBehaviour
 
         defeatPending = true;
 
-        // Cortamos el control del jugador ya, pero sin congelar el juego para que se vea la animacion
         DisablePlayerInput();
         StartCoroutine(DefeatAfterDeathAnimation());
     }
 
-    // Espera a que termine la animacion de muerte del jugador (o el tiempo maximo) y recien ahi pierde
     private IEnumerator DefeatAfterDeathAnimation()
     {
         DeathSequence sequence = playerHealth != null ? playerHealth.GetComponent<DeathSequence>() : null;
@@ -121,7 +119,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(VictoryAfterDeathAnimation());
     }
 
-    // Espera a que termine la animacion de muerte del objetivo (o el tiempo maximo) y recien ahi gana
     private IEnumerator VictoryAfterDeathAnimation()
     {
         DeathSequence sequence = victoryTarget != null ? victoryTarget.GetComponent<DeathSequence>() : null;
@@ -163,7 +160,6 @@ public class GameManager : MonoBehaviour
     Juego.SceneManager.Ganar();
 }
 
-    // Derrota inmediata (por ejemplo, cuando se termina el tiempo)
     public void TriggerGameOver()
     {
         if (victoryPending || defeatPending)
@@ -209,9 +205,6 @@ public class GameManager : MonoBehaviour
     public void RestartLevel()
     {
         Time.timeScale = 1f;
-
-        Scene currentScene = SceneManager.GetActiveScene();
-
-        SceneManager.LoadScene(currentScene.name);
+        Juego.SceneManager.ReiniciarJuego();
     }
 }

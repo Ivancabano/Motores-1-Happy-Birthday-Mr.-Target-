@@ -18,8 +18,6 @@ public class SceneManager : MonoBehaviour
     [SerializeField] private GameObject canvasMenu;
     [SerializeField] private GameObject canvasInstrucciones;
 
-    private static string ultimoNivel = NIVEL_INICIAL;
-
     private void Start()
     {
         if (canvasInstrucciones != null) canvasInstrucciones.SetActive(false);
@@ -47,9 +45,6 @@ public class SceneManager : MonoBehaviour
     private static void AlCargarEscena(Scene escena, LoadSceneMode modo)
     {
         Time.timeScale = 1f;
-
-        if (escena.name == NIVEL_INICIAL || escena.name == SALA_JEFE)
-            ultimoNivel = escena.name;
 
         bool esPantallaUI = escena.name == MENU || escena.name == VICTORIA || escena.name == DERROTA;
         if (esPantallaUI)
@@ -81,7 +76,13 @@ public class SceneManager : MonoBehaviour
 
     public void Reintentar()
     {
-        UnitySceneManager.LoadScene(ultimoNivel);
+        ReiniciarJuego();
+    }
+
+    public static void ReiniciarJuego()
+    {
+        RunData.Clear();
+        UnitySceneManager.LoadScene(NIVEL_INICIAL);
     }
 
     public static void CargarEscena(string nombre)
