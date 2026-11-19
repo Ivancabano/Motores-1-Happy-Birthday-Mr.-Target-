@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2021028982433411809}
   - component: {fileID: 7346344744873683096}
   - component: {fileID: 1020312525048687243}
-  - component: {fileID: 1281667119552515069}
   - component: {fileID: 3233199458674571813}
   - component: {fileID: 6696955304061244189}
+  - component: {fileID: 7138341619099161862}
   m_Layer: 0
   m_Name: BossGranade
   m_TagString: Untagged
@@ -93,27 +93,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1281667119552515069
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5858294465953127437}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3233199458674571813
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -163,3 +142,26 @@ MonoBehaviour:
   explosionClip: {fileID: 8300000, guid: 278ab16b6276e4f4f961e854361b898d, type: 3}
   flashColor: {r: 1, g: 0.55, b: 0.15, a: 0.8}
   flashDuration: 0.35
+--- !u!136 &7138341619099161862
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5858294465953127437}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.057124615
+  m_Height: 0.06258463
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.002367396, z: 0.012541579}

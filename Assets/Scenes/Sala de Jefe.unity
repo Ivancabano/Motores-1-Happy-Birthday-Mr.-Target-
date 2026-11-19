@@ -10195,7 +10195,6 @@ GameObject:
   - component: {fileID: 2100000102}
   - component: {fileID: 2100000103}
   - component: {fileID: 2100000105}
-  - component: {fileID: 2100000104}
   m_Layer: 9
   m_Name: Jefe
   m_TagString: Untagged
@@ -12160,28 +12159,6 @@ MonoBehaviour:
   nonLethalHitClip: {fileID: 8300000, guid: 991f4ea75e3f8c944ad8461a622762da, type: 3}
   DeathAudioSource: {fileID: 373280616}
   deathClip: {fileID: 8300000, guid: 7f6db1f8efaae0247aad48da57b9a8f9, type: 3}
---- !u!114 &2100000104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1766464858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81ea21b52ae14b5986379cf99692532a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BossGrenade
-  warningColor: {r: 1, g: 0.15, b: 0.1, a: 0.9}
-  ringWidth: 0.08
-  ringSegments: 48
-  blinkStartBeforeExplosion: 1.2
-  slowBlinkInterval: 0.25
-  fastBlinkInterval: 0.05
-  explosionPrefab: {fileID: 0}
-  explosionClip: {fileID: 0}
-  flashColor: {r: 1, g: 0.55, b: 0.15, a: 0.8}
-  flashDuration: 0.35
 --- !u!54 &2100000105
 Rigidbody:
   m_ObjectHideFlags: 0
