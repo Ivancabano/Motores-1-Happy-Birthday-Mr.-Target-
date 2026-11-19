@@ -13,15 +13,15 @@ public class ButtonController : MonoBehaviour
 
     [Header("Audio del Botón")]
     [SerializeField] private AudioSource buttonAudioSource;
-    [SerializeField] private AudioClip buttonPressClip;     
-    [SerializeField] private AudioClip incorrectPressClip; 
+    [SerializeField] private AudioClip buttonPressClip;     // Sonido al acertar (correcto)
+    [SerializeField] private AudioClip incorrectPressClip;  // Nuevo: Sonido al fallar (incorrecto)
 
     private bool isActivated = false;
     private bool isRequiredInStealth = false;
 
     private void Start()
     {
-        SetVisualState(false);
+        SetVisualState(false); // Inicia en rojo
 
         if (doorManager != null)
         {
@@ -55,9 +55,9 @@ public class ButtonController : MonoBehaviour
 
             if (success)
             {
-
+                // --- ACERTÓ EL BOTÓN ---
                 isActivated = true;
-                SetVisualState(true);
+                SetVisualState(true); // Cambia a verde
 
                 if (buttonAudioSource != null && buttonPressClip != null)
                 {
@@ -68,14 +68,17 @@ public class ButtonController : MonoBehaviour
             }
             else
             {
-                isActivated = true; 
+                // --- FALLÓ (BOTÓN INCORRECTO) ---
+                isActivated = true; // Lo bloqueamos para que no se pueda reintentar de inmediato
 
+                // Apagamos la luz visual y el componente Light
                 if (buttonIndicatorRenderer != null)
                     buttonIndicatorRenderer.gameObject.SetActive(false);
 
                 if (buttonLightComponent != null)
                     buttonLightComponent.enabled = false;
 
+                // Reproducimos el sonido de error
                 if (buttonAudioSource != null && incorrectPressClip != null)
                 {
                     buttonAudioSource.PlayOneShot(incorrectPressClip);
@@ -86,10 +89,12 @@ public class ButtonController : MonoBehaviour
         }
     }
 
+    // Método para resetear el botón (vuelve a encenderlo en rojo si se reinicia el estado)
     public void ResetButton()
     {
         isActivated = false;
 
+        // Volvemos a encender los componentes visuales por si se habían apagado
         if (buttonIndicatorRenderer != null)
             buttonIndicatorRenderer.gameObject.SetActive(true);
 

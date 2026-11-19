@@ -6,12 +6,15 @@ public class HeadHitbox : MonoBehaviour, IHeadshot
 
     private void Awake()
     {
+        // Si está en un objeto hijo, busca el TargetHealth en el padre
         if (targetHealth == null)
             targetHealth = GetComponentInParent<TargetHealth>();
     }
 
     public void OnHeadshot()
     {
+        Debug.Log("¡Disparo crítico en la CABEZA!");
+
         if (targetHealth != null)
         {
             targetHealth.TakeHeadshot();
