@@ -38,14 +38,18 @@ public class DoorManager : MonoBehaviour
 
     public void RegisterButton(ButtonController button)
     {
-        if (!registeredButtons.Contains(button))
+        if (button != null && !registeredButtons.Contains(button))
         {
             registeredButtons.Add(button);
+            Debug.Log("boton registrado");
         }
 
-        if (!isAlertMode && registeredButtons.Count > 0 && correctStealthButton == null)
+        if (!isAlertMode && registeredButtons.Count > 0)
         {
-            ChooseRandomStealthButton();
+            if (registeredButtons.Count == 1 || correctStealthButton == null)
+            {
+                ChooseRandomStealthButton();
+            }
         }
     }
 
@@ -55,12 +59,25 @@ public class DoorManager : MonoBehaviour
 
         foreach (var btn in registeredButtons)
         {
-            btn.SetAsRequiredStealth(false);
+            if (btn != null) btn.SetAsRequiredStealth(false);
         }
 
-        int randomIndex = Random.Range(0, registeredButtons.Count);
-        correctStealthButton = registeredButtons[randomIndex];
-        correctStealthButton.SetAsRequiredStealth(true);
+        if (registeredButtons.Count == 1)
+        {
+            correctStealthButton = registeredButtons[0];
+            Debug.Log("boton correcto seleccionado: " + correctStealthButton.name);
+        }
+        else
+        {
+            int randomIndex = Random.Range(0, registeredButtons.Count);
+            correctStealthButton = registeredButtons[randomIndex];
+            Debug.Log("boton correcto seleccionado: " + correctStealthButton.name);
+        }
+
+        if (correctStealthButton != null)
+        {
+            correctStealthButton.SetAsRequiredStealth(true);
+        }
     }
 
     public void SetAlertMode(bool alertActive)
@@ -72,10 +89,10 @@ public class DoorManager : MonoBehaviour
 
         if (isAlertMode)
         {
-            totalButtonsRequired = 3;
+            totalButtonsRequired = Mathf.Min(3, Mathf.Max(1, registeredButtons.Count));
             foreach (var btn in registeredButtons)
             {
-                btn.SetAsRequiredStealth(false);
+                if (btn != null) btn.SetAsRequiredStealth(false);
             }
         }
         else
@@ -89,7 +106,17 @@ public class DoorManager : MonoBehaviour
 
     public bool TryPressButton(ButtonController pressedButton)
     {
-        if (isDoorOpen) return false;
+        if (isDoorOpen || pressedButton == null) return false;
+
+        // Si solo hay 1 botón registrado, siempre es válido y abre al presionarlo
+        if (registeredButtons.Count == 1 && pressedButton == registeredButtons[0])
+        {
+            correctStealthButton = registeredButtons[0];
+            pressedButtonsCount = 1;
+            OpenDoor();
+            UpdateVisuals();
+            return true;
+        }
 
         if (!isAlertMode)
         {
@@ -105,7 +132,7 @@ public class DoorManager : MonoBehaviour
         }
         else
         {
-            // Modo Alerta: Exige acumular los 3 botones secuenciales
+            // Modo Alerta: Exige acumular los botones requeridos (hasta 3)
             pressedButtonsCount++;
             UpdateVisuals();
 

@@ -8,15 +8,17 @@ public class TargetHealth : MonoBehaviour, IDamageable
     [Header("Muerte")]
     [Header("Vida")]
     [Header("Sistema de rangos")]
-    [SerializeField] private bool countsForRank = true;
-    [SerializeField] private float normalHealth = 25f;
-    [SerializeField] private float alertHealth = 75f;
-    
-     
-    private float maxHealth;
-    private float currentHealth;
+    [SerializeField] protected bool countsForRank = true;
+    [SerializeField] protected float normalHealth = 25f;
+    [SerializeField] protected float alertHealth = 75f;
+    [SerializeField] protected AudioSource hitAudioSource;
+    [SerializeField] protected AudioClip nonLethalHitClip;
+
+
+    protected float maxHealth;
+    protected float currentHealth;
      public bool IsDead => isDead;
-    private bool isDead = false;
+    protected bool isDead = false;
 
     public float CurrentHealth => currentHealth;
     public float MaxHealth => maxHealth;
@@ -26,21 +28,29 @@ public class TargetHealth : MonoBehaviour, IDamageable
     // Avisará cuando este enemigo muera
     public event Action OnDeath;
     public event Action<float, float> OnHealthChanged;
+    protected virtual void Awake()
+    {
 
-    private void Start()
+        maxHealth = normalHealth;
+        currentHealth = normalHealth;
+        if (hitAudioSource == null)
+        {
+            hitAudioSource = GetComponent<AudioSource>() ?? GetComponentInChildren<AudioSource>();
+        }
+
+        if (hitAudioSource != null)
+        {
+            hitAudioSource.playOnAwake = false;
+            hitAudioSource.loop = false;
+        }
+    }
+    protected virtual void Start()
     {
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
         alertManager = UnityEngine.Object.FindFirstObjectByType<AlertManager>();
     }
 
-    private void Awake()
-    {
-        
-        maxHealth = normalHealth;
-        currentHealth = normalHealth;
-    }
-
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         if (isDead)
             return;
@@ -60,13 +70,18 @@ public class TargetHealth : MonoBehaviour, IDamageable
         }
         else
         {
+            PlayNonLethalHitSound();
             if (!isDead && alertManager != null)
             {
                 alertManager.EnemyOnSight(0f);
             }
         }
     }
-    public void TakeHeadshot()
+    protected virtual void PlayNonLethalHitSound()
+    {
+        hitAudioSource.PlayOneShot(nonLethalHitClip);
+    }
+    public virtual void TakeHeadshot()
     {
         if (isDead) return;
 
@@ -84,7 +99,7 @@ public class TargetHealth : MonoBehaviour, IDamageable
         countsForRank = value;
     }
 
-    public void SetAlertState(bool alertActive)
+    public virtual void SetAlertState(bool alertActive)
     {
         if (isDead)
             return;
@@ -106,7 +121,7 @@ public class TargetHealth : MonoBehaviour, IDamageable
         Debug.Log( gameObject.name + " cambió su vida a " + currentHealth +"/" + maxHealth );
     }
 
-    public void Die()
+    public virtual void Die()
 {
     if (isDead)
         return;

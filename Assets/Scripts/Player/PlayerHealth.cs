@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour, IDamageable
+public class PlayerHealth : MonoBehaviour, ITakeDamage
+
 {
     [Header("Vida")]
     [SerializeField] private float maxHealth = 100f;
@@ -29,7 +30,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(float damage)
+    public void ITakeDamage(float damage)
     {
         if (isDead)
             return;

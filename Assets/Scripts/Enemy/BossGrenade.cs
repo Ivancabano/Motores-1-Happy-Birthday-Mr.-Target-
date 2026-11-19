@@ -190,7 +190,7 @@ public class BossGrenade : MonoBehaviour
     private void DamagePlayer(Vector3 center)
     {
         Collider[] hits = Physics.OverlapSphere(center, radius, ~0, QueryTriggerInteraction.Ignore);
-        HashSet<IDamageable> damaged = new HashSet<IDamageable>();
+        HashSet<ITakeDamage> damaged = new HashSet<ITakeDamage>();
 
         foreach (Collider hit in hits)
         {
@@ -198,7 +198,7 @@ public class BossGrenade : MonoBehaviour
             if (player == null)
                 continue;
 
-            IDamageable damageable = hit.GetComponentInParent<IDamageable>();
+            ITakeDamage damageable = hit.GetComponentInParent<ITakeDamage>();
             if (damageable == null || damaged.Contains(damageable))
                 continue;
 
@@ -209,7 +209,7 @@ public class BossGrenade : MonoBehaviour
             float distance = Vector3.Distance(center, hit.ClosestPoint(center));
             float damage = Mathf.Lerp(maxDamage, minDamage, Mathf.Clamp01(distance / radius));
 
-            damageable.TakeDamage(damage);
+            damageable.ITakeDamage(damage);
             damaged.Add(damageable);
         }
     }

@@ -53,12 +53,12 @@ public class EnemyBullet : MonoBehaviour
         }
 
         // 2. Buscamos si lo que tocamos tiene la interfaz de daño (el jugador)
-        IDamageable damageable = collision.gameObject.GetComponentInParent<IDamageable>();
+        ITakeDamage damageable = collision.gameObject.GetComponentInParent<ITakeDamage>();
 
         if (damageable != null)
         {
             // Si es el jugador, aplicamos daño
-            damageable.TakeDamage(damage);
+            damageable.ITakeDamage(damage);
         }
 
         // 3. Al ser una colisión física normal, tanto si choca con el jugador como con una pared o suelo, se destruye

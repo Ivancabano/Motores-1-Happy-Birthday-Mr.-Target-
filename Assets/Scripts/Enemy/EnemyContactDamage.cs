@@ -28,8 +28,7 @@ public class EnemyContactDamage : MonoBehaviour
             return;
 
         // Buscamos el sistema de vida del jugador
-        IDamageable damageable =
-            target.GetComponentInParent<IDamageable>();
+        ITakeDamage damageable = target.GetComponentInParent<ITakeDamage>();
 
         if (damageable == null)
         {
@@ -46,7 +45,7 @@ public class EnemyContactDamage : MonoBehaviour
         OnAttack?.Invoke();
 
         // Aplicamos daño
-        damageable.TakeDamage(damageAmount);
+        damageable.ITakeDamage(damageAmount);
 
         Debug.Log(
             "[EnemyContactDamage] Golpe melee realizado."

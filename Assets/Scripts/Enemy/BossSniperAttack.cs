@@ -234,19 +234,19 @@ public class BossSniperAttack : MonoBehaviour
         Vector3 origin = firePoint.position;
         Vector3 direction = (player.GetCenterPosition() - origin).normalized;
 
-        IDamageable victim = TraceShot(origin, direction, out Vector3 endPoint);
+        ITakeDamage victim = TraceShot(origin, direction, out Vector3 endPoint);
 
         laser.enabled = true;
         laser.SetPosition(0, origin);
         laser.SetPosition(1, endPoint);
 
         if (victim != null)
-            victim.TakeDamage(sniperDamage);
+            victim.ITakeDamage(sniperDamage);
     }
 
     // Lanza un rayo y devuelve el dano del jugador si no hay nada que lo tape.
     // endPoint es donde termina la linea: el jugador, o el objeto que la bloquea.
-    private IDamageable TraceShot(Vector3 origin, Vector3 direction, out Vector3 endPoint)
+    private ITakeDamage TraceShot(Vector3 origin, Vector3 direction, out Vector3 endPoint)
     {
         endPoint = origin + direction * maxRange;
 
@@ -277,7 +277,7 @@ public class BossSniperAttack : MonoBehaviour
 
         // Solo cuenta como impacto si lo primero que toca es el jugador
         if (best.collider.GetComponentInParent<PlayerDetectorTarget>() != null)
-            return best.collider.GetComponentInParent<IDamageable>();
+            return best.collider.GetComponentInParent<ITakeDamage>();
 
         return null;
     }
