@@ -73,7 +73,7 @@ public class DoorManager : MonoBehaviour
             correctStealthButton = registeredButtons[randomIndex];
             Debug.Log("boton correcto seleccionado: " + correctStealthButton.name);
         }
-
+        Debug.Log($"[DoorManager] Lista count: {registeredButtons.Count} | Elegido: {correctStealthButton.name} (InstanceID: {correctStealthButton.GetInstanceID()})");
         if (correctStealthButton != null)
         {
             correctStealthButton.SetAsRequiredStealth(true);
@@ -108,7 +108,6 @@ public class DoorManager : MonoBehaviour
     {
         if (isDoorOpen || pressedButton == null) return false;
 
-        // Si solo hay 1 botón registrado, siempre es válido y abre al presionarlo
         if (registeredButtons.Count == 1 && pressedButton == registeredButtons[0])
         {
             correctStealthButton = registeredButtons[0];
@@ -120,7 +119,6 @@ public class DoorManager : MonoBehaviour
 
         if (!isAlertMode)
         {
-            // Modo Sigilo: Si acierta al botón correcto, abre de golpe
             if (pressedButton == correctStealthButton)
             {
                 pressedButtonsCount = 1;
@@ -132,7 +130,6 @@ public class DoorManager : MonoBehaviour
         }
         else
         {
-            // Modo Alerta: Exige acumular los botones requeridos (hasta 3)
             pressedButtonsCount++;
             UpdateVisuals();
 
@@ -176,25 +173,21 @@ public class DoorManager : MonoBehaviour
 
             if (!isAlertMode)
             {
-                // MODO SIGILO: Solo la primera luz encendida en rojo (hasta abrirse)
                 shouldBeOn = (i == 0);
                 shouldBeGreen = isDoorOpen;
             }
             else
             {
-                // MODO ALERTA: Las 3 luces encendidas. Se vuelven verdes según los botones pulsados.
                 shouldBeOn = true;
                 shouldBeGreen = (i < pressedButtonsCount) || isDoorOpen;
             }
 
-            // Aplicar material
             if (lightIndicatorRenderers[i] != null)
             {
                 lightIndicatorRenderers[i].gameObject.SetActive(shouldBeOn);
                 lightIndicatorRenderers[i].material = shouldBeGreen ? greenLightMaterial : redLightMaterial;
             }
 
-            // Aplicar color a la luz real de Unity
             if (i < lightComponents.Count && lightComponents[i] != null)
             {
                 lightComponents[i].enabled = shouldBeOn;
