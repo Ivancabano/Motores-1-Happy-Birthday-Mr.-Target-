@@ -90,14 +90,28 @@ public class DoorManager : MonoBehaviour
         if (isAlertMode)
         {
             totalButtonsRequired = Mathf.Min(3, Mathf.Max(1, registeredButtons.Count));
+
             foreach (var btn in registeredButtons)
             {
-                if (btn != null) btn.SetAsRequiredStealth(false);
+                if (btn != null)
+                {
+                    btn.SetAsRequiredStealth(false);
+                    btn.ResetButton(); // <-- Reactiva botones que fallaron en sigilo
+                }
             }
         }
         else
         {
             totalButtonsRequired = 1;
+
+            foreach (var btn in registeredButtons)
+            {
+                if (btn != null)
+                {
+                    btn.ResetButton(); // <-- Por si salís de alerta y querés limpiar estado
+                }
+            }
+
             ChooseRandomStealthButton();
         }
 
